@@ -1,0 +1,30 @@
+<?php include 'inc/head.inc.html' ?>
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <?php echo Barrio::actionRun('theme_before');?>
+            <article class="post">
+                <hgroup class="post-header">
+                    <h3 class="post-title"><?php echo $page['title'];?></h3>
+                    <h4 class="post-date"><?php echo $page['date'];?></h4>
+                </hgroup>
+                <section class="post-body">
+                    <?php echo $page['content'];?>
+                </section>
+            </article>
+            <?php echo Barrio::actionRun('theme_after');?>
+        </div>
+        <div class="col-4">
+            <h4><?php echo Barrio::$config['title'];?> Blog</h4>
+            <p>
+                <?php echo Barrio::$config['blog_description'];?>
+            </p>
+
+            <hr class="mt-5 mb-3" />
+
+            <h4>Articulos Recientes</h4>
+            <?php echo Barrio::actionRun('lastPosts',[3]); ?>
+        </div>
+    </div>
+</div>
+<?php include 'inc/footer.inc.html' ?>

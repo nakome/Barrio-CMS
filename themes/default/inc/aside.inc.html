@@ -1,0 +1,21 @@
+<aside id="menuWrapper">
+    <header id="logo">
+        <a href="<?php echo Url();?>">
+            <img src="<?php echo assets();?>/img/logo.svg" alt="<?php echo Barrio::$config['title'];?>">
+        </a>
+    </header>
+
+    <div class="mobile-menu">
+        <a href="#">Menu</a>
+    </div>
+
+    <nav id="menu">
+        <a href="#" class="closeMenu">Cerrar</a>
+        <ul>
+            <?php echo nav();?>
+            <?php echo nav('install','instalacíon');?>
+            <?php echo nav('articulos?page=0','Como se hace');?>
+            <?php echo nav('download','Descarga');?>
+        </ul>
+    </nav>
+</aside>
