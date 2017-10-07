@@ -8,9 +8,9 @@ Template: index
 
 {Bloques}
 {Bloque col='6'}
-Puedes descargar **Barrio CMS** en **Bitbuket**.
+Puedes descargar **Barrio CMS** en **Github**.
 
-{Btn type="outline" color='primary' text='Descargalo Ahora' link='//bitbucket.org/nakome/barrio-cms/downloads'}
+{Btn type="outline" color='primary' text='Descargalo Ahora' link='//github.com/nakome/Barrio-CMS/archive/master.zip'}
 
 {/Bloque}
 {Bloque col='6'}
