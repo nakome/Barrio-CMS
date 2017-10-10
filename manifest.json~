@@ -7,11 +7,6 @@
         "src": "logo-144.png",
         "sizes": "144x144",
         "type": "image/png"
-    },
-    {
-        "src": "logo-200.png",
-        "sizes": "200x200",
-        "type": "image/png"
     }
 ],
     "start_url": "/",
