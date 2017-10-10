@@ -47,7 +47,7 @@ Barrio::actionAdd('Pagination', function($name,$num = 3) {
     $total = count($articulos);
 
     // Get page
-    $p = $_GET['page'];
+    $p = isset($_GET['page']) ? $_GET['page'] : '';
     $pagination  =  $p > 0 ? '<a class="btn btn-link pagination" href="?page='.($p -1).'">Mas nuevos --&gt;</a>':'';
     $pagination .= ($p+1) < $total ? '<a class="btn btn-link pagination" href="?page='.($p+1).'">&lt-- Mas viejos</a>':'';
     echo $pagination;

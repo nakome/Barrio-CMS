@@ -3,12 +3,12 @@
 
 /**
  * Barrio CMS
- * 
+ *
  * @author    Moncho Varela / Nakome <nakome@gmail.com>
  * @copyright 2016 Moncho Varela / Nakome <nakome@gmail.com>
  *
  * @version 0.0.1
- * 
+ *
  */
 
 class Barrio
@@ -49,12 +49,12 @@ class Barrio
      *  <code>
      *      Barrio::actionAdd('demo',function(){});
      *  </code>
-     * 
+     *
      * @param <type> $name     The name
      * @param <type> $func     The function
      * @param int    $priority The priority
      * @param array  $args     The arguments
-     * 
+     *
      * @return static
      */
     public static function actionAdd($name, $func, $priority = 10, array $args = null)
@@ -72,11 +72,11 @@ class Barrio
 
     /**
      * Run action.
-     * 
+     *
      *  <code>
      *      Barrio::actionRun('demo',array());
      *  </code>
-     * 
+     *
      * @param <type> $name   The name
      * @param array  $args   The arguments
      * @param bool   $return The return
@@ -125,7 +125,7 @@ class Barrio
      *              // shortcode
      *      });
      *  </code>
-     * 
+     *
      * @param string $shortcode         the name
      * @param array  $callback_function The arguments
      *
@@ -142,7 +142,7 @@ class Barrio
 
     /**
      * Shortcode parse.
-     * 
+     *
      * @param string $content the shortcode content
      *
      * @return <type> ( description_of_the_return_value )
@@ -161,10 +161,10 @@ class Barrio
 
     /**
      * Handle Shortcode
-     * 
+     *
      * @param array $matches the matches
      *
-     * @return <type> ( description_of_the_return_value 
+     * @return <type> ( description_of_the_return_value
      */
     protected static function shortcodeHandle($matches)
     {
@@ -190,11 +190,11 @@ class Barrio
 
     /**
      * C.O.R.S function.
-     * 
+     *
      * <code>
      *      Barrio::cors();
      * </code>
-     * 
+     *
      * @return <type>
      */
     public static function cors()
@@ -221,28 +221,29 @@ class Barrio
 
     /**
      * Get url base
-     * 
+     *
      * <code>
      *   Barrio::urlBase();
      * </code>
-     * 
+     *
      * @return string url
      */
     public static function urlBase()
     {
+        $protocol = (self::$config['protocol']) ? self::$config['protocol'] : 'http';
         $url_base = trim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/');
-        $url_home = '//'.trim($_SERVER['HTTP_HOST'], '/').(trim($url_base) !== '' ? '/'.$url_base : '');
+        $url_home = $protocol.'://'.trim($_SERVER['HTTP_HOST'], '/').(trim($url_base) !== '' ? '/'.$url_base : '');
 
         return $url_home;
     }
 
     /**
      * Get current url.
-     * 
+     *
      * <code>
      *  Barrio::urlCurrent();
      * </code>
-     * 
+     *
      * @return string url
      */
     public static function urlCurrent()
@@ -260,11 +261,11 @@ class Barrio
 
     /**
      * Uri Segments.
-     * 
+     *
      * <code>
      *  Barrio::urlSegments();
      * </code>
-     * 
+     *
      * @return array
      */
     public static function urlSegments()
@@ -278,9 +279,9 @@ class Barrio
      * <code>
      *  Barrio::urlSegment(1);
      * </code>
-     * 
+     *
      * @param string $name the name
-     * 
+     *
      * @return string
      */
     public static function urlSegment($name)
@@ -289,12 +290,12 @@ class Barrio
 
         return isset($segments[$name]) ? $segments[$name] : null;
     }
-    
+
     /**
      *  Sanitize Url.
      *
      * @param string $url the url
-     * 
+     *
      * @return string url
      */
     public static function urlSanitize($url)
@@ -315,7 +316,7 @@ class Barrio
 
     /**
      * Run sanitize
-     * 
+     *
      * @return <type>
      */
     public static function runSanitize()
@@ -365,15 +366,15 @@ class Barrio
 
     /**
      * Scan files.
-     * 
+     *
      * <code>
      *  Barrio::scanFiles(CONTENT,'md',false);
      * </code>
-     * 
+     *
      * @param string $folder    the folder
      * @param string $type      extension
      * @param bool   $file_path boolean
-     * 
+     *
      * @return <type>
      */
     public static function scanFiles($folder, $type = null, $file_path = true)
@@ -427,9 +428,9 @@ class Barrio
      * <code>
      *  Barrio::prettyArray($array);
      * </code>
-     * 
+     *
      * @param array $a the array to debug
-     * 
+     *
      * @return string
      */
     public static function debug($a = array())
@@ -443,10 +444,10 @@ class Barrio
      * <code>
      *  Barrio::validateDate($date);
      * </code>
-     * 
+     *
      * @param string $format the format of date
      * @param string $date   the timestamp
-     * 
+     *
      * @return string
      */
     public static function validateDate($format, $date)
@@ -468,7 +469,7 @@ class Barrio
      * @param string $order_type Order type
      * @param array  $ignore     Pages to ignore
      * @param int    $limit      Limit of pages
-     * 
+     *
      * @return array
      */
     public function pages($url, $order_by = 'date', $order_type = 'DESC', $ignore = array('404'), $limit = null)
@@ -499,7 +500,7 @@ class Barrio
                 }
 
                 // convert local to url
-                $url = str_replace(CONTENT, self::$config['url'], $page);
+                $url = str_replace(CONTENT, self::urlBase(), $page);
                 $url = str_replace('index.md', '', $url);
                 $url = str_replace('.md', '', $url);
                 $url = str_replace('\\', '/', $url);
@@ -533,9 +534,9 @@ class Barrio
      * <code>
      *  $page = Barrio::page('blog');
      * </code>
-     * 
+     *
      * @param string $url the url
-     * 
+     *
      * @return $page (Array)
      */
     public function page($url)
@@ -567,7 +568,7 @@ class Barrio
             }
         }
 
-        $url = str_replace(CONTENT, static::$config['url'], $file);
+        $url = str_replace(CONTENT, static::urlBase(), $file);
         $url = str_replace('index.md', '', $url);
         $url = str_replace('.md', '', $url);
         $url = str_replace('\\', '/', $url);
@@ -663,7 +664,7 @@ class Barrio
      * Parse content
      *
      * @param string $content the content
-     * 
+     *
      * @return $content (array)
      */
     protected function parseContent($content)
@@ -673,9 +674,9 @@ class Barrio
         foreach (explode(self::SEPARATOR, $content) as $c) {
             $i++ != 0 and $_content .= $c;
         }
-        
+
         $content = $_content;
-        $content = str_replace('{url}', self::$config['url'], $_content);
+        $content = str_replace('{url}', self::urlBase(), $_content);
         $content = str_replace('{email}', self::$config['email'], $content);
         $pos = strpos($content, '{more}');
         if ($pos === false) {
@@ -693,7 +694,7 @@ class Barrio
 
     /**
      * Load extensions
-     * 
+     *
      * @return file
      */
     protected function load_extensions()
@@ -717,9 +718,9 @@ class Barrio
 
     /**
      * Load config
-     * 
+     *
      * @param string $route the route
-     * 
+     *
      * @return config
      */
     protected function load_config($route)
@@ -735,7 +736,7 @@ class Barrio
      * Eval Content.
      *
      * @param string $data the data
-     * 
+     *
      * @return $data
      */
     protected static function obEval($data)
@@ -750,9 +751,9 @@ class Barrio
 
     /**
      * Eval Php
-     * 
+     *
      * @param string $str the string to eval
-     * 
+     *
      * @return callback
      */
     protected static function evalPHP($str)
@@ -764,7 +765,7 @@ class Barrio
      * Init CMS.
      *
      * @param string $path the path
-     * 
+     *
      * @return callback
      */
     public function init($path)

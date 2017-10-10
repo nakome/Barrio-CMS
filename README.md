@@ -20,8 +20,8 @@
         <?php
             return array(
                 'lang' => 'es',
-                // direccion donde se encuentra el CMS
-                'url' => '//localhost/barrioDemos/theme_2',
+                // protocolo http o https
+                'protocol' => 'http',
                 // charset
                 'charset' => 'UTF-8',
                 // timezone
