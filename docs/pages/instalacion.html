@@ -1,0 +1,56 @@
+<h3>Requisitos</h3>
+<p><strong>PHP 5.3</strong> minimo con <strong>PHP's Multibyte String module</strong></p>
+<p><strong>Apache</strong> con <strong>Mod Rewrite</strong></p>
+<h3>Instalación</h3>
+<p><strong>Muy facil</strong> solo tienen que copiar la carpeta del <strong>CMS</strong> en su Hosting y cambiar algunos parametros en el archivo <code>config.php</code> y en el <code>.htaccess</code></p>
+<p><strong>Archivo config.php</strong></p>
+<pre><code>    &lt;?php
+        return array(
+            'lang' =&gt; 'es',
+            // protocolo http o https
+            'protocol' =&gt; 'http',
+            // charset
+            'charset' =&gt; 'UTF-8',
+            // timezone
+            'timezone' =&gt; 'Europe/Brussels',
+            // plantilla por defecto
+            'theme' =&gt; 'default',
+            // titulo de la web
+            'title' =&gt; 'Barrio CMS',
+            // descripcion de la web
+            'description' =&gt; 'Sistema de control de contenidos en formato Flat File',
+            // palabras clave
+            'keywords' =&gt; 'cms,barrio,flatfile',
+            // autor
+            'author' =&gt; 'Moncho Varela',
+            // correo
+            'email' =&gt; 'demo@gmail.com',
+            // imagen por defecto
+            'image' =&gt; 'content/imagenes/sin-imagen.svg',
+            // descripcion del blog
+            'blog_description' =&gt; 'Articulos, ideas y todo lo que se me ocurra se ira poniendo aquí.Espero que lo disfruteis.'
+        );</code></pre>
+<p><strong>Archivo .htaccess</strong></p>
+<p>Si esta dentro de una carpeta poner el nombre de ella</p>
+<p><strong>Por ejemplo:</strong></p>
+<pre><code>    # PHP 5, Apache 1 and 2.
+    &lt;IfModule mod_php5.c&gt;
+      php_flag magic_quotes_gpc                 off
+      php_flag magic_quotes_sybase              off
+      php_flag register_globals                 off
+    &lt;/IfModule&gt;
+
+    &lt;IfModule mod_rewrite.c&gt;
+        RewriteEngine On
+        # Si esta en un directorio añadirlo
+        RewriteBase /misitio
+        Options +FollowSymlinks
+        RewriteRule ^content/(.*)\.(txt|md|yml|json)$ index.php [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule ^(.*)$ index.php?$1 [L,QSA]
+    &lt;/IfModule&gt;
+
+    &lt;IfModule mod_autoindex.c&gt;
+        Options -Indexes
+    &lt;/IfModule&gt;</code></pre>

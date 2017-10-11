@@ -1,0 +1,52 @@
+<article class="post">
+    <hgroup class="post-header">
+        <h3 class="post-title">Las extensiones</h3>
+        <h4 class="post-date"></h4>
+    </hgroup>
+    <section class="post-body">
+        <p>Las extensiones son una parte importante de <strong>Barrio CMS</strong> ya que como su nombre indica pueden extender el CMS a otro nivel.</p>
+        <p>La estructura de una extensión básica es simple:</p>
+        <pre><code>1.  El nombre de la carpeta de la extensión ( por ejemplo  demo )
+    -   El nombre de la extensión  debe llevar el mismo nombre que la carpeta  y .ext al final ( demo.ext.php );
+    -  todo lo demás que lleve la extensión, librerías, css, javascript etc.</code></pre>
+        <p>Si quieres por ejemplo desactivar una extensión puedes agregar o cambiar el nombre de la carpeta. Por ejemplo la carpeta <strong>demo</strong> la renombramos a <strong>_demo</strong> y ya esta. Ten en cuenta que si usas alguna función en la plantilla que no sea un <strong>Shortcode</strong> o una <strong>Acción</strong> te dará error.</p>
+        <h3>Creando Extensiones</h3>
+        <p>Vamos a crear una extensión que automáticamente genere un enlace al final de cada pagina usando una acción que ya esta en la plantilla que es <code>&lt;?php Barrio::actionRun('theme_after); ?&gt;</code>.</p>
+        <pre><code>&lt;?php
+    // llamamos a la acción theme_after
+    Barrio::actionAdd('theme_after',function(){
+        // y ahora que enseñe esto
+        echo '&lt;a href="'.Barrio::urlBase().'/articulos"&gt;Ver articulos.&lt;/a&gt;';
+    });</code></pre>
+        <p>Y ahora en todas las páginas al final se verá ese enlace, asi de facil. Ahora vamos añadir algo más, le vamos a decir que si está en la sección artículos y la página extensiones enseñe el texto y si no no enseñe nada.</p>
+        <pre><code>&lt;?php
+    // llamamos a la acción theme_after
+    Barrio::actionAdd('theme_after',function(){
+        // urlSegment sirve para señalar un segmento del enlace
+        // si pones var_dump(Barrio::urlSegments()) veras todos los segmentos del enlace
+        if(Barrio::urlSegment(0) == 'articulos' &amp;&amp; Barrio::urlSegment(1) == 'extensiones'){
+             // y ahora que enseñe esto
+            echo '&lt;a href="'.Barrio::urlBase().'/articulos"&gt;Ver articulos.&lt;/a&gt;';
+        }
+    });</code></pre>
+        <p>Ahora haremos una acción que cambie el fondo solo en esta página, para ello usaremos el Barrio::actionRun('head')` que hay en el archivo <em>head.inc.html</em> .</p>
+        <pre><code>// llamamos a la accion head
+Barrio::actionAdd('head',function(){
+     // urlSegment sirve para señalar un segmento del enlace
+    if(Barrio::urlSegment(0) == 'articulos' &amp;&amp; Barrio::urlSegment(1) == 'extensiones'){
+         // y ahora incrustamos esto
+        echo '&lt;style rel="stylesheet"&gt;
+                body{
+                    background:blue;
+                    color:white;
+                }
+                pre,code{
+                    background: #0000bb;
+                    border-color: #00008e;
+                    box-shadow: 0px 3px 6px -2px #02026f;
+                    color: white;
+                }
+        &lt;/style&gt;';
+    }
+});</code></pre> </section>
+</article>

@@ -4,7 +4,7 @@
 
 ### Requisitos
 
-**PHP 5.5** minimo con **PHP's Multibyte String module**
+**PHP 5.3** minimo con **PHP's Multibyte String module**
 
 **Apache** con **Mod Rewrite**
 

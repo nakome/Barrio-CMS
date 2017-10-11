@@ -1,0 +1,267 @@
+<article class="post">
+    <hgroup class="post-header">
+        <h3 class="post-title">Que es Markdown?</h3>
+        <h4 class="post-date"></h4>
+    </hgroup>
+    <section class="post-body">
+        <p><strong>Markdown</strong> nació como herramienta de <strong>conversión de texto plano a HTML</strong>.</p>
+        <p>Esta herramienta fue creada en 2004 por John Gruber, y se distribuye de manera gratuita bajo una <a href="https://es.wikipedia.org/wiki/Licencia_BSD">licencia BSD</a>.</p>
+        <p>Aunque en realidad Markdown también se considera un lenguaje que tiene la finalidad de permitir crear contenido de una manera sencilla de escribir, y que en todo momento mantenga un diseño legible, así que para simplificar puedes considerar Markdown como un método de escritura.</p>
+        <p>Este método te permitirá añadir formatos tales como <strong>negritas</strong>, <em>cursivas</em> o <a href="http">enlaces</a>, utilizando simplemente texto plano, lo que hará de tu escritura algo más simple y eficiente al evitar distracciones.</p>
+        <hr>
+        <h3>Párrafos y saltos de línea</h3>
+        <p>Para generar un nuevo párrafo en Markdown simplemente separa el texto mediante una línea en blanco <strong>(pulsando dos veces intro)</strong></p>
+        <p>Al igual que sucede con HTML, <strong>Markdown no soporta dobles líneas en blanco</strong>, así que si intentas generarlas estas se convertirán en una sola al procesarse.</p>
+        <p>Para realizar un salto de línea y empezar <strong>una frase en una línea siguiente dentro del mismo párrafo</strong>, tendrás que pulsar dos veces la barra espaciadora antes de pulsar una vez intro.</p>
+        <p>Por ejemplo si quisieses escribir un poema Haiku quedaría tal que así:</p>
+        <pre><code>    “Andando con sus patitas mojadas,
+    el gorrión
+    por la terraza de madera”</code></pre>
+        <p>Donde cada verso tiene dos espacios en blanco al final.</p>
+        <hr>
+        <h3>Encabezados</h3>
+        <p>Las <code>#</code> <strong>almohadillas</strong> son uno de los métodos utilizados en Markdown para crear encabezados. Debes usarlos añadiendo <strong>uno por cada nivel</strong>.</p>
+        <p>Es decir,</p>
+        <pre><code># Encabezado 1
+## Encabezado 2
+### Encabezado 3
+#### Encabezado 4
+##### Encabezado 5
+###### Encabezado 6</code></pre>
+        <p>Se corresponde con</p>
+        <h1>Encabezado 1</h1>
+        <h2>Encabezado 2</h2>
+        <h3>Encabezado 3</h3>
+        <h4>Encabezado 4</h4>
+        <h5>Encabezado 5</h5>
+        <h6>Encabezado 6</h6>
+        <p>También puedes cerrar los encabezados con el mismo número de almohadillas, por ejemplo escribiendo <code>### Encabezado 3 ###</code>. Pero la única finalidad de esto es un <strong>motivo estético</strong>.</p>
+        <p>Existe otra manera de generar encabezados, aunque este método está <strong>limitado a dos niveles</strong>.</p>
+        <p>Consiste en subrayar los encabezados con el símbolo <code>=</code> (para el encabezado 1), o con guiones <code>-</code> para el encabezado 2.</p>
+        <p>Es decir,</p>
+        <pre><code>Esto sería un encabezado 1
+===
+Esto sería un encabezado 2
+—-</code></pre>
+        <p>No existe un número concreto <code>=</code> o <code>-</code> que necesites escribir para que esto funcione, ¡incluso bastaría con uno!</p>
+        <hr>
+        <h3>Citas</h3>
+        <p>Las citas se generar utilizando el carácter mayor que <code>&gt;</code> al comienzo del bloque de texto.</p>
+        <blockquote>
+            <p>Un país, una civilización se puede juzgar por la forma en que trata a sus animales. — Mahatma Gandhi Un país, una civilización se puede juzgar por la forma en que trata a sus animales. — Mahatma Gandhi</p>
+        </blockquote>
+        <p>Si la cita en cuestión se compone de varios párrafos, deberás añadir el mismo símbolo <code>&gt;</code> al comienzo de cada uno de ellos.</p>
+        <pre><code>    &gt; Creo que los animales ven en el hombre un ser igual a ellos que ha perdido de forma extraordinariamente peligrosa el sano intelecto animal.
+
+    &gt; Es decir, que ven en él al animal irracional, al animal que ríe, al animal que llora, al animal infeliz. — Friedrich Nietzsche
+    Creo que los animales ven en el hombre un ser igual a ellos que ha perdido de forma extraordinariamente peligrosa el sano intelecto animal.</code></pre>
+        <blockquote>
+            <p>Creo que los animales ven en el hombre un ser igual a ellos que ha perdido de forma extraordinariamente peligrosa el sano intelecto animal.</p>
+            <p>Es decir, que ven en él al animal irracional, al animal que ríe, al animal que llora, al animal infeliz. — Friedrich Nietzsche Creo que los animales ven en el hombre un ser igual a ellos que ha perdido de forma extraordinariamente peligrosa el sano intelecto animal.</p>
+        </blockquote>
+        <p>Incluso puedes concatenar varios <code>&gt;&gt;</code> para crear <strong>citas anidadas</strong>.</p>
+        <pre><code>&gt; Esto sería una cita como la que acabas de ver.
+&gt;
+&gt; &gt; Dentro de ella puedes anidar otra cita.
+&gt;
+&gt; La cita principal llegaría hasta aquí.</code></pre>
+        <blockquote>
+            <p>Esto sería una cita como la que acabas de ver.</p>
+            <blockquote>
+                <p>Dentro de ella puedes anidar otra cita.</p>
+            </blockquote>
+            <p>La cita principal llegaría hasta aquí.</p>
+        </blockquote>
+        <p>Recuerda separar los saltos de línea con <code>&gt;</code>, o <code>&gt;&gt;</code> si te encuentras dentro de la cita anidada; para crear párrafos dentro del mismo bloque de cita.</p>
+        <hr>
+        <h3>Listas</h3>
+        <p>A diferencia de lo que ocurre en HTML, generar listas en Markdown es tremendamente sencillo. Puedes encontrarte con dos tipos.</p>
+        <p><strong>Listas desordenadas</strong></p>
+        <p>Para crear l<strong>istas desordenadas</strong> utiliza <code>*</code> <strong>asteriscos</strong>, <code>-</code> <strong>guiones</strong>, o <code>+</code> <strong>símbolo de suma</strong>.</p>
+        <pre><code>- Elemento de lista 1
+- Elemento de lista 2
+* Elemento de lista 3
+* Elemento de lista 4
++ Elemento de lista 5
++ Elemento de lista 6</code></pre>
+        <p>Da igual qué elemento escojas, incluso puedes intercambiarlos. Todos se verán igual al procesarse.</p>
+        <ul>
+            <li>Elemento de lista 1</li>
+            <li>Elemento de lista 2</li>
+            <li>Elemento de lista 3</li>
+            <li>Elemento de lista 4</li>
+            <li>Elemento de lista 5</li>
+            <li>Elemento de lista 6</li>
+        </ul>
+        <p>Para generar <strong>listas anidadas</strong> dentro de otras, simplemente tendrás que añadir <strong>cuatro espacios en blanco</strong> antes del siguiente <code>*</code>, <code>-</code> o <code>+</code>.</p>
+        <pre><code>- Elemento de lista 1
+- Elemento de lista 2
+    - Elemento de lista 3
+    - Elemento de lista 4
+        - Elemento de lista 5
+        - Elemento de lista 6</code></pre>
+        <ul>
+            <li>Elemento de lista 1</li>
+            <li>Elemento de lista 2
+                <ul>
+                    <li>Elemento de lista 3</li>
+                    <li>Elemento de lista 4
+                        <ul>
+                            <li>Elemento de lista 5</li>
+                            <li>Elemento de lista 6</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <hr>
+        <h3>Listas ordenadas</h3>
+        <p>Para crear listas ordenadas debes utilizar la sintaxis de tipo: “número.” 1.. Al igual que ocurre con las listas desordenadas, también podrás anidarlas o combinarlas.</p>
+        <pre><code>1. Elemento de lista 1
+2.  Elemento de lista 2
+    - Elemento de lista 3
+    - Elemento de lista 4
+        1. Elemento de lista 5
+        2. Elemento de lista 6</code></pre>
+        <ol>
+            <li>Elemento de lista 1</li>
+            <li>Elemento de lista 2
+                <ul>
+                    <li>Elemento de lista 3</li>
+                    <li>Elemento de lista 4
+                        <ol>
+                            <li>Elemento de lista 5</li>
+                            <li>Elemento de lista 6</li>
+                        </ol>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <hr>
+        <h3>Códigos de bloque</h3>
+        <p>Si quieres crear un bloque entero que contenga código. Lo único que tienes que hacer es <strong>encerrar dicho párrafo entre dos líneas formadas por tres <code>~</code> o virgulillas</strong> o dos tabulaciones cuando es mucho codigo.</p>
+        <p>Tal que así:</p>
+        <pre><code>~~~
+Creando códigos de bloque.
+Puedes añadir tantas líneas y párrafos como quieras.
+~~~
+
+``` Otro aqui ```</code></pre>
+        <p>De esta forma, obtendrás el siguiente resultado:</p>
+        <pre><code>Creando códigos de bloque.
+Puedes añadir tantas líneas y párrafos como quieras.</code></pre>
+        <p><code>Otro aqui</code></p>
+        <hr>
+        <h3>Reglas horizontales</h3>
+        <p>Las reglas horizontales se utilizan para separar secciones de una manera visual. Las estás viendo constantemente en este artículo ya que las estoy utilizando para separar los diferentes elementos de sintaxis de Markdown.</p>
+        <p>Para crearlas, en una línea en blanco deberás incluir <strong>tres de los siguientes elementos:</strong> asteriscos, guiones, o guiones bajos.</p>
+        <p>Es decir</p>
+        <pre><code>***
+---
+___</code></pre>
+        <p>También puedes separarlos mediante un espacio en blanco por pura estética.</p>
+        <pre><code>* * *
+- - -
+_ _ _</code></pre>
+        <hr>
+        <h3>Elementos de línea</h3>
+        <p><strong>Énfasis (negritas y cursivas)</strong></p>
+        <p>Markdown utiliza <strong>asteriscos</strong> o <strong>guiones bajos</strong> para enfatizar.</p>
+        <p>Simplemente tendrás que envolver palabras o textos en éstos símbolos para conseguir cursivas o negritas.</p>
+        <pre><code>*cursiva*
+
+_cursiva_
+
+**negrita**
+
+__negrita__</code></pre>
+        <p><em>cursiva</em></p>
+        <p><em>cursiva</em></p>
+        <p><strong>negrita</strong></p>
+        <p><strong>negrita</strong></p>
+        <p>Por supuesto si quieres utilizar los dos tipos de énfasis no tienes más que <strong>combinar la sintaxis</strong>, envolviendo la palabra entre tres asteriscos o tres guiones bajos.</p>
+        <pre><code>***cursiva y negrita***
+
+___cursiva y negrita___</code></pre>
+        <p><strong><em>cursiva y negrita</em></strong></p>
+        <p><strong><em>cursiva y negrita</em></strong></p>
+        <hr>
+        <h3>Links o enlaces</h3>
+        <p>Añadir enlaces a una publicación, más que común, hoy en día es algo <strong>casi obligatorio</strong>. Con Markdown tendrás varias formas de hacerlo.</p>
+        <p>Son los enlaces de toda la vida. Como su nombre indica, se encuentran en línea con el texto.</p>
+        <p>Se crean escribiendo la palabra o texto enlazada entre <code>[]</code> <strong>corchetes</strong>, y el link en cuestión entre <code>()</code> <strong>paréntesis</strong>.</p>
+        <pre><code>[enlace en línea](http://www.example.com)</code></pre>
+        <p><a href="http://www.example.com">enlace en línea</a></p>
+        <p><strong>Links o enlaces como referencia</strong></p>
+        <p>La desventaja del método anterior, es que si utilizas links demasiado complejos o largos pueden dificultarte la lectura de tu texto.</p>
+        <p>Para solucionarlo y crear tu contenido de una manera más ordenada puedes generar enlaces de referencia.</p>
+        <p>Esto quiere decir que en tu texto enlazarás palabras o códigos concretos <strong>(formados por letras y/o números)</strong>, que en otro lugar más apartado de tu documento tendrás definidos como determinadas URL.</p>
+        <pre><code>[nombre que quieres darle a tu enlace][nombre de tu referencia]
+
+[nombre de tu referencia]: http:www.tuenlace.com</code></pre>
+        <p>Esto se ve más claro con un ejemplo.</p>
+        <pre><code>Me llamo Javier Cristóbal y tengo un blog sobre [productividad mac][blog].
+
+En dicha [web][blog] recopilo artículos sobre todo lo relacionado con automatización, gestión y eficiencia.
+
+[blog]: http://limni.net/blog/</code></pre>
+        <p>La referencia <code>[blog]</code> puede estar incluida en cualquier parte del documento, así puedes organizarte mejor y de una manera más limpia, recopilando todas tus referencias en un mismo lugar.</p>
+        <h3>Código</h3>
+        <p>En según que tipo de publicaciones (sobre todo las de carácter técnico), necesitarás añadir pequeñas secciones donde mostrar código de otro lenguaje, atajos de teclado, o demás contenido que no debería ser tratado como tal.</p>
+        <p>Para ello tienes disponible dos alternativas.</p>
+        <p><strong>Código puro <code>&lt;code&gt;</code></strong></p>
+        <p>La forma más sencilla de escribir código en Markdown es envolver el texto entre dos comillas sencillas <code>`</code></p>
+        <p>Esto se corresponde con la etiqueta HTML <code>&lt;code&gt;</code></p>
+        <p><code>Esto es una línea de código</code></p>
+        <p>Se verá como Esto es una línea de código.</p>
+        <p>Como ves, es muy útil para introducir código dentro de la misma línea o párrafo, algo que no permite el método siguiente.</p>
+        <p>Texto preformateado <code>&lt;pre&gt;</code> La otra manera de añadir código en Markdown es comenzar el párrafo con cuatro espacios en blanco. Esto se corresponde con la etiqueta HTML <code>&lt;pre&gt;</code></p>
+        <pre><code>Esto es una línea de código</code></pre>
+        <p>Se convierte en</p>
+        <p><code>Esto es una línea de código</code></p>
+        <p>Ojo, ¡estos espacios deberás incluirlos en cada línea que escribas! Para añadir código en bloque es mejor utilizar la sintaxis que viste anteriormente: códigos de bloque.</p>
+        <hr>
+        <h3>Imágenes</h3>
+        <p>Insertar una imagen con Markdown se realiza de una manera prácticamente idéntica a insertar links.</p>
+        <p>Solo que en este caso, deberás añadir un símbolo de <code>!</code> <strong>exclamación</strong> al principio y el <strong>enlace</strong> no será otro que <strong>la ubicación de la imagen</strong>.</p>
+        <pre><code>    ![Texto alternativo](/ruta/a/la/imagen.jpg)</code></pre>
+        <p>El texto alternativo es lo que se mostraría si la carga de la imagen fallase.</p>
+        <p>También podrás añadir un <strong>título alternativo</strong> entrecomillándolo al final de la ruta. Esto sería el título mostrado al dejar el cursor del ratón sobre la imagen.</p>
+        <pre><code>    ![Texto alternativo](/ruta/a/la/imagen.jpg "Título alternativo")</code></pre>
+        <p>Ya que al añadir imágenes también estás tratando con URLs, puedes utilizar el método que viste anteriormente para incluir links <strong>mediante referencias</strong>, solo que en este caso <strong>los enlaces de referencia serán aquellos donde se encuentre tu imagen</strong>.</p>
+        <pre><code>    De esta forma podrías insertar una imagen
+    ![nombre de la imagen][img1]
+
+    O dos, sin ensuciar tu espacio de escritura.
+    ![nombre de la imagen2][img2]
+
+    [img1]: /ruta/a/la/imagen.jpg "Título alternativo"
+    [img2]: /ruta/a/la/imagen2.jpg "Título alternativo"</code></pre>
+        <hr>
+        <h3>Elementos varios</h3>
+        <p><strong>Links automáticos</strong></p>
+        <p>Cuando viste los tipos de links te comenté que había un tipo más: los automáticos.</p>
+        <p>Estos son necesarios cuando lo que quieres es <strong>mostrar una URL completa</strong>, y no un enlace enmascarado bajo una palabra o frase como ocurre con los links en línea.</p>
+        <p>Para generar links automáticos tan solo tendrás que rodearlos con los símbolos <code>&lt; &gt;</code></p>
+        <pre><code>&lt;http://www.limni.net&gt;</code></pre>
+        <p><a href="http://www.limni.net">http://www.limni.net</a></p>
+        <p><strong>Omitir Markdown</strong></p>
+        <p>Si has llegado hasta aquí es probable que te estés preguntando cómo he conseguido escribir ciertos símbolos como <code>*</code> asteriscos o <code>_</code> guiones bajos, sin que Markdown los interprete para convertirlos en negritas, cursivas…</p>
+        <p>Esto es muy sencillo, ya que en este lenguaje existe un elemento estrella para especificar que todo lo que escribas a continuación, no se interprete como Markdown.</p>
+        <p>Se trata de la barra invertida <code>\</code>.</p>
+        <p><strong>Escribiéndola justo delante de cualquiera</strong> de los elementos que verás a continuación, los mismos <strong>no tendrán efecto</strong> a la hora de convertirse en negritas, cursivas, links…</p>
+        <pre><code>\  barra invertida
+`  acento invertido
+*  asterisco
+_  guión bajo
+{} llaves
+[] corchetes
+() paréntesis
+#  almohadilla
++  símbolo de suma
+-  guión
+.  punto
+!  exclamación</code></pre>
+        <p><strong>Nota:</strong> <em>Texto sacado de <a href="https://markdown.es/sintaxis-markdown">markdown.es</a></em></p>
+    </section>
+</article>

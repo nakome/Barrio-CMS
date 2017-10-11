@@ -1,7 +1,7 @@
 <?php
 
-if (version_compare(PHP_VERSION, '5.5.0', '<')) {
-    exit('Barrio necesita PHP 5.5.0 en adelante.');
+if (version_compare(PHP_VERSION, '5.3.0', '<')) {
+    exit('Barrio necesita PHP 5.3.0 en adelante.');
 }
 
 
@@ -15,7 +15,7 @@ define('EXTENSIONS', ROOT.'/extensions');
 
 // development mode is true
 // for production change to false
-define('DEV', true);
+define('DEV', false);
 if (DEV) {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);

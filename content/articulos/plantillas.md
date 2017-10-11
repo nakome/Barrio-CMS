@@ -12,13 +12,13 @@ La estructura de los temas se compone de:
     - carpeta **assets** donde meteremos todos los scripts y estilos.
     - carpeta **inc** , aquí se encuentran los **includes** ( head.html, footer.html )
     - archivo **index.html**, que se puede usar para paginas estáticas.
-    - archivo **mantenimiento.html**, en caso de que queramos cambiar algo (mirar config.php).
     - archivo **articulos.html**, es el encargado de buscar en la carpeta artículos todos los archivos que haya.
     - archivo **articulo.html** , es el que enseña el articulo.
+    - archivo **404.html** , es el que enseña en caso de error.
 
-
-
+{Alert type=info}
 **Nota:** _siempre puedes cambiar todo esto y ponerlo como tu quieras es solo para comenzar_.
+{/Alert}
 
 
 ### Crear plantilla
@@ -34,6 +34,7 @@ Vamos a crear una plantilla a la que llamaremos **home.html**:
         <?php Barrio::actionRun('theme_after); ?>
     </main>
     <?php include 'inc/footer.inc.html' ?>
+
 
 En primer lugar incluimos **head.inc.html** que es donde se encuentra los **metatags** y **estilos**.
 

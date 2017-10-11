@@ -1,0 +1,118 @@
+<article class="post">
+    <hgroup class="post-header">
+        <h3 class="post-title">Shortcodes ?</h3>
+        <h4 class="post-date"></h4>
+    </hgroup>
+    <section class="post-body">
+        <p>Es muy fácil crear Shortcodes en <strong>Barrio CMS</strong> por ejemplo, vamos a crear un Shortcode que cambie el color del texto con el color que queramos.</p>
+        <pre><code>// se llama con { Texto color=green}Hola mundo{/Texto }
+// quitar espacios al principio y al final sino lo hago
+// se vería el shortcode :(
+// llamamos la funcion mejor capitalizada (letra mayúscula)
+Barrio::shortcodeAdd('Texto',function($atributos,$contenido){
+    // extraemos los atributos (en este caso $color)
+    extract($atributos);
+    // definimos el color, por defecto sera blue (tienen que ser en ingles)
+    $color = (isset($color)) ? $color : 'blue';
+    // parseamos para poder usar markdown
+    $contenido = Parsedown::instance()-&gt;text($contenido);
+    // aplicamos un filtro para escribir dentro del shortcode
+    $resultado = Barrio::applyFilter('content','&lt;div style="color:'.$color.'"&gt;'.$contenido.'&lt;/div&gt;');
+    // enseñamos la plantilla
+    return $resultado;
+});</code></pre>
+        <p>Ahora si escribimos dentro de <strong>corchetes</strong> <code>Texto color=green</code> y dentro de este el texto y cerramos con <strong>corchetes</strong> <code>/Texto</code> obtenemos esto:</p>
+        <p>El resultado es este:</p>
+        <pre><code>{ Texto color=green}
+    Este es un texto dentro de un Shortcode en el que puedo usar **Markdown**
+{/Texto }</code></pre>
+        <div style="color:green">
+            <p>Este es un texto dentro de un Shortcode en el que puedo usar <strong>Markdown</strong></p>
+        </div>
+        <p>También puedes usar <strong>código de color</strong></p>
+        <pre><code>{ Texto color='#f00'} // con comillas simples
+    Hola soy **Rojo**
+{/Texto }</code></pre>
+        <div style="color:#f00">
+            <p>Hola soy <strong>Rojo</strong></p>
+        </div>
+        <p>Ahora vamos hacer un Shortcode para incrustar videos de Youtube. En este caso <strong>no necesitamos escribir dentro</strong> así que es mas facil aun.</p>
+        <pre><code>// agregar Shortcode { Youtube id'=GxEc46k46gg' clase='si quieres usar otra'}
+Barrio::shortcodeAdd('Youtube', function ($atributos) {
+    // extraemos los atributos (en este caso $src)
+    extract($atributos);
+    // el codigo del enlace
+    $id = (isset($id)) ? $id : '';
+    // por defecto usamos la clase embed-responsive y embed-responsive-16by9
+    $clase = (isset($clase)) ? $clase : 'embed-responsive embed-responsive-16by9';
+    // comprobamos que exista el $src
+    if($id){
+        // enseñamos el html
+        $html = '&lt;section class="'.$clase.'"&gt;';
+        $html .= '&lt;iframe src="//www.youtube.com/embed/'.$id.'" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;';
+        $html .= '&lt;/section&gt;';
+        return $html;
+    // si no se pone el atributo src que avise
+    }else{
+        return 'Este shortcode le falta el atributo id';
+    }
+});</code></pre>
+        <p>El resultado es este:</p>
+        <pre><code>{ Youtube id='GxEc46k46gg'}</code></pre>
+        <section class="embed-responsive embed-responsive-16by9">
+            <iframe src="//www.youtube.com/embed/GxEc46k46gg" frameborder="0" allowfullscreen=""></iframe>
+        </section>
+        <p><strong>En caso de no poner el atributo src saldria esto:</strong></p>
+        <p>Este shortcode le falta el atributo id</p>
+        <p>Ahora vamos hacer lo mismo pero con <strong>Vimeo</strong>:</p>
+        <pre><code>// agregar Shortcode { Vimeo src=149129821 clase='si quieres usar otra'}
+Barrio::shortcodeAdd('Vimeo', function ($atributos) {
+    // extraemos los atributos
+    extract($atributos);
+    // el codigo del enlace
+    $id = (isset($src)) ? $src : '';
+    $clase = (isset($clase)) ? $clase : 'embed-responsive embed-responsive-16by9';
+    // comprobamos que exista el $id
+    if ($id) {
+        $html = '&lt;section class="'.$clase.'"&gt;';
+        $html .= '&lt;iframe src="https://player.vimeo.com/video/'.$id.'" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;';
+        $html .= '&lt;/section&gt;';
+        return $html;
+        // si no se pone el atributo id que avise
+    } else {
+        return 'Este shortcode le falta el atributo id';
+    }
+});</code></pre>
+        <p>El resultado es este:</p>
+        <p>Este shortcode le falta el atributo id</p>
+        <h3>Y mucho mas</h3>
+        <p>Con los Shortcodes podemos crear desde <strong>galerías</strong>, <strong>formularios</strong> , <strong>incrustar videos</strong>, <strong>Musica</strong>, <strong>Cambiar el Css</strong> y todo un largo etcétera.</p>
+        <h3>Pero y en las plantillas html</h3>
+        <p>En las plantillas hay que usar otra función llamada <code>Barrio::actionAdd()</code> para crear la función y <code>Barrio::actionRun()</code> para llamarla.</p>
+        <p>Hay varios <strong>actionRun</strong> que son <strong>meta</strong> , <strong>head</strong> y <strong>footer</strong> que como su nombre indica son para determinadas zonas de la plantilla, pero podemos crear las que queramos en el archivo <code>func.php</code> de la plantilla el codigo seria algo asi:</p>
+        <p><strong>vamos a crear una función como el shortcode Youtube</strong></p>
+        <pre><code>Barrio::actionAdd('Youtube',function($src = ''){
+    // el código del enlace
+    $src = (isset($src)) ? $src : '';
+    // comprobamos que exista el $src
+    if($src){
+        // enseñamos el html
+        // usamos la clase iframe para hacerlo responsive
+        // échale un ojo a  themes/default/assets/css/main.css
+        $html = '&lt;section class="iframe"&gt;';
+        $html .= '&lt;iframe src="//www.youtube.com/embed/'.$src.'" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;';
+        $html .= '&lt;/section&gt;';
+        // ahora se llama con echo o print
+        echo $html;
+    // si no se pone el atributo src que avise
+    }else{
+        // ahora se llama con echo o print
+        echo 'Este shortcode le falta el atributo src';
+    }
+});</code></pre>
+        <p>Si te fijas solo cambia en que ya no tenemos <code>extract($atributos)</code> y en vez de return usamos echo asi es prácticamente igual al shortcode.</p>
+        <p>Para llamarlo en la plantilla escribiremos esto:</p>
+        <pre><code>&lt;?php Barrio::actionRun('Youtube',['GxEc46k46gg']);?&gt;</code></pre>
+        <p>Y podemos hacer lo mismo que con los Shortcodes desde <strong>galerias</strong>, <strong>formularios</strong> , <strong>incrustar videos</strong>, <strong>Música</strong>, <strong>Cambiar el Css</strong> y todo un largo etcétera.</p>
+    </section>
+</article>
