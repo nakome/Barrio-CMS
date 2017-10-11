@@ -168,6 +168,7 @@ pre>code {
 
     -webkit-transform: translate(-200px, 0);
     transform: translate(-200px, 0);
+    transition: transform 500ms ease;
 
     border-right: 1px solid #ccc;
     background: #fff;
@@ -176,12 +177,19 @@ pre>code {
 #menu.is-opened {
     -webkit-transform: translate(0, 0)!important;
     transform: translate(0, 0)!important;
+    transition: transform 500ms ease;
+}
+
+
+#wrapper{
+    transition: transform 500ms ease;
 }
 
 #wrapper.menu-is-open {
     width: calc(100% - 200px);
 
     -webkit-transform: translate(200px, 0)!important;
+    transition: transform 500ms ease;
 }
 
 @media (max-width: 600px) {
@@ -190,6 +198,7 @@ pre>code {
 
         -webkit-transform: translate(200px, 0)!important;
         transform: translate(200px, 0)!important;
+        transition: transform 500ms ease;
     }
 }
 
