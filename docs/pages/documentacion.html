@@ -1,141 +1,282 @@
 <div class="col-8">
     <article class="post">
         <hgroup class="post-header">
-            <h3 class="post-title">Shortcodes plantilla</h3>
+            <h3 class="post-title">Documentacion</h3>
             <h4 class="post-date"></h4>
         </hgroup>
         <section class="post-body">
-            <div class="alert alert-info mt-5 mb-5">
-                <p><strong>Nota!</strong> Si te fijas en el shortcode hay un espacio en el primer corchete, esto lo hago para que no se convierta en html solamente.</p>
-            </div>
-            <h2>Alerts</h2>
-            <div class="alert alert-primary mt-3 mb-3">
-                <p><strong>Primary!</strong> This is a primary alert-check it out!</p>
-            </div>
-            <div class="alert alert-secondary mt-3 mb-3">
-                <p><strong>Secondary!</strong> This is a primary alert-check it out!</p>
-            </div>
-            <div class="alert alert-success mt-3 mb-3">
-                <p><strong>Success!</strong> This is a primary alert-check it out!</p>
-            </div>
-            <div class="alert alert-info mt-3 mb-3">
-                <p><strong>Info!</strong> This is a primary alert-check it out!</p>
-            </div>
-            <div class="alert alert-warning mt-3 mb-3">
-                <p><strong>Warning!</strong> This is a primary alert-check it out!</p>
-            </div>
-            <div class="alert alert-danger mt-3 mb-3">
-                <p><strong>Danger!</strong> This is a primary alert-check it out!</p>
-            </div>
-            <div class="alert alert-light mt-3 mb-3">
-                <p><strong>Light!</strong> This is a primary alert-check it out!</p>
-            </div>
-            <div class="alert alert-dark mt-3 mb-3">
-                <p><strong>Dark!</strong> This is a primary alert-check it out!</p>
+            <h3>Constantes</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Constante</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ROOT</td>
+                        <td>Define el directorio raiz de la web</td>
+                    </tr>
+                    <tr>
+                        <td>CONTENT</td>
+                        <td>Define el directorio raiz de el contenido de los archivos md</td>
+                    </tr>
+                    <tr>
+                        <td>THEMES</td>
+                        <td>Define el directorio raiz de las plantillas</td>
+                    </tr>
+                    <tr>
+                        <td>EXTENSIONS</td>
+                        <td>Define el directorio raiz de las extensiones</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <h3>Estructura de paginas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Localización Fisica</th>
+                        <th>Url</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>content/index.md</td>
+                        <td>/</td>
+                    </tr>
+                    <tr>
+                        <td>content/otra.md</td>
+                        <td>/otra</td>
+                    </tr>
+                    <tr>
+                        <td>content/proyectos/otra.md</td>
+                        <td>/proyectos/otra</td>
+                    </tr>
+                    <tr>
+                        <td>content/una/direccion/muy/larga/pagina.md</td>
+                        <td>/una/direccion/muy/larga/pagina</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <h3>Variables del archivo .md</h3>
+            <p>Por defecto existen unas variables en los archivos de texto, estas son:</p>
+            <pre><code>// quitar espacio al principio de `{` para que funcione.
+{ url} = la direccíon de la pagina
+{ email} = Email por defecto de config.php
+{ more} = funcíon para acortar los archivos de texto
+{ php} echo 'hola mundo'; {/php}</code></pre>
+            <div class="alert alert-info mt-5">
+                <p>Puedes ver mas en la session archivos</p>
             </div>
             <hr>
-            <pre><code>// type [primary|secondary|success|info|warning|danger|light|dark]
+            <h3>Funciones Php</h3>
+            <p><strong>Acciones:</strong></p>
+            <pre><code>// Crear una Accion
+Barrio::actionAdd('demo',function($nombre = ''){
+    echo $nombre
+});
+
+// llamar a la Accion
+Barrio::actionRun('demo',['nombre']);</code></pre>
+            <p><strong>Shortcodes:</strong></p>
+            <pre><code>// Crear una Shortcode
+Barrio::actionAdd('Escribe',function($atributos){
+    // extrae atributos
+    extract($atributos);
+    // valores por defecto
+    $nombre = (isset($nombte)) ? $nombre = $nombre : 'Nombre por defecto';
+    // retorna el nombre
+    return $nombre
+});
+
+// llamar a el Shortcode
+// quitar espacio al principio de `{` para que funcione.
+{ Escribe nombre=Barrio CMS} o { Escribe nombre='Barrio CMS'}</code></pre>
+            <div class="alert alert-info mt-5">
+                <p>Puedes ver ejemplos en la session shortcodes</p>
+            </div>
+            <p><strong>Otras funciones:</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Funcion</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>Barrio::urlBase()</code></td>
+                        <td>Obtiene la dirección raíz</td>
+                    </tr>
+                    <tr>
+                        <td><code>Barrio::urlCurrent()</code></td>
+                        <td>Obtiene la dirección en la que se encuentra en ese momento</td>
+                    </tr>
+                    <tr>
+                        <td><code>Barrio::urlSegments()</code></td>
+                        <td>Divide el hash en un array</td>
+                    </tr>
+                    <tr>
+                        <td><code>Barrio::urlSegment(0)</code></td>
+                        <td>Obtiene el primer hash</td>
+                    </tr>
+                    <tr>
+                        <td><code>Barrio::shortArray($array,$clave,$orden)</code></td>
+                        <td>Ordena un array de elementos</td>
+                    </tr>
+                    <tr>
+                        <td><code>Barrio::scanFiles($carpeta,$tipo,$ruta)</code></td>
+                        <td>Busca archivos en una carpeta</td>
+                    </tr>
+                    <tr>
+                        <td><code>Barrio::pages($carpeta,$ord,$ord_por,$ignor,$limit)</code></td>
+                        <td>Busca las paginas en una carpeta</td>
+                    </tr>
+                    <tr>
+                        <td><code>Barrio::page('blog')</code></td>
+                        <td>Obtiene el array de la pagina</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Shortcodes plantilla</h3>
+
+            <div class="alert alert-info mt-5">
+                <p><strong>Nota:</strong> Puedes crear mas funciones en el archivo <code>func.php</code> de la plantilla.</p>
+                <div class="alert alert-info mt-5 mb-5">
+                    <p><strong>Nota!</strong> Si te fijas en el shortcode hay un espacio en el primer corchete, esto lo hago para que no se convierta en html solamente.</p>
+                </div>
+                <h2>Alerts</h2>
+                <div class="alert alert-primary mt-3 mb-3">
+                    <p><strong>Primary!</strong> This is a primary alert-check it out!</p>
+                </div>
+                <div class="alert alert-secondary mt-3 mb-3">
+                    <p><strong>Secondary!</strong> This is a primary alert-check it out!</p>
+                </div>
+                <div class="alert alert-success mt-3 mb-3">
+                    <p><strong>Success!</strong> This is a primary alert-check it out!</p>
+                </div>
+                <div class="alert alert-info mt-3 mb-3">
+                    <p><strong>Info!</strong> This is a primary alert-check it out!</p>
+                </div>
+                <div class="alert alert-warning mt-3 mb-3">
+                    <p><strong>Warning!</strong> This is a primary alert-check it out!</p>
+                </div>
+                <div class="alert alert-danger mt-3 mb-3">
+                    <p><strong>Danger!</strong> This is a primary alert-check it out!</p>
+                </div>
+                <div class="alert alert-light mt-3 mb-3">
+                    <p><strong>Light!</strong> This is a primary alert-check it out!</p>
+                </div>
+                <div class="alert alert-dark mt-3 mb-3">
+                    <p><strong>Dark!</strong> This is a primary alert-check it out!</p>
+                </div>
+                <hr>
+                <pre><code>// type [primary|secondary|success|info|warning|danger|light|dark]
 {Alert type='primary'} **Primary!** This is a primary alert-check it out! {/Alert}</code></pre>
-            <h2>Botones</h2>
-            <p><strong>Color</strong></p>
-            <p><a class="mt-3 mb-3 btn  btn-primary" href="http://example.com" title="Primary">Primary</a>
-                <a class="mt-3 mb-3 btn  btn-secondary" href="http://example.com" title="Secondary">Secondary</a>
-                <a class="mt-3 mb-3 btn  btn-success" href="http://example.com" title="Success">Success</a>
-                <a class="mt-3 mb-3 btn  btn-info" href="http://example.com" title="Info">Info</a>
-                <a class="mt-3 mb-3 btn  btn-warning" href="http://example.com" title="Warning">Warning</a>
-                <a class="mt-3 mb-3 btn  btn-danger" href="http://example.com" title="Danger">Danger</a>
-                <a class="mt-3 mb-3 btn  btn-light" href="http://example.com" title="Light">Light</a>
-                <a class="mt-3 mb-3 btn  btn-dark" href="http://example.com" title="Dark">Dark</a>
-                <a class="mt-3 mb-3 btn  btn-link" href="http://example.com" title="Link">Link</a></p>
-            <hr>
-            <pre><code>// color = [primary|secondary|success|info|warning|danger|light|dark|link]
+                <h2>Botones</h2>
+                <p><strong>Color</strong></p>
+                <p><a class="mt-3 mb-3 btn  btn-primary" href="http://example.com" title="Primary">Primary</a>
+                    <a class="mt-3 mb-3 btn  btn-secondary" href="http://example.com" title="Secondary">Secondary</a>
+                    <a class="mt-3 mb-3 btn  btn-success" href="http://example.com" title="Success">Success</a>
+                    <a class="mt-3 mb-3 btn  btn-info" href="http://example.com" title="Info">Info</a>
+                    <a class="mt-3 mb-3 btn  btn-warning" href="http://example.com" title="Warning">Warning</a>
+                    <a class="mt-3 mb-3 btn  btn-danger" href="http://example.com" title="Danger">Danger</a>
+                    <a class="mt-3 mb-3 btn  btn-light" href="http://example.com" title="Light">Light</a>
+                    <a class="mt-3 mb-3 btn  btn-dark" href="http://example.com" title="Dark">Dark</a>
+                    <a class="mt-3 mb-3 btn  btn-link" href="http://example.com" title="Link">Link</a></p>
+                <hr>
+                <pre><code>// color = [primary|secondary|success|info|warning|danger|light|dark|link]
 // text = texto del boton
 // id =  id del boton (opcional)
 // link = direcciÃ³n  (opcional)
 {Btn color='link' text='Link' link='http://example.com'}</code></pre>
-            <p><strong>Outline</strong></p>
-            <p><a class="mt-3 mb-3 btn  btn-outline-primary" href="http://example.com" title="Primary">Primary</a>
-                <a class="mt-3 mb-3 btn  btn-outline-secondary" href="http://example.com" title="Secondary">Secondary</a>
-                <a class="mt-3 mb-3 btn  btn-outline-success" href="http://example.com" title="Success">Success</a>
-                <a class="mt-3 mb-3 btn  btn-outline-info" href="http://example.com" title="Info">Info</a>
-                <a class="mt-3 mb-3 btn  btn-outline-warning" href="http://example.com" title="Warning">Warning</a>
-                <a class="mt-3 mb-3 btn  btn-outline-danger" href="http://example.com" title="Danger">Danger</a>
-                <a class="mt-3 mb-3 btn  btn-outline-light" href="http://example.com" title="Light">Light</a>
-                <a class="mt-3 mb-3 btn  btn-outline-dark" href="http://example.com" title="Dark">Dark</a>
-                <a class="mt-3 mb-3 btn  btn-outline-link" href="http://example.com" title="Link">Link</a></p>
-            <hr>
-            <pre><code>// type = Tipo de boton [ouline] ( opcinal )
+                <p><strong>Outline</strong></p>
+                <p><a class="mt-3 mb-3 btn  btn-outline-primary" href="http://example.com" title="Primary">Primary</a>
+                    <a class="mt-3 mb-3 btn  btn-outline-secondary" href="http://example.com" title="Secondary">Secondary</a>
+                    <a class="mt-3 mb-3 btn  btn-outline-success" href="http://example.com" title="Success">Success</a>
+                    <a class="mt-3 mb-3 btn  btn-outline-info" href="http://example.com" title="Info">Info</a>
+                    <a class="mt-3 mb-3 btn  btn-outline-warning" href="http://example.com" title="Warning">Warning</a>
+                    <a class="mt-3 mb-3 btn  btn-outline-danger" href="http://example.com" title="Danger">Danger</a>
+                    <a class="mt-3 mb-3 btn  btn-outline-light" href="http://example.com" title="Light">Light</a>
+                    <a class="mt-3 mb-3 btn  btn-outline-dark" href="http://example.com" title="Dark">Dark</a>
+                    <a class="mt-3 mb-3 btn  btn-outline-link" href="http://example.com" title="Link">Link</a></p>
+                <hr>
+                <pre><code>// type = Tipo de boton [ouline] ( opcinal )
 // color = [primary|secondary|success|info|warning|danger|light|dark|link]
 // text = texto del boton
 // id =  id del boton (opcional)
 // link = direcciÃ³n  (opcional)
 {Btn type="outline" color='primary' text='Primary' id='btn' link='http://example.com' }</code></pre>
-            <hr>
-            <h3>Columnas</h3>
-            <div class="row">
-                <div class="col-4">
-                    <p><strong>col 4</strong></p>
-                    <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                <hr>
+                <h3>Columnas</h3>
+                <div class="row">
+                    <div class="col-4">
+                        <p><strong>col 4</strong></p>
+                        <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                    </div>
+                    <div class="col-4">
+                        <p><strong>col 4</strong></p>
+                        <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                    </div>
+                    <div class="col-4">
+                        <p><strong>col 4</strong></p>
+                        <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                    </div>
                 </div>
-                <div class="col-4">
-                    <p><strong>col 4</strong></p>
-                    <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                <div class="row">
+                    <div class="col-3">
+                        <p><strong>col 3</strong></p>
+                        <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                    </div>
+                    <div class="col-3">
+                        <p><strong>col 3</strong></p>
+                        <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                    </div>
+                    <div class="col-3">
+                        <p><strong>col 3</strong></p>
+                        <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                    </div>
+                    <div class="col-3">
+                        <p><strong>col 3</strong></p>
+                        <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                    </div>
                 </div>
-                <div class="col-4">
-                    <p><strong>col 4</strong></p>
-                    <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                <div class="row">
+                    <div class="col-6">
+                        <p><strong>col 6</strong></p>
+                        <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                    </div>
+                    <div class="col-6">
+                        <p><strong>col 6</strong></p>
+                        <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-3">
-                    <p><strong>col 3</strong></p>
-                    <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                <div class="row">
+                    <div class="col-8">
+                        <p><strong>col 8</strong></p>
+                        <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                    </div>
+                    <div class="col-4">
+                        <p><strong>col 4</strong></p>
+                        <p>Labore ipsum ea dolor labore deserunt magna magna.</p>
+                    </div>
                 </div>
-                <div class="col-3">
-                    <p><strong>col 3</strong></p>
-                    <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                <div class="row">
+                    <div class="col-4">
+                        <p><strong>col 4</strong></p>
+                        <p>Labore ipsum ea dolor labore deserunt magna magna.</p>
+                    </div>
+                    <div class="col-8">
+                        <p><strong>col 8</strong></p>
+                        <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
+                    </div>
                 </div>
-                <div class="col-3">
-                    <p><strong>col 3</strong></p>
-                    <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
-                </div>
-                <div class="col-3">
-                    <p><strong>col 3</strong></p>
-                    <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <p><strong>col 6</strong></p>
-                    <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
-                </div>
-                <div class="col-6">
-                    <p><strong>col 6</strong></p>
-                    <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-8">
-                    <p><strong>col 8</strong></p>
-                    <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
-                </div>
-                <div class="col-4">
-                    <p><strong>col 4</strong></p>
-                    <p>Labore ipsum ea dolor labore deserunt magna magna.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-4">
-                    <p><strong>col 4</strong></p>
-                    <p>Labore ipsum ea dolor labore deserunt magna magna.</p>
-                </div>
-                <div class="col-8">
-                    <p><strong>col 8</strong></p>
-                    <p>Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.</p>
-                </div>
-            </div>
-            <hr>
-            <pre><code>// clase = se le puede añadir cualquer classe
+                <hr>
+                <pre><code>// clase = se le puede añadir cualquer classe
 {Bloques}
 
 // col = numero de columnas que al sumarse sean igual a 12
@@ -152,21 +293,21 @@ Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod co
 {/Bloque}
 
 {/Bloques}</code></pre>
-            <h3>Bloque_izq y Bloque_drch</h3>
-            <div class="row">
-                <div class="col-6"><img class="full-width loaded zoom" alt="" src="http://localhost/barrioDemos/theme_2/content/imagenes/sin-imagen.svg"></div>
-                <div class="col-6">
-                    <p>Enim nostrud Lorem pariatur dolore aute labore quis minim commodo deserunt sint et. Cillum quis aliqua ipsum nisi consequat et Lorem consectetur. Esse occaecat magna reprehenderit.</p>
+                <h3>Bloque_izq y Bloque_drch</h3>
+                <div class="row">
+                    <div class="col-6"><img class="full-width loaded zoom" alt="" src="http://localhost/barrioDemos/theme_2/content/imagenes/sin-imagen.svg"></div>
+                    <div class="col-6">
+                        <p>Enim nostrud Lorem pariatur dolore aute labore quis minim commodo deserunt sint et. Cillum quis aliqua ipsum nisi consequat et Lorem consectetur. Esse occaecat magna reprehenderit.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <p>Enim nostrud Lorem pariatur dolore aute labore quis minim commodo deserunt sint et. Cillum quis aliqua ipsum nisi consequat et Lorem consectetur. Esse occaecat magna reprehenderit</p>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Enim nostrud Lorem pariatur dolore aute labore quis minim commodo deserunt sint et. Cillum quis aliqua ipsum nisi consequat et Lorem consectetur. Esse occaecat magna reprehenderit</p>
+                    </div>
+                    <div class="col-6"> <img class="full-width loaded zoom" alt="" src="http://localhost/barrioDemos/theme_2/content/imagenes/sin-imagen.svg"></div>
                 </div>
-                <div class="col-6"> <img class="full-width loaded zoom" alt="" src="http://localhost/barrioDemos/theme_2/content/imagenes/sin-imagen.svg"></div>
-            </div>
-            <hr>
-            <pre><code>// img = ruta de una imagen para la izquierda
+                <hr>
+                <pre><code>// img = ruta de una imagen para la izquierda
 // text= de la imagen
 // col = numero de la primera columna por defecto 6
 // clase = class
@@ -181,23 +322,23 @@ Enim nostrud Lorem pariatur dolore aute labore quis minim commodo deserunt sint 
 Enim nostrud Lorem pariatur dolore aute labore quis minim commodo deserunt sint et. Cillum quis aliqua ipsum nisi consequat et Lorem consectetur. Esse occaecat magna reprehenderit
 
 {/Bloque_drch}</code></pre>
-            <h3>Barra de progreso</h3>
-            <div class="progress mt-2 mb-2">
-                <div class="progress-bar bg-success" role="progressbar" style="width:25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <div class="progress mt-2 mb-2">
-                <div class="progress-bar bg-info" role="progressbar" style="width:30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <div class="progress mt-2 mb-2">
-                <div class="progress-bar bg-warning" role="progressbar" style="width:40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <div class="progress mb-5">
-                <div class="progress-bar bg-danger" role="progressbar" style="width:60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <hr>
-            <pre><code>// size = Tamaño de la barra
+                <h3>Barra de progreso</h3>
+                <div class="progress mt-2 mb-2">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="progress mt-2 mb-2">
+                    <div class="progress-bar bg-info" role="progressbar" style="width:30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="progress mt-2 mb-2">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width:40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="progress mb-5">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width:60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <hr>
+                <pre><code>// size = Tamaño de la barra
 // color = [success | info | warning | danger ]
 // clase = otra clase
 {Barra  size='25' color='success'}</code></pre> </section>
     </article>
-</div>
+    </div>
