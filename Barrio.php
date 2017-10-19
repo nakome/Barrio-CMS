@@ -38,8 +38,6 @@ class Barrio
         'robots' => 'Robots',
         'keywords' => 'Keywords',
         'template' => 'Template',
-        'url' => 'Url',
-        'category' => 'Category',
         'published' => 'Published'
         );
 
@@ -230,11 +228,8 @@ class Barrio
      */
     public static function urlBase()
     {
-        $protocol = (self::$config['protocol']) ? self::$config['protocol'] : 'http';
-        $url_base = trim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/');
-        $url_home = $protocol.'://'.trim($_SERVER['HTTP_HOST'], '/').(trim($url_base) !== '' ? '/'.$url_base : '');
-
-        return $url_home;
+        $https = (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on') ? 'https://' : 'http://';
+        return $https . rtrim(rtrim($_SERVER['HTTP_HOST'], '\\/') . dirname($_SERVER['PHP_SELF']), '\\/');
     }
 
     /**
@@ -820,12 +815,10 @@ class Barrio
         empty($page['robots']) and $page['robots'] = '';
         empty($page['published']) and $page['published'] = true;
         empty($page['keywords']) and $page['keywords'] = static::$config['keywords'];
-        empty($page['category']) and $page['category'] = '';
 
         $page = $page;
         $config = self::$config;
         $layout = !empty($page['template']) ? $page['template'] : 'index';
-
 
         include THEMES.'/'.$config['theme'].'/'.$layout.'.html';
     }

@@ -42,7 +42,7 @@ Barrio::shortcodeAdd('Imagen', function ($atributos) {
     if($img){
         $html = '<a href="'.$link.'" title="'.$texto.'">';
         $html .= '<figure class="'.$isLink.'">';
-        $html .= '<img data-src="'.$img.'" alt="'.$texto.'" />';
+        $html .= '<img src="'.$img.'" alt="'.$texto.'" />';
         $html .= '<figcaption>'.$texto.'</figcaption>';
         $html .= '</figure>';
         $html .= '</a>';
@@ -89,7 +89,7 @@ Barrio::shortcodeAdd('Bloque_izq', function ($atributos,$contenido) {
     if ($img) {
         $html = '<div class="row">';
         $html .= '<div class="col-'.$col.'">';
-        $html .= '<img class="full-width '.$clase.'" data-src="'.$img.'" alt="'.$text.'"/>';
+        $html .= '<img class="full-width '.$clase.'" src="'.$img.'" alt="'.$text.'"/>';
         $html .='</div>';
         $html .= Barrio::applyFilter('content', '<div class="col'.($col-12).'">'.$contenido.'</div>');
         $html .='</div>';
@@ -119,7 +119,7 @@ Barrio::shortcodeAdd('Bloque_drch', function ($atributos,$contenido) {
         $html = '<div class="row">';
         $html .= Barrio::applyFilter('content', '<div class="col'.($col-12).'">'.$contenido.'</div>');
         $html .= '<div class="col-'.$col.'">';
-        $html .= '  <img class="full-width '.$clase.'" data-src="'.$img.'" alt="'.$text.'"/>';
+        $html .= '  <img class="full-width '.$clase.'" src="'.$img.'" alt="'.$text.'"/>';
         $html .= '</div>';
         $html .='</div>';
         return $html;

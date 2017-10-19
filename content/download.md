@@ -1,8 +1,13 @@
 Title: Descarga
 Description: Primera beta ya disponible!
+Keywords: 
+Published: 1
+Author: 
+Date: 19/10/2017
+Image: imagenes/barrio.svg
+Robots: index,follow
 Template: index
 ----
-
 
 ## Descarga Barrio CMS
 
@@ -20,6 +25,8 @@ Tambien puedes ver los avances en **Trello**.
 
 {/Bloque}
 {/Bloques}
+
+
 
 ---
 

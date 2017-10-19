@@ -1,8 +1,13 @@
 Title: Barrio CMS
 Description: Sistema de gestión de contenidos en formato Flat File
+Keywords: 
+Published: true
+Author: 
+Date: 19/10/2017
+Image: 
+Robots: index,follow
 Template: home
 ----
-
 
 ### Que es Barrio CMS
 
@@ -10,7 +15,7 @@ Template: home
 
 
 
-{Bloque_izq clase="img-cover mt-5" img='{url}/content/imagenes/ftp.gif' text='Instalación instantánea'}
+{Bloque_izq clase="img-cover mt-5" img='{url}/content/imagenes/ft.gif' text='Instalación instantánea'}
 
 ### Instalación instantánea
 

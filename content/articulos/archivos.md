@@ -1,7 +1,12 @@
 Title: Archivos .md
-Description:  Como crear archivos o paginas.
+Description: Como crear archivos o paginas.
+Keywords: 
+Published: 1
+Author: Moncho Varela
+Date: 19/10/2017
+Image: 
+Robots: index,follow
 Template: articulo
-
 ----
 
 Esta es la **estructura** básica de un archivo:

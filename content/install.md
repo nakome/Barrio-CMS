@@ -22,8 +22,6 @@ Template: index
         <?php
             return array(
                 'lang' => 'es',
-                // protocolo http o https
-                'protocol' => 'http',
                 // charset
                 'charset' => 'UTF-8',
                 // timezone
