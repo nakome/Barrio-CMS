@@ -37,6 +37,7 @@
 
     <meta name="generator" content="Creado con Barrio CMS" />
 
+    <link rel="stylesheet" href="icomoon.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -46,32 +47,30 @@
             <header><a href="https://github.com/nakome/Barrio-CMS">Github</a></header>
             <section>
                 <ul class="navigation">
-                    <li class="has-dropdown"><a href="#" class="link" data-page="instalacion">Instalacíon</a></li>
-                    <li class="has-dropdown"><a href="#" class="link" data-page="documentacion">Documentaíon</a></li>
-                    <li class="has-dropdown"><a href="#">Como se hace</a>
-                        <ul class="dropdown">
-                            <li class="has-dropdown">
-                                <a href="#" class="link" data-page="markdown">Entendiendo Markdown</a></li>
-                            <li class="has-dropdown">
-                                <a href="#" class="link" data-page="archivos">Escribir Archivos</a></li>
-                            <li class="has-dropdown">
-                                <a href="#" class="link" data-page="temas">Crear Temas</a></li>
-                            <li class="has-dropdown">
-                                <a href="#" class="link" data-page="shortcodes">Que son Shortcodes</a></li>
-                            <li class="has-dropdown">
-                                <a href="#" class="link" data-page="extensiones">Que son Extensiones</a></li>
-                        </ul>
-                    </li>
+                    <li class="has-dropdown">
+                        <a href="#" class="link" data-page="instalacion">Instalacíon</a></li>
+                    <li class="has-dropdown">
+                        <a href="#" class="link" data-page="documentacion">Documentaíon</a></li>
+                    <li class="has-dropdown">
+                        <a href="#" class="link" data-page="markdown">Entendiendo Markdown</a></li>
+                    <li class="has-dropdown">
+                        <a href="#" class="link" data-page="archivos">Escribir Archivos</a></li>
+                    <li class="has-dropdown">
+                        <a href="#" class="link" data-page="temas">Crear Temas</a></li>
+                    <li class="has-dropdown">
+                        <a href="#" class="link" data-page="shortcodes">Que son Shortcodes</a></li>
+                    <li class="has-dropdown">
+                        <a href="#" class="link" data-page="extensiones">Que son Extensiones</a></li>
                 </ul>
             </section>
         </nav>
         <main id="wrapper">
             <header id="header">
-                <button class="menu" href="#"><span class="fa fa-bars"></span></button>
+                <button class="menu" href="#"><span class="icon-browser"></span></button>
                 <h2>Barrio CMS docs</h2>
                 <div class="right">
-                    <button id="website"><span class="fa fa-eye"></span></button>
-                    <button class="link" data-page="acercade"><span class="fa fa-user"></span></button>
+                    <button id="website"><span class="icon-expand"></span></button>
+                    <button class="link" data-page="acercade"><span class="icon-megaphone"></span></button>
                 </div>
             </header>
             <div id="content">Cargando...</div>

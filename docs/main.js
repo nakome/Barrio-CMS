@@ -12,7 +12,29 @@ const getPage = (page) => {
         .then((r) => r.text())
         .then(r => {
             content.innerHTML = r;
+            let v = setTimeout(()=>{
+                tooggleAccordion();
+                clearTimeout(v);
+            },800);
         });
+}
+
+
+var tooggleAccordion = function() {
+    var elements = document.querySelectorAll('.accordion-title');
+    Array.from(elements).forEach(function(item) {
+        item.querySelector('a').addEventListener('click', function() {
+            if (item.querySelector('a').classList.contains('active')) {
+                item.querySelector('a').classList.remove('active');
+                item.nextElementSibling.classList.remove('show');
+                item.nextElementSibling.classList.add('hide');
+            } else {
+                item.querySelector('a').classList.add('active');
+                item.nextElementSibling.classList.add('show');
+                item.nextElementSibling.classList.remove('hide');
+            }
+        });
+    });
 }
 
 const toggleDropdown = (el) => {

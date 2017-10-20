@@ -1,13 +1,46 @@
 Title: Barrio CMS
 Description: Sistema de gestión de contenidos en formato Flat File
-Keywords: 
+Keywords:
 Published: true
-Author: 
+Author:
 Date: 19/10/2017
-Image: 
+Image:
 Robots: index,follow
 Template: home
 ----
+
+
+
+
+{Bloques clase='mt-5 mb-5'}
+
+{Servicio
+    icon='heart'
+    clase='mb-5 text-center'
+}
+### Hecho con Amor
+Como si de un hijo se tratara.
+{/Servicio}
+
+{Servicio
+    icon='laptop'
+    clase='mb-5 text-center'
+}
+### Facíl instalación
+Tan sencillo como Copiar y pegar.
+{/Servicio}
+
+{Servicio
+    icon='code'
+    clase='mb-5 text-center'
+}
+### Shortcodes
+Para crear contenido de todo tipo.
+{/Servicio}
+
+{/Bloques}
+
+
 
 ### Que es Barrio CMS
 
@@ -15,32 +48,20 @@ Template: home
 
 
 
-{Bloque_izq clase="img-cover mt-5" img='{url}/content/imagenes/ft.gif' text='Instalación instantánea'}
 
-### Instalación instantánea
 
+{Bloques clase='pt-5 pb-5'}
+{Card col='4' title='Instalación instantánea' img='{url}/content/imagenes/ftp.gif'}
 Carga algunos archivos en su servidor y eso es todo. No hay lucha con la configuración de la base de datos.
-
-{/Bloque_izq}
-
-
-
-{Bloque_drch clase="img-cover mt-5" img='{url}/content/imagenes/carpetas.gif' text='Cualquier contenido'}
-
-### Cualquier contenido
-
+{/Card}
+{Card col='4' title='Cualquier contenido' img='{url}/content/imagenes/carpetas.gif'}
 Artículos, galerías, páginas sencillas o hojas complejas de productos, Tú tienes el control de su contenido
+{/Card}
+{Card col='4' title='Edición Facíl' img='{url}/content/imagenes/escribiendo.gif'}
+Gracias a Markdown y los Shortcodes podremos crear gran contenido.
+{/Card}
+{/Bloques}
 
-{/Bloque_drch}
-
-
-{Bloque_izq clase="img-cover mt-5" img='{url}/content/imagenes/escribiendo.gif' text='Instalación instantánea'}
-
-### Instalación instantánea
-
-Carga algunos archivos en su servidor y eso es todo. No hay lucha con la configuración de la base de datos.
-
-{/Bloque_izq}
 
 
 ### Escandalosamente fácil
@@ -48,9 +69,10 @@ Carga algunos archivos en su servidor y eso es todo. No hay lucha con la configu
 La mayoría de los sistemas de gestión de contenidos hacen uso de extensas bases de datos para mantener su contenido. Estas bases de datos a veces requieren un proceso de configuración confuso, aunque esto es a menudo oscurecido por las utilidades de instalación con un solo clic. Aunque pueden ser fáciles de configurar gracias a estas utilidades, los usuarios pueden experimentar dificultades al intentar modificar, editar o migrar su contenido. Todo lo que hace que su sitio "lo que es" está encerrado en una base de datos difícil de gestionar. Cualquier persona que ha intentado migrar su instalación de WordPress de un servidor a otro probablemente ha experimentado este dolor.
 
 
----
 
+
+{Alert type='info' clase='pt-5 pb-5'}
 **Barrio** es diferente. Con **Barrio**, todo su contenido se almacena como "archivos planos", que es casi exactamente como suena. Al utilizar **Barrio**, todo el contenido de su sitio se almacena como archivos de texto simples. Se mantiene fácilmente disponible para modificar, editar, organizar y migrar como mejor le parezca.
-
+{/Alert}
 
 [Empezando con Barrio CMS]({url}/install)

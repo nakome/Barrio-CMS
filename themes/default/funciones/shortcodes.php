@@ -3,13 +3,15 @@
 
 /**
 *  Bloques
+* - clase = css class
 *   {Bloques}
 *       bloques que sumen 12 en total
 *   {/Bloques}
 */
 Barrio::shortCodeAdd('Bloques',function($attrs,$contenido){
     extract($attrs);
-    $resultado = Barrio::applyFilter('content','<div class="row">'.$contenido.'</div>');
+    $resultado = Barrio::applyFilter('content','<div class="row '.$clase.'">'.$contenido.'</div>');
+    $resultado = preg_replace('/\s+/', ' ', $resultado);
     return $resultado;
 });
 
@@ -22,6 +24,7 @@ Barrio::shortCodeAdd('Bloques',function($attrs,$contenido){
 Barrio::shortCodeAdd('Galeria',function($attrs,$contenido){
     extract($attrs);
     $resultado = Barrio::applyFilter('content','<div id="masonry">'.$contenido.'</div>');
+    $resultado = preg_replace('/\s+/', ' ', $resultado);
     return $resultado;
 });
 
@@ -46,6 +49,7 @@ Barrio::shortcodeAdd('Imagen', function ($atributos) {
         $html .= '<figcaption>'.$texto.'</figcaption>';
         $html .= '</figure>';
         $html .= '</a>';
+        $html = preg_replace('/\s+/', ' ', $html);
         return $html;
     }else{
         return 'Este shortcode le falta el atributo src';
@@ -68,6 +72,7 @@ Barrio::shortcodeAdd('Bloque', function ($atributos,$contenido) {
     $contenido = Parsedown::instance()->text($contenido);
     // enseñar
     $contenido = Barrio::applyFilter('content', '<div class="col-'.$col.'">'.$contenido.'</div>');
+    $contenido = preg_replace('/\s+/', ' ', $contenido);
     return $contenido;
 });
 
@@ -93,6 +98,7 @@ Barrio::shortcodeAdd('Bloque_izq', function ($atributos,$contenido) {
         $html .='</div>';
         $html .= Barrio::applyFilter('content', '<div class="col'.($col-12).'">'.$contenido.'</div>');
         $html .='</div>';
+        $html = preg_replace('/\s+/', ' ', $html);
         return $html;
     } else {
         return 'Este shortcode le falta el atributo src';
@@ -122,6 +128,7 @@ Barrio::shortcodeAdd('Bloque_drch', function ($atributos,$contenido) {
         $html .= '  <img class="full-width '.$clase.'" src="'.$img.'" alt="'.$text.'"/>';
         $html .= '</div>';
         $html .='</div>';
+        $html = preg_replace('/\s+/', ' ', $html);
         return $html;
     } else {
         return 'Este shortcode le falta el atributo src';
@@ -185,6 +192,7 @@ Barrio::shortCodeAdd('Contacto',function($atributos){
     $html .= '      <input type="submit" name="Submit" class="btn btn-outline" value="Enviar Formulario">';
     $html .= '  </form>';
     $html .= '</div>';
+    $html = preg_replace('/\s+/', ' ', $html);
     return $error.$html;
 });
 
@@ -203,6 +211,7 @@ Barrio::shortcodeAdd('Texto',function($atributos,$contenido){
     // aplicamos un filtro para escribir dentro del shortcode
     $resultado = Barrio::applyFilter('content','<div style="color:'.$color.'">'.$contenido.'</div>');
     // enseñamos la plantilla
+    $resultado = preg_replace('/\s+/', ' ', $resultado);
     return $resultado;
 });
 
@@ -222,6 +231,7 @@ Barrio::shortcodeAdd('Youtube', function ($atributos) {
         $html = '<section class="'.$clase.'">';
         $html .= '<iframe src="//www.youtube.com/embed/'.$id.'" frameborder="0" allowfullscreen></iframe>';
         $html .= '</section>';
+        $html = preg_replace('/\s+/', ' ', $html);
         return $html;
     // si no se pone el atributo id que avise
     }else{
@@ -244,6 +254,7 @@ Barrio::shortcodeAdd('Vimeo', function ($atributos) {
         $html = '<section class="'.$clase.'">';
         $html .= '<iframe src="https://player.vimeo.com/video/'.$id.'" frameborder="0" allowfullscreen></iframe>';
         $html .= '</section>';
+        $html = preg_replace('/\s+/', ' ', $html);
         return $html;
         // si no se pone el atributo id que avise
     } else {
@@ -272,6 +283,7 @@ Barrio::shortcodeAdd('Btn', function ($atributos) {
     // si no hay texto no enseñar
     if ($text && $link) {
         $html = '<a class="mt-3 mb-3 btn '.$size.' '.$type.'" href="'.$link.'" title="'.$text.'">'.$text.'</a>';
+        $html = preg_replace('/\s+/', ' ', $html);
         return $html;
     } else {
         return 'Este shortcode le falta el atributo texto o link';
@@ -292,6 +304,7 @@ Barrio::shortcodeAdd('Alert', function ($atributos, $contenido) {
     // convertimos el markdown
     $contenido = Parsedown::instance()->text($contenido);
     $contenido = Barrio::applyFilter('content', '<div class="alert alert-'.$type.' '.$clase.'">'.$contenido.'</div>');
+    $contenido = preg_replace('/\s+/', ' ', $contenido);
     return $contenido;
 });
 
@@ -312,8 +325,189 @@ Barrio::shortcodeAdd('Barra', function ($atributos) {
     $html = '<div class="progress '.$clase.'">';
     $html .='   <div class="progress-bar bg-'.$color.'" role="progressbar" style="width:'.$size.'%" aria-valuenow="'.$size.'" aria-valuemin="0" aria-valuemax="100"></div>';
     $html .='</div>';
+    $html = preg_replace('/\s+/', ' ', $html);
     return $html;
 });
 
 
+
+
+/**
+ * type = tipo de icono
+ * {Icono type='phone2' texto='624584452'}
+ */
+Barrio::shortcodeAdd('Icono', function ($atributos) {
+    extract($atributos);
+    // atributos
+    $type = (isset($type)) ? $type : '';
+
+    // si no hay imagen enseñar
+    if ($type) {
+        $html = '<i class="icon-'.$type.'"></i> ';
+        $html = preg_replace('/\s+/', ' ', $html);
+        return $html;
+    } else {
+        return 'Este shortcode le falta el atributo type';
+    }
+});
+
+/**
+ * {Icono type='phone2' texto='624584452'}
+ */
+Barrio::shortcodeAdd('Icono_demo', function ($atributos) {
+    extract($atributos);
+    // atributos
+    $type = (isset($type)) ? $type : '';
+    // si no hay imagen enseñar
+    if ($type) {
+        $html = '<div class="demo_icono col-md-2 col-sm-2">';
+        $html .= '<p class="text-center p-2"><i class="text-dark icon-'.$type.'"></i> <br>'.$type.'</p>';
+        $html .= '</div>';
+
+        $html = preg_replace('/\s+/', ' ', $html);
+        return $html;
+    } else {
+        return 'Este shortcode le falta el atributo type';
+    }
+});
+
+
+
+/**
+ * col = 1-12 (combinaciones 4+4+4 6+6 8+4 3+3+3+3 ) = total 12
+ * img = url de la imagen
+ * title = texto del titulo
+ * {Card title='Card title'  img='http://example.com' }Texto tarjeta{/Card}
+*/
+Barrio::shortcodeAdd('Card', function ($atributos, $contenido) {
+    extract($atributos);
+
+    $title = (isset($title)) ? $title : 'Card title';
+    $img = (isset($img)) ? $img : '';
+    $col = (isset($col)) ? $col : '4';
+
+    $contenido = Barrio::applyFilter('content', $contenido);
+
+    $html = '<div class="col-'.$col.' ">';
+    $html .= ' <div class="card ">';
+    if ($img) {
+        $html .= ' <img class="card-img-top img-fluid" src="'.$img.'"/>';
+    }
+    $html .= ' <div class="card-body">';
+    if ($title) {
+        $html .= ' <h4 class="card-title">'.$title.'</h4>';
+    }
+    $html .= $contenido;
+    $html .= ' </div>';
+    $html .= ' </div>';
+    $html .= ' </div>';
+
+    $html = preg_replace('/\s+/', ' ', $html);
+    return $html;
+});
+
+
+
+/**
+ * id = identificacion unica
+ * {Acordeones id='acordeon'}Texto tarjeta{/Overlay}
+*/
+Barrio::shortcodeAdd('Acordeones', function ($atributos, $contenido) {
+    extract($atributos);
+    $id = (isset($id)) ? $id : 'acordeon';
+    $clase = (isset($clase)) ? $clase : 'mt-2 mb-2';
+    $contenido = Barrio::applyFilter('content', $contenido);
+    $contenido = Parsedown::instance()->text($contenido);
+    $html = '<div id="'.$id.'"  class="accordion '.$clase.' ">'.$contenido.'</div>';
+    $html = preg_replace('/\s+/', ' ', $html);
+    return $html;
+});
+
+/**
+ * title = el titulo
+ * clase = extra classes
+ * {Acordeon  cñase="active" title='Titulo'}Texto oculto{/Acordeon}
+*/
+Barrio::shortcodeAdd('Acordeon', function ($atributos, $contenido) {
+    extract($atributos);
+
+    $parent = (isset($parent)) ? $parent : 'acordeon';
+    $title = (isset($title)) ? $title : 'Titulo vacio';
+    $id = (isset($id)) ? $id : 'acordeon1';
+    $clase = (isset($clase)) ? $clase : '';
+    $show = ($clase == 'active') ? 'show' : 'hide';
+    $contenido = Parsedown::instance()->text($contenido);
+    $contenido = Barrio::applyFilter('content', '<div class="accordion-content '.$show.'">'.$contenido.'</div>');
+
+    $html = '<div class="accordion-title">';
+    $html .= '  <a class="'.$clase.'">'.$title.'</a>';
+    $html .= '</div>';
+    $html .= $contenido;
+    $html = preg_replace('/\s+/', ' ', $html);
+
+    return $html;
+});
+
+
+
+
+/**
+*  Bloques
+*  - icon = icono del servicio
+*  - clase = clase css
+*   {Servicio icon='heart'}
+*       bloques que sumen 12 en total
+*   {/Servicio}
+*/
+Barrio::shortCodeAdd('Servicio',function($atributos,$contenido){
+    extract($atributos);
+    // atributos
+    $icon = (isset($icon)) ? $icon : '#';
+    $col = (isset($col)) ? $col : '4';
+    $clase = (isset($clase)) ? $clase : 'text-center';
+    $contenido = Parsedown::instance()->text($contenido);
+    $resultado = Barrio::applyFilter('content','<div class="holder-section">'.$contenido.'</div>');
+
+    $html = '<div class="col-'.$col.'   '.$clase.'">';
+    $html .= '<div class="mt-3 mb-3 p-3">';
+    $html .= '<i class="icon-big icon-'.$icon.'"></i>';
+    $html .=  $resultado;
+    $html .= '  </div>';
+    $html .= '</div>';
+    $html = preg_replace('/\s+/', ' ', $html);
+    return $html;
+});
+
+/**
+*  Card
+*  - col = Numero bloques que sumen 12 en total
+*  - title = titulo
+*  - clase = clase css
+*  - img = imagen
+*   {Card col='4? title='heart' img='{url}/content/imagenes/sin-imagen.svg'}
+*       bloques que sumen 12 en total
+*   {/Card}
+*/
+Barrio::shortCodeAdd('Card',function($atributos,$contenido){
+    extract($atributos);
+    // atributos
+    $title = (isset($title)) ? $title : '';
+    $img = (isset($img)) ? $img : '';
+    $col = (isset($col)) ? $col : '4';
+    $clase = (isset($clase)) ? $clase : '';
+    $contenido = Parsedown::instance()->text($contenido);
+    $resultado = Barrio::applyFilter('content','<div class="card-text">'.$contenido.'</div>');
+
+    $html = '<div class="col-'.$col.'">';
+    $html .= '<div class="card '.$clase.'">';
+    $html .= '  <img class="card-img-top" src="'.$img.'" alt="'.$title.'">';
+    $html .= '  <div class="card-body m-3">';
+    $html .= '    <h4 class="card-title m-1">'.$title.'</h4>';
+    $html .=      $resultado;
+    $html .= '  </div>';
+    $html .= '</div>';
+    $html .= '</div>';
+    $html = preg_replace('/\s+/', ' ', $html);
+    return $html;
+});
 

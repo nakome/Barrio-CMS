@@ -21,6 +21,8 @@ Es muy fácil crear Shortcodes en **Barrio CMS** por ejemplo, vamos a crear un S
         $contenido = Parsedown::instance()->text($contenido);
         // aplicamos un filtro para escribir dentro del shortcode
         $resultado = Barrio::applyFilter('content','<div style="color:'.$color.'">'.$contenido.'</div>');
+        // quitamos espacios
+        $resultado = preg_replace('/\s+/', ' ', $resultado);
         // enseñamos la plantilla
         return $resultado;
     });
@@ -70,6 +72,7 @@ En este caso **no necesitamos escribir dentro** así que es mas facil aun.
             $html = '<section class="'.$clase.'">';
             $html .= '<iframe src="//www.youtube.com/embed/'.$id.'" frameborder="0" allowfullscreen></iframe>';
             $html .= '</section>';
+            $html = preg_replace('/\s+/', ' ', $html);
             return $html;
         // si no se pone el atributo src que avise
         }else{
@@ -108,6 +111,7 @@ Ahora vamos hacer lo mismo pero con **Vimeo**:
             $html = '<section class="'.$clase.'">';
             $html .= '<iframe src="https://player.vimeo.com/video/'.$id.'" frameborder="0" allowfullscreen></iframe>';
             $html .= '</section>';
+            $html = preg_replace('/\s+/', ' ', $html);
             return $html;
             // si no se pone el atributo id que avise
         } else {
@@ -154,6 +158,7 @@ Hay varios **actionRun** que son **meta** , **head** y **footer** que como su no
             $html = '<section class="iframe">';
             $html .= '<iframe src="//www.youtube.com/embed/'.$src.'" frameborder="0" allowfullscreen></iframe>';
             $html .= '</section>';
+            $html = preg_replace('/\s+/', ' ', $html);
             // ahora se llama con echo o print
             echo $html;
         // si no se pone el atributo src que avise

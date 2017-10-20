@@ -105,8 +105,8 @@ var loader = function loader(callback) {
                     var preloadfx = anime({
                       targets: '.preloader',
                       scale: {
-                        value: '+=2',
-                        duration: 500
+                        value: '+=1',
+                        duration: 300
                       },
                       direction: 'alternate'
                     });
@@ -126,11 +126,30 @@ var loader = function loader(callback) {
 
 
 
+var tooggleAccordion = function(){
+   var elements = document.querySelectorAll('.accordion-title');
+   Array.from(elements).forEach(function(item){
+      item.querySelector('a').addEventListener('click',function(){
+        if(item.querySelector('a').classList.contains('active')){
+          item.querySelector('a').classList.remove('active');
+          item.nextElementSibling.classList.remove('show');
+          item.nextElementSibling.classList.add('hide');
+        }else{
+          item.querySelector('a').classList.add('active');
+          item.nextElementSibling.classList.add('show');
+          item.nextElementSibling.classList.remove('hide');
+        }
+      });
+   });
+}
+
+
 
 
 
 document.addEventListener('DOMContentLoaded', function() {
     loader(function() {
         toggleMenu();
+        tooggleAccordion();
     });
 });

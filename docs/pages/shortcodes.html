@@ -18,6 +18,8 @@ Barrio::shortcodeAdd('Texto',function($atributos,$contenido){
     $contenido = Parsedown::instance()-&gt;text($contenido);
     // aplicamos un filtro para escribir dentro del shortcode
     $resultado = Barrio::applyFilter('content','&lt;div style="color:'.$color.'"&gt;'.$contenido.'&lt;/div&gt;');
+    // quitamos espacios
+    $resultado = preg_replace('/\s+/', ' ', $resultado);
     // enseñamos la plantilla
     return $resultado;
 });</code></pre>
@@ -51,6 +53,7 @@ Barrio::shortcodeAdd('Youtube', function ($atributos) {
         $html = '&lt;section class="'.$clase.'"&gt;';
         $html .= '&lt;iframe src="//www.youtube.com/embed/'.$id.'" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;';
         $html .= '&lt;/section&gt;';
+        $html = preg_replace('/\s+/', ' ', $html);
         return $html;
     // si no se pone el atributo src que avise
     }else{
@@ -77,6 +80,7 @@ Barrio::shortcodeAdd('Vimeo', function ($atributos) {
         $html = '&lt;section class="'.$clase.'"&gt;';
         $html .= '&lt;iframe src="https://player.vimeo.com/video/'.$id.'" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;';
         $html .= '&lt;/section&gt;';
+        $html = preg_replace('/\s+/', ' ', $html);
         return $html;
         // si no se pone el atributo id que avise
     } else {
@@ -103,6 +107,7 @@ Barrio::shortcodeAdd('Vimeo', function ($atributos) {
         $html .= '&lt;iframe src="//www.youtube.com/embed/'.$src.'" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;';
         $html .= '&lt;/section&gt;';
         // ahora se llama con echo o print
+        $html = preg_replace('/\s+/', ' ', $html);
         echo $html;
     // si no se pone el atributo src que avise
     }else{
