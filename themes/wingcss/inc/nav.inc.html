@@ -1,0 +1,23 @@
+<?php $full = (Barrio::urlSegment(0) == '') ? 'full-screen' : ''; ?>
+<?php $hero = (Barrio::urlSegment(0) == '') ? 'hero' : 'page'; ?>
+<header class="masthead <?php echo $full;?>">
+    <div class="mobile-menu" id="nav-open">
+        <a href="#"><i class="icon-menu"></i></a>
+    </div>
+    <nav class="nav horizontal-align" id="navigation">
+        <div class="mobile-menu" id="nav-close">
+            <a href="#"><i class="icon-cross3"></i></a>
+        </div>
+        <?php echo nav();?>
+        <?php echo nav('install','instalacíon');?>
+        <?php echo nav('articulos','Como se hace');?>
+        <?php echo nav('download','Descarga');?>
+        <?php echo nav('docs','Documentación');?>
+    </nav>
+    <section class="<?php echo $hero;?> container center text-center">
+      <div>
+        <img src="<?php echo assets();?>/img/logo.svg" alt="<?php echo Barrio::$config['title'];?>">
+        <h5><?php echo $page['description'];?></h5>
+      </div>
+    </section>
+</header>

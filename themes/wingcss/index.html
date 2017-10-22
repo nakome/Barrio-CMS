@@ -1,0 +1,7 @@
+<?php include 'inc/head.inc.html' ?>
+<div class="container">
+    <?php echo Barrio::actionRun('theme_before');?>
+    <?php echo $page['content'];?>
+    <?php echo Barrio::actionRun('theme_after');?>
+</div>
+<?php include 'inc/footer.inc.html' ?>

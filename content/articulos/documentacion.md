@@ -35,11 +35,14 @@ Template: articulo
 
 Por defecto existen unas variables en los archivos de texto, estas son:
 
+{Code type='markdown'}
     // quitar espacio al principio de `{` para que funcione.
     { url} = la direccíon de la pagina
     { email} = Email por defecto de config.php
     { more} = funcíon para acortar los archivos de texto
     { php} echo 'hola mundo'; {/php}
+{/Code}
+
 
 {Alert type='info' clase='mt-5'}
 Puedes ver mas en [Como se hace]({url}/articulos/archivos)
@@ -52,6 +55,7 @@ Puedes ver mas en [Como se hace]({url}/articulos/archivos)
 
 **Acciones:**
 
+{Code type='php'}
     // Crear una Accion
     Barrio::actionAdd('demo',function($nombre = ''){
         echo $nombre
@@ -59,11 +63,12 @@ Puedes ver mas en [Como se hace]({url}/articulos/archivos)
 
     // llamar a la Accion
     Barrio::actionRun('demo',['nombre']);
-
+{/Code}
 
 
 **Shortcodes:**
 
+{Code type='php'}
     // Crear una Shortcode
     Barrio::actionAdd('Escribe',function($atributos){
         // extrae atributos
@@ -77,6 +82,9 @@ Puedes ver mas en [Como se hace]({url}/articulos/archivos)
     // llamar a el Shortcode
     // quitar espacio al principio de `{` para que funcione.
     { Escribe nombre=Barrio CMS} o { Escribe nombre='Barrio CMS'}
+
+{/Code}
+
 
 {Alert type='info' clase='mt-5'}
 Puedes ver ejemplos en [Como se hace]({url}/articulos/shortcodes)

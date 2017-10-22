@@ -13,14 +13,15 @@ Primero creamos la acción con **Barrio::actionAdd();**  y usaremos **Barrio::ac
 
 ### Iniciamos la acción
 
-
+{Code type='php'}
     Barrio::actionAdd('theme_before',function(){
         // codigo...
     });
-
+{/Code}
 
 Añadimos $_GET
 
+{Code type='php'}
     Barrio::actionAdd('theme_before',function(){
         // en la barra de busqueda seria algo asi
         // http://localhost/cmsbarrio/?buscar=
@@ -33,10 +34,11 @@ Añadimos $_GET
             // continuamos ....
         }
     });
-
+{/Code}
 
 Comprobamos que el nombre a buscar no este vacio
 
+{Code type='php'}
     Barrio::actionAdd('theme_before',function(){
         // en la barra de busqueda seria algo asi
         // http://localhost/cmsbarrio/?buscar=
@@ -66,11 +68,12 @@ Comprobamos que el nombre a buscar no este vacio
             }
         }
     });
-
+{/Code}
 
 
 Creamos un loop que busque en todos los archivos el titulo la descripción o el slug
 
+{Code type='php'}
     Barrio::actionAdd('theme_before',function(){
         // en la barra de busqueda seria algo asi
         // http://localhost/cmsbarrio/?buscar=
@@ -121,12 +124,12 @@ Creamos un loop que busque en todos los archivos el titulo la descripción o el 
             }
         }
     });
-
+{/Code}
 
 
 Lanzamos los resultados en html.
 
-
+{Code type='php'}
     Barrio::actionAdd('theme_before',function(){
         // en la barra de busqueda seria algo asi
         // http://localhost/cmsbarrio/?buscar=
@@ -196,21 +199,21 @@ Lanzamos los resultados en html.
             }
         }
     });
-
+{/code}
 
 ### Creamos el formulario
 
 El formulario lo haremos solo con un input search y con javascript, algo así:
 
-
+{Code type='html'}
     <form id="buscar">
         <input type="search" id="texto" placeholder="Buscar pagina">
     </form>
-
+{/Code}
 
 Ahora añadimos un poco de Javascript:
 
-
+{Code type='html'}
     <form id="buscar">
         <input type="search" id="texto" placeholder="Buscar pagina">
     </form>
@@ -231,6 +234,9 @@ Ahora añadimos un poco de Javascript:
             return false;
         });
     </script>
+{/Code}
 
 
+{Alert type=info}
 Y ya esta ahora solo tenemos que escribir lo que queramos buscar y veremos los resultados ( si los hay ).
+{/Alert}

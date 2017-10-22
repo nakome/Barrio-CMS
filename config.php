@@ -6,7 +6,7 @@
         // timezone
         'timezone' => 'Europe/Brussels',
         // plantilla por defecto
-        'theme' => 'default',
+        'theme' => 'wingcss',
         // titulo de la web
         'title' => 'Barrio CMS',
         // descripcion de la web

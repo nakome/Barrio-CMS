@@ -25,7 +25,7 @@ La estructura de los temas se compone de:
 
 Vamos a crear una plantilla a la que llamaremos **home.html**:
 
-
+{Code type='php'}
     <?php include 'inc/head.inc.html' ?>
     <?php include 'inc/header.inc.html' ?>
     <main>
@@ -34,7 +34,7 @@ Vamos a crear una plantilla a la que llamaremos **home.html**:
         <?php Barrio::actionRun('theme_after); ?>
     </main>
     <?php include 'inc/footer.inc.html' ?>
-
+{/Code}
 
 En primer lugar incluimos **head.inc.html** que es donde se encuentra los **metatags** y **estilos**.
 
@@ -52,6 +52,7 @@ También podemos crear una plantilla sin incluir el **head** o el **footer** per
 **Nota:** _Estas son todas las variables que acepta `$page` si están incluidas en el archivo.
 
 
+{Code type='markdown'}
         Title = El titulo de la página
         Description = Descripción de la página
         Tags = Etiquetas de la página
@@ -64,6 +65,7 @@ También podemos crear una plantilla sin incluir el **head** o el **footer** per
         Url = Un link para enseñar o enlazar.
         Category = categoría
         Published = publicado o no.
+{/Code}
 
 Las etiquetas **title**, **description**, **keywords** y **author** si no se escriben se usarán las de el archivo **config.php**.
 
@@ -74,7 +76,7 @@ He incluido algunas más de las que se utilizan por si tienes conocimientos mas 
 Por ejemplo si quieres que en los **artículos** o **blog** ( puedes crear las carpetas que quieras dentro de la carpeta content ) quieres que salga una imagen para cada articulo en el **loop** podrias usar algo así:
 
 
-
+{Code type='php'}
     // si no esta vacía usaremos la imagen
     if($articulo['image'] != ''){
         $html .= '<img src="'.$articulo['image'].'" alt="'.$articulo['title'].'" />';
@@ -82,11 +84,11 @@ Por ejemplo si quieres que en los **artículos** o **blog** ( puedes crear las c
     }else{
         $html .= '<img src="'.Barrio::$config['image'].'" alt="'.$articulo['title'].'" />';
     }
-
+{/Code}
 
 La incluiríamos en **artículos.html** así:
 
-
+{Code type='php'}
     <?php include 'inc/head.inc.html' ?>
     <?php include 'inc/header.inc.html' ?>
     <main>
@@ -123,7 +125,7 @@ La incluiríamos en **artículos.html** así:
          <?php Barrio::actionRun('theme_after); ?>
     </main>
     <?php include 'inc/footer.inc.html' ?>
-
+{/Code}
 
 
 

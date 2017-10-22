@@ -44,12 +44,15 @@ Las `#` **almohadillas** son uno de los métodos utilizados en Markdown para cre
 
 Es decir,
 
+{Code type='markdown'}
     # Encabezado 1
     ## Encabezado 2
     ### Encabezado 3
     #### Encabezado 4
     ##### Encabezado 5
     ###### Encabezado 6
+{/Code}
+
 
 Se corresponde con
 
@@ -69,10 +72,12 @@ Consiste en subrayar los encabezados con el símbolo `=` (para el encabezado 1),
 
 Es decir,
 
+{Code type='markdown'}
     Esto sería un encabezado 1
     ===
     Esto sería un encabezado 2
     —-
+{/Code}
 
 No existe un número concreto `=` o `-` que necesites escribir para que esto funcione, ¡incluso bastaría con uno!
 
@@ -93,13 +98,13 @@ Un país, una civilización se puede juzgar por la forma en que trata a sus anim
 
 Si la cita en cuestión se compone de varios párrafos, deberás añadir el mismo símbolo `>` al comienzo de cada uno de ellos.
 
-
+{Code type='markdown'}
         > Creo que los animales ven en el hombre un ser igual a ellos que ha perdido de forma extraordinariamente peligrosa el sano intelecto animal.
 
 
         > Es decir, que ven en él al animal irracional, al animal que ríe, al animal que llora, al animal infeliz. — Friedrich Nietzsche
         Creo que los animales ven en el hombre un ser igual a ellos que ha perdido de forma extraordinariamente peligrosa el sano intelecto animal.
-
+{/Code}
 
 > Creo que los animales ven en el hombre un ser igual a ellos que ha perdido de forma extraordinariamente peligrosa el sano intelecto animal.
 
@@ -111,13 +116,13 @@ Creo que los animales ven en el hombre un ser igual a ellos que ha perdido de fo
 
 Incluso puedes concatenar varios `>>` para crear **citas anidadas**.
 
-
+{Code type='markdown'}
     > Esto sería una cita como la que acabas de ver.
     >
     > > Dentro de ella puedes anidar otra cita.
     >
     > La cita principal llegaría hasta aquí.
-
+{/Code}
 
 > Esto sería una cita como la que acabas de ver.
 >
@@ -145,12 +150,14 @@ A diferencia de lo que ocurre en HTML, generar listas en Markdown es tremendamen
 
 Para crear l**istas desordenadas** utiliza `*` **asteriscos**, `-` **guiones**, o `+` **símbolo de suma**.
 
+{Code type='markdown'}
     - Elemento de lista 1
     - Elemento de lista 2
     * Elemento de lista 3
     * Elemento de lista 4
     + Elemento de lista 5
     + Elemento de lista 6
+{/Code}
 
 Da igual qué elemento escojas, incluso puedes intercambiarlos. Todos se verán igual al procesarse.
 
@@ -163,12 +170,14 @@ Da igual qué elemento escojas, incluso puedes intercambiarlos. Todos se verán 
 
 Para generar **listas anidadas** dentro de otras, simplemente tendrás que añadir **cuatro espacios en blanco** antes del siguiente `*`, `-` o `+`.
 
+{Code type='markdown'}
     - Elemento de lista 1
     - Elemento de lista 2
         - Elemento de lista 3
         - Elemento de lista 4
             - Elemento de lista 5
             - Elemento de lista 6
+{/Code}
 
 - Elemento de lista 1
 - Elemento de lista 2

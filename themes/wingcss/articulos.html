@@ -1,0 +1,26 @@
+<?php include 'inc/head.inc.html' ?>
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <?php echo Barrio::actionRun('theme_before');?>
+            <section class="posts">
+                <?php Barrio::actionRun('Pagination',['articulos',6]); ?>
+            </section>
+            <?php echo Barrio::actionRun('theme_after');?>
+        </div>
+        <div class="col-4">
+            <div class="bg-white p-3 mb-4 b-bottom-success">
+                <h4 class="text-success"><?php echo Barrio::$config['title'];?> Blog</h4>
+                <p>
+                <?php echo Barrio::$config['blog_description'];?>
+                </p>
+            </div>
+
+            <div class="bg-white p-3 mb-4 b-bottom-success">
+                <h4 class="text-success">Articulos Recientes</h4>
+                <?php echo Barrio::actionRun('lastPosts',[3]); ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php include 'inc/footer.inc.html' ?>
