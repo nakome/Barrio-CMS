@@ -292,7 +292,7 @@ body {
 .mobile-menu a {
     text-decoration: none;
     color: white;
-    position: fixed;
+    position: absolute;
     top: 2em;
     right: 2em;
     font-size: 19px;
