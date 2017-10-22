@@ -26,8 +26,7 @@ Template: articulo
 {Alert type='dark'}**Dark!** This is a primary alert-check it out!{/Alert}
 
 ---
-{Code type='php'}
-// type [primary|secondary|success|info|warning|danger|light|dark]
+{Code type='php'}// type [primary|secondary|success|info|warning|danger|light|dark]
 { Alert type='primary'} **Primary!** This is a primary alert-check it out! {/Alert}
 {/Code}
 
@@ -50,8 +49,7 @@ Template: articulo
 
 ---
 
-{Code type='php'}
-// color = [primary|secondary|success|info|warning|danger|light|dark|link]
+{Code type='php'}// color = [primary|secondary|success|info|warning|danger|light|dark|link]
 // text = texto del boton
 // id =  id del boton (opcional)
 // link = direcciÃ³n  (opcional)
@@ -74,8 +72,7 @@ Template: articulo
 
 
 ---
-{Code type='php'}
-// type = Tipo de boton [ouline] ( opcinal )
+{Code type='php'}// type = Tipo de boton [ouline] ( opcinal )
 // color = [primary|secondary|success|info|warning|danger|light|dark|link]
 // text = texto del boton
 // id =  id del boton (opcional)
@@ -178,8 +175,7 @@ Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod co
 
 ---
 
-{Code type='php'}
-// clase = se le puede añadir cualquer classe
+{Code type='php'}// clase = se le puede añadir cualquer classe
 { Bloques}
 
 // col = numero de columnas que al sumarse sean igual a 12
@@ -218,8 +214,7 @@ Enim nostrud Lorem pariatur dolore aute labore quis minim commodo deserunt sint 
 
 ---
 
-{Code type='php'}
-// img = ruta de una imagen para la izquierda
+{Code type='php'}// img = ruta de una imagen para la izquierda
 // text= de la imagen
 // col = numero de la primera columna por defecto 6
 // clase = class
@@ -248,8 +243,7 @@ Enim nostrud Lorem pariatur dolore aute labore quis minim commodo deserunt sint 
 
 ---
 
-{Code type='php'}
-// size = Tamaño de la barra
+{Code type='php'}// size = Tamaño de la barra
 // color = [success | info | warning | danger ]
 // clase = otra clase
 { Barra  size='25' color='success'}
@@ -276,8 +270,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing.
 
 ---
 
-{Code type='php'}
-{ Bloques clase='mt-4'}
+{Code type='php'}{ Bloques clase='mt-4'}
 
 { Servicio
     icon='heart'
@@ -331,8 +324,7 @@ bloques que sumen 12 en total
 
 ---
 
-{Code type='php'}
-// Bloques para agrupar
+{Code type='php'}// Bloques para agrupar
 // col = numero de columna que sume 12 en total en el bloque
 // title =  titulo
 // img = imagen
@@ -376,8 +368,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adip
 
 ---
 
-{Code type='php'}
-// id = id del acordeon
+{Code type='php'}// id = id del acordeon
 { Acordeones id='acordeon'}
 // title = el titulo
 // clase = la clase ( si es active el acordeon se expande)
@@ -396,10 +387,9 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adip
 
 ## Iconos
 
-{Code type='php'}
-// type = nombre
+{Code type='php'}// type = nombre
 { Icono type='mobile'}
-{/code}
+{/Code}
 
 ---
 

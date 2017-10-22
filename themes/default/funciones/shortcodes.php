@@ -8,12 +8,14 @@
 *       bloques que sumen 12 en total
 *   {/Bloques}
 */
-Barrio::shortCodeAdd('Bloques',function($attrs,$contenido){
+Barrio::shortCodeAdd('Code',function($attrs,$contenido){
     extract($attrs);
-    $resultado = Barrio::applyFilter('content','<div class="row '.$clase.'">'.$contenido.'</div>');
-    $resultado = preg_replace('/\s+/', ' ', $resultado);
+    $code = (isset($code)) ? $code : 'php';
+    $contenido = htmlentities($contenido);
+    $resultado = Barrio::applyFilter('content','<pre class="line-numbers"><code class="language-'.$code.'">'.$contenido.'</code></pre>');
     return $resultado;
 });
+
 
 /**
 *  Galeria

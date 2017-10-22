@@ -25,15 +25,14 @@ La estructura de los temas se compone de:
 
 Vamos a crear una plantilla a la que llamaremos **home.html**:
 
-{Code type='php'}
-    <?php include 'inc/head.inc.html' ?>
-    <?php include 'inc/header.inc.html' ?>
-    <main>
-        <?php Barrio::actionRun('theme_before); ?>
-        <?php echo $page['content']; ?>
-        <?php Barrio::actionRun('theme_after); ?>
-    </main>
-    <?php include 'inc/footer.inc.html' ?>
+{Code type='php'}<?php include 'inc/head.inc.html' ?>
+<?php include 'inc/header.inc.html' ?>
+<main>
+    <?php Barrio::actionRun('theme_before); ?>
+    <?php echo $page['content']; ?>
+    <?php Barrio::actionRun('theme_after); ?>
+</main>
+<?php include 'inc/footer.inc.html' ?>
 {/Code}
 
 En primer lugar incluimos **head.inc.html** que es donde se encuentra los **metatags** y **estilos**.
@@ -52,19 +51,18 @@ También podemos crear una plantilla sin incluir el **head** o el **footer** per
 **Nota:** _Estas son todas las variables que acepta `$page` si están incluidas en el archivo.
 
 
-{Code type='markdown'}
-        Title = El titulo de la página
-        Description = Descripción de la página
-        Tags = Etiquetas de la página
-        Author = Author de la página
-        Image = Imagen de la página
-        Date = Fecha
-        Robots, = Si quieres que indexe o no google
-        Keywords = keywords de la página
-        Template = plantilla html que usara (index.html,articulo.html etc...)
-        Url = Un link para enseñar o enlazar.
-        Category = categoría
-        Published = publicado o no.
+{Code type='markdown'}Title = El titulo de la página
+Description = Descripción de la página
+Tags = Etiquetas de la página
+Author = Author de la página
+Image = Imagen de la página
+Date = Fecha
+Robots, = Si quieres que indexe o no google
+Keywords = keywords de la página
+Template = plantilla html que usara (index.html,articulo.html etc...)
+Url = Un link para enseñar o enlazar.
+Category = categoría
+Published = publicado o no.
 {/Code}
 
 Las etiquetas **title**, **description**, **keywords** y **author** si no se escriben se usarán las de el archivo **config.php**.
@@ -76,55 +74,53 @@ He incluido algunas más de las que se utilizan por si tienes conocimientos mas 
 Por ejemplo si quieres que en los **artículos** o **blog** ( puedes crear las carpetas que quieras dentro de la carpeta content ) quieres que salga una imagen para cada articulo en el **loop** podrias usar algo así:
 
 
-{Code type='php'}
-    // si no esta vacía usaremos la imagen
-    if($articulo['image'] != ''){
-        $html .= '<img src="'.$articulo['image'].'" alt="'.$articulo['title'].'" />';
-    // si no podemos usar la que hay por defecto
-    }else{
-        $html .= '<img src="'.Barrio::$config['image'].'" alt="'.$articulo['title'].'" />';
-    }
+{Code type='php'}// si no esta vacía usaremos la imagen
+if($articulo['image'] != ''){
+    $html .= '<img src="'.$articulo['image'].'" alt="'.$articulo['title'].'" />';
+// si no podemos usar la que hay por defecto
+}else{
+    $html .= '<img src="'.Barrio::$config['image'].'" alt="'.$articulo['title'].'" />';
+}
 {/Code}
 
 La incluiríamos en **artículos.html** así:
 
-{Code type='php'}
-    <?php include 'inc/head.inc.html' ?>
-    <?php include 'inc/header.inc.html' ?>
-    <main>
-        <?php Barrio::actionRun('theme_before); ?>
-        <?php
-            // obtenemos todos los archivos de la carpeta artículos
-            // ordenamos por título y descendente
-            // si hay alguno con el nombre 404 no lo enseñamos
-            $articulos = Barrio::pages('articulos','title','ASC',['index','404']);
-            // iniciamos la variable fuera del loop
-            $html = '';
-            // loop de los artículos
-            foreach($articulos as $articulo)
-            {
+{Code type='php'}<?php include 'inc/head.inc.html' ?>
+<?php include 'inc/header.inc.html' ?>
+<main>
+    <?php Barrio::actionRun('theme_before); ?>
+    <?php
+        // obtenemos todos los archivos de la carpeta artículos
+        // ordenamos por título y descendente
+        // si hay alguno con el nombre 404 no lo enseñamos
+        $articulos = Barrio::pages('articulos','title','ASC',['index','404']);
+        // iniciamos la variable fuera del loop
+        $html = '';
+        // loop de los artículos
+        foreach($articulos as $articulo)
+        {
 
-                // si no esta vacía usaremos la imagen
-                if($articulo['image'] != ''){
-                    $html .= '<img src="'.$articulo['image'].'" alt="'.$articulo['title'].'" />';
-                // si no podemos usar la que hay por defecto
-                }else{
-                    $html .= '<img src="'.Barrio::$config['image'].'" alt="'.$articulo['title'].'" />';
-                }
-
-                // usamos title y description del array devuelto
-                // descomenta var_dump para ver el array devuelto
-                // var_dump($articulo);
-                $html .= '<h3><a href="'.$articulo['url'].'">'.$articulo['title'].'</a></h3>';
-                // se puede usar tambien content_short si usamos {cut}
-                $html .= '<p>'.$articulo['description'].'</p>';
+            // si no esta vacía usaremos la imagen
+            if($articulo['image'] != ''){
+                $html .= '<img src="'.$articulo['image'].'" alt="'.$articulo['title'].'" />';
+            // si no podemos usar la que hay por defecto
+            }else{
+                $html .= '<img src="'.Barrio::$config['image'].'" alt="'.$articulo['title'].'" />';
             }
-            // lo imprimimos
-            echo $html;
-         ?>
-         <?php Barrio::actionRun('theme_after); ?>
-    </main>
-    <?php include 'inc/footer.inc.html' ?>
+
+            // usamos title y description del array devuelto
+            // descomenta var_dump para ver el array devuelto
+            // var_dump($articulo);
+            $html .= '<h3><a href="'.$articulo['url'].'">'.$articulo['title'].'</a></h3>';
+            // se puede usar tambien content_short si usamos {cut}
+            $html .= '<p>'.$articulo['description'].'</p>';
+        }
+        // lo imprimimos
+        echo $html;
+     ?>
+     <?php Barrio::actionRun('theme_after); ?>
+</main>
+<?php include 'inc/footer.inc.html' ?>
 {/Code}
 
 

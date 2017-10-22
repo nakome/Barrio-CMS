@@ -12,7 +12,7 @@ Barrio::shortCodeAdd('Code',function($attrs,$contenido){
     extract($attrs);
     $code = (isset($code)) ? $code : 'php';
     $contenido = htmlentities($contenido);
-    $resultado = Barrio::applyFilter('content','<pre><code class="language-'.$code.'">'.$contenido.'</code></pre>');
+    $resultado = Barrio::applyFilter('content','<pre class="line-numbers language-'.$code.'"><code class="language-'.$code.'">'.$contenido.'</code></pre>');
     return $resultado;
 });
 

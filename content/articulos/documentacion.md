@@ -35,12 +35,11 @@ Template: articulo
 
 Por defecto existen unas variables en los archivos de texto, estas son:
 
-{Code type='markdown'}
-    // quitar espacio al principio de `{` para que funcione.
-    { url} = la direccíon de la pagina
-    { email} = Email por defecto de config.php
-    { more} = funcíon para acortar los archivos de texto
-    { php} echo 'hola mundo'; {/php}
+{Code type='markdown'}// quitar espacio al principio de `{` para que funcione.
+{ url} = la direccíon de la pagina
+{ email} = Email por defecto de config.php
+{ more} = funcíon para acortar los archivos de texto
+{ php} echo 'hola mundo'; {/php}
 {/Code}
 
 
@@ -55,33 +54,31 @@ Puedes ver mas en [Como se hace]({url}/articulos/archivos)
 
 **Acciones:**
 
-{Code type='php'}
-    // Crear una Accion
-    Barrio::actionAdd('demo',function($nombre = ''){
-        echo $nombre
-    });
+{Code type='php'}// Crear una Accion
+Barrio::actionAdd('demo',function($nombre = ''){
+    echo $nombre
+});
 
-    // llamar a la Accion
-    Barrio::actionRun('demo',['nombre']);
+// llamar a la Accion
+Barrio::actionRun('demo',['nombre']);
 {/Code}
 
 
 **Shortcodes:**
 
-{Code type='php'}
-    // Crear una Shortcode
-    Barrio::actionAdd('Escribe',function($atributos){
-        // extrae atributos
-        extract($atributos);
-        // valores por defecto
-        $nombre = (isset($nombte)) ? $nombre = $nombre : 'Nombre por defecto';
-        // retorna el nombre
-        return $nombre
-    });
+{Code type='php'}// Crear una Shortcode
+Barrio::actionAdd('Escribe',function($atributos){
+    // extrae atributos
+    extract($atributos);
+    // valores por defecto
+    $nombre = (isset($nombte)) ? $nombre = $nombre : 'Nombre por defecto';
+    // retorna el nombre
+    return $nombre
+});
 
-    // llamar a el Shortcode
-    // quitar espacio al principio de `{` para que funcione.
-    { Escribe nombre=Barrio CMS} o { Escribe nombre='Barrio CMS'}
+// llamar a el Shortcode
+// quitar espacio al principio de `{` para que funcione.
+{ Escribe nombre=Barrio CMS} o { Escribe nombre='Barrio CMS'}
 
 {/Code}
 

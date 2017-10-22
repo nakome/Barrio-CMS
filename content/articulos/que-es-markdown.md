@@ -28,9 +28,11 @@ Para realizar un salto de línea y empezar **una frase en una línea siguiente d
 
 Por ejemplo si quisieses escribir un poema Haiku quedaría tal que así:
 
-        “Andando con sus patitas mojadas,
-        el gorrión
-        por la terraza de madera”
+
+{Code type='markdown'}“Andando con sus patitas mojadas,
+el gorrión
+por la terraza de madera”
+{/Code}
 
 Donde cada verso tiene dos espacios en blanco al final.
 
@@ -44,13 +46,12 @@ Las `#` **almohadillas** son uno de los métodos utilizados en Markdown para cre
 
 Es decir,
 
-{Code type='markdown'}
-    # Encabezado 1
-    ## Encabezado 2
-    ### Encabezado 3
-    #### Encabezado 4
-    ##### Encabezado 5
-    ###### Encabezado 6
+{Code type='markdown'}# Encabezado 1
+## Encabezado 2
+### Encabezado 3
+#### Encabezado 4
+##### Encabezado 5
+###### Encabezado 6
 {/Code}
 
 
@@ -72,11 +73,10 @@ Consiste en subrayar los encabezados con el símbolo `=` (para el encabezado 1),
 
 Es decir,
 
-{Code type='markdown'}
-    Esto sería un encabezado 1
-    ===
-    Esto sería un encabezado 2
-    —-
+{Code type='markdown'}Esto sería un encabezado 1
+===
+Esto sería un encabezado 2
+—-
 {/Code}
 
 No existe un número concreto `=` o `-` que necesites escribir para que esto funcione, ¡incluso bastaría con uno!
@@ -98,12 +98,11 @@ Un país, una civilización se puede juzgar por la forma en que trata a sus anim
 
 Si la cita en cuestión se compone de varios párrafos, deberás añadir el mismo símbolo `>` al comienzo de cada uno de ellos.
 
-{Code type='markdown'}
-        > Creo que los animales ven en el hombre un ser igual a ellos que ha perdido de forma extraordinariamente peligrosa el sano intelecto animal.
+{Code type='markdown'}> Creo que los animales ven en el hombre un ser igual a ellos que ha perdido de forma extraordinariamente peligrosa el sano intelecto animal.
 
 
-        > Es decir, que ven en él al animal irracional, al animal que ríe, al animal que llora, al animal infeliz. — Friedrich Nietzsche
-        Creo que los animales ven en el hombre un ser igual a ellos que ha perdido de forma extraordinariamente peligrosa el sano intelecto animal.
+> Es decir, que ven en él al animal irracional, al animal que ríe, al animal que llora, al animal infeliz. — Friedrich Nietzsche
+Creo que los animales ven en el hombre un ser igual a ellos que ha perdido de forma extraordinariamente peligrosa el sano intelecto animal.
 {/Code}
 
 > Creo que los animales ven en el hombre un ser igual a ellos que ha perdido de forma extraordinariamente peligrosa el sano intelecto animal.
@@ -116,12 +115,11 @@ Creo que los animales ven en el hombre un ser igual a ellos que ha perdido de fo
 
 Incluso puedes concatenar varios `>>` para crear **citas anidadas**.
 
-{Code type='markdown'}
-    > Esto sería una cita como la que acabas de ver.
-    >
-    > > Dentro de ella puedes anidar otra cita.
-    >
-    > La cita principal llegaría hasta aquí.
+{Code type='markdown'}> Esto sería una cita como la que acabas de ver.
+>
+> > Dentro de ella puedes anidar otra cita.
+>
+> La cita principal llegaría hasta aquí.
 {/Code}
 
 > Esto sería una cita como la que acabas de ver.
@@ -150,13 +148,12 @@ A diferencia de lo que ocurre en HTML, generar listas en Markdown es tremendamen
 
 Para crear l**istas desordenadas** utiliza `*` **asteriscos**, `-` **guiones**, o `+` **símbolo de suma**.
 
-{Code type='markdown'}
-    - Elemento de lista 1
-    - Elemento de lista 2
-    * Elemento de lista 3
-    * Elemento de lista 4
-    + Elemento de lista 5
-    + Elemento de lista 6
+{Code type='markdown'}- Elemento de lista 1
+- Elemento de lista 2
+* Elemento de lista 3
+* Elemento de lista 4
++ Elemento de lista 5
++ Elemento de lista 6
 {/Code}
 
 Da igual qué elemento escojas, incluso puedes intercambiarlos. Todos se verán igual al procesarse.
@@ -170,13 +167,12 @@ Da igual qué elemento escojas, incluso puedes intercambiarlos. Todos se verán 
 
 Para generar **listas anidadas** dentro de otras, simplemente tendrás que añadir **cuatro espacios en blanco** antes del siguiente `*`, `-` o `+`.
 
-{Code type='markdown'}
-    - Elemento de lista 1
-    - Elemento de lista 2
-        - Elemento de lista 3
-        - Elemento de lista 4
-            - Elemento de lista 5
-            - Elemento de lista 6
+{Code type='markdown'}- Elemento de lista 1
+- Elemento de lista 2
+    - Elemento de lista 3
+    - Elemento de lista 4
+        - Elemento de lista 5
+        - Elemento de lista 6
 {/Code}
 
 - Elemento de lista 1
@@ -195,13 +191,14 @@ Para generar **listas anidadas** dentro de otras, simplemente tendrás que añad
 
 Para crear listas ordenadas debes utilizar la sintaxis de tipo: “número.” 1.. Al igual que ocurre con las listas desordenadas, también podrás anidarlas o combinarlas.
 
-    1. Elemento de lista 1
-    2.  Elemento de lista 2
-        - Elemento de lista 3
-        - Elemento de lista 4
-            1. Elemento de lista 5
-            2. Elemento de lista 6
 
+{Code type='markdown'}1. Elemento de lista 1
+2.  Elemento de lista 2
+    - Elemento de lista 3
+    - Elemento de lista 4
+        1. Elemento de lista 5
+        2. Elemento de lista 6
+{/Code}
 
 1. Elemento de lista 1
 2. Elemento de lista 2
@@ -222,13 +219,13 @@ Si quieres crear un bloque entero que contenga código. Lo único que tienes que
 Tal que así:
 
 
-    ~~~
-    Creando códigos de bloque.
-    Puedes añadir tantas líneas y párrafos como quieras.
-    ~~~
+{Code type='markdown'}~~~
+Creando códigos de bloque.
+Puedes añadir tantas líneas y párrafos como quieras.
+~~~
 
-    ``` Otro aqui ```
-
+``` Otro aqui ```
+{/Code}
 
 De esta forma, obtendrás el siguiente resultado:
 
@@ -255,17 +252,18 @@ Para crearlas, en una línea en blanco deberás incluir **tres de los siguientes
 
 Es decir
 
-    ***
-    ---
-    ___
-
+{Code type='markdown'}***
+---
+___
+{/Code}
 
 También puedes separarlos mediante un espacio en blanco por pura estética.
 
-    * * *
-    - - -
-    _ _ _
 
+{Code type='markdown'}* * *
+- - -
+_ _ _
+{/Code}
 
 
 ---
@@ -281,15 +279,14 @@ Simplemente tendrás que envolver palabras o textos en éstos símbolos para con
 
 
 
+{Code type='markdown'}*cursiva*
 
-    *cursiva*
+_cursiva_
 
-    _cursiva_
+**negrita**
 
-    **negrita**
-
-    __negrita__
-
+__negrita__
+{/Code}
 
 
 
@@ -307,11 +304,10 @@ __negrita__
 Por supuesto si quieres utilizar los dos tipos de énfasis no tienes más que **combinar la sintaxis**, envolviendo la palabra entre tres asteriscos o tres guiones bajos.
 
 
+{Code type='markdown'}***cursiva y negrita***
 
-    ***cursiva y negrita***
-
-    ___cursiva y negrita___
-
+___cursiva y negrita___
+{/Code}
 
 
 ***cursiva y negrita***
@@ -333,8 +329,7 @@ Son los enlaces de toda la vida. Como su nombre indica, se encuentran en línea 
 Se crean escribiendo la palabra o texto enlazada entre `[]`  **corchetes**, y el link en cuestión entre `()` **paréntesis**.
 
 
-    [enlace en línea](http://www.example.com)
-
+{Code type='markdown'}[enlace en línea](http://www.example.com){/Code}
 
 [enlace en línea](http://www.example.com)
 
@@ -347,19 +342,21 @@ Para solucionarlo y crear tu contenido de una manera más ordenada puedes genera
 
 Esto quiere decir que en tu texto enlazarás palabras o códigos concretos **(formados por letras y/o números)**, que en otro lugar más apartado de tu documento tendrás definidos como determinadas URL.
 
-    [nombre que quieres darle a tu enlace][nombre de tu referencia]
 
-    [nombre de tu referencia]: http:www.tuenlace.com
+{Code type='markdown'}[nombre que quieres darle a tu enlace][nombre de tu referencia]
 
+[nombre de tu referencia]: http:www.tuenlace.com
+{/Code}
 
 Esto se ve más claro con un ejemplo.
 
-    Me llamo Javier Cristóbal y tengo un blog sobre [productividad mac][blog].
 
-    En dicha [web][blog] recopilo artículos sobre todo lo relacionado con automatización, gestión y eficiencia.
+{Code type='markdown'}Me llamo Javier Cristóbal y tengo un blog sobre [productividad mac][blog].
 
-    [blog]: http://limni.net/blog/
+En dicha [web][blog] recopilo artículos sobre todo lo relacionado con automatización, gestión y eficiencia.
 
+[blog]: http://limni.net/blog/
+{/Code}
 
 La referencia `[blog]` puede estar incluida en cualquier parte del documento, así puedes organizarte mejor y de una manera más limpia, recopilando todas tus referencias en un mismo lugar.
 
@@ -392,14 +389,12 @@ Texto preformateado `<pre>`
 La otra manera de añadir código en Markdown es comenzar el párrafo con cuatro espacios en blanco. Esto se corresponde con la etiqueta HTML `<pre>`
 
 
-    Esto es una línea de código
-
+{Code type='markdown'}Esto es una línea de código{/Code}
 
 Se convierte en
 
 
-`Esto es una línea de código`
-
+{Code type='markdown'}`Esto es una línea de código`{/Code}
 
 Ojo, ¡estos espacios deberás incluirlos en cada línea que escribas! Para añadir código en bloque es mejor utilizar la sintaxis que viste anteriormente: códigos de bloque.
 
@@ -416,27 +411,27 @@ Insertar una imagen con Markdown se realiza de una manera prácticamente idénti
 Solo que en este caso, deberás añadir un símbolo de `!` **exclamación** al principio y el **enlace** no será otro que **la ubicación de la imagen**.
 
 
-        ![Texto alternativo](/ruta/a/la/imagen.jpg)
-
+{Code type='markdown'}![Texto alternativo](/ruta/a/la/imagen.jpg){/Code}
 
 El texto alternativo es lo que se mostraría si la carga de la imagen fallase.
 
 También podrás añadir un **título alternativo** entrecomillándolo al final de la ruta. Esto sería el título mostrado al dejar el cursor del ratón sobre la imagen.
 
-        ![Texto alternativo](/ruta/a/la/imagen.jpg "Título alternativo")
 
+{Code type='markdown'}![Texto alternativo](/ruta/a/la/imagen.jpg "Título alternativo"){/Code}
 
 Ya que al añadir imágenes también estás tratando con URLs, puedes utilizar el método que viste anteriormente para incluir links **mediante referencias**, solo que en este caso **los enlaces de referencia serán aquellos donde se encuentre tu imagen**.
 
-        De esta forma podrías insertar una imagen
-        ![nombre de la imagen][img1]
 
-        O dos, sin ensuciar tu espacio de escritura.
-        ![nombre de la imagen2][img2]
+{Code type='markdown'}De esta forma podrías insertar una imagen
+![nombre de la imagen][img1]
 
-        [img1]: /ruta/a/la/imagen.jpg "Título alternativo"
-        [img2]: /ruta/a/la/imagen2.jpg "Título alternativo"
+O dos, sin ensuciar tu espacio de escritura.
+![nombre de la imagen2][img2]
 
+[img1]: /ruta/a/la/imagen.jpg "Título alternativo"
+[img2]: /ruta/a/la/imagen2.jpg "Título alternativo"
+{/Code}
 
 ---
 
@@ -452,7 +447,7 @@ Estos son necesarios cuando lo que quieres es **mostrar una URL completa**, y no
 
 Para generar links automáticos tan solo tendrás que rodearlos con los símbolos `< >`
 
-    <http://www.limni.net>
+{Code type='markdown'} <http://www.limni.net>{/Code}
 
 http://www.limni.net
 
@@ -468,19 +463,19 @@ Se trata de la barra invertida `\`.
 **Escribiéndola justo delante de cualquiera** de los elementos que verás a continuación, los mismos **no tendrán efecto** a la hora de convertirse en negritas, cursivas, links…
 
 
-    \  barra invertida
-    `  acento invertido
-    *  asterisco
-    _  guión bajo
-    {} llaves
-    [] corchetes
-    () paréntesis
-    #  almohadilla
-    +  símbolo de suma
-    -  guión
-    .  punto
-    !  exclamación
-
+{Code type='markdown'}\  barra invertida
+`  acento invertido
+*  asterisco
+_  guión bajo
+{} llaves
+[] corchetes
+() paréntesis
+#  almohadilla
++  símbolo de suma
+-  guión
+.  punto
+!  exclamación
+{/Code}
 
 **Nota:** _Texto sacado de [markdown.es](https://markdown.es/sintaxis-markdown)_
 

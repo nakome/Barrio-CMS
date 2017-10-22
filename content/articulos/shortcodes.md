@@ -7,7 +7,7 @@ Template: articulo
 
 Es muy fácil crear Shortcodes en **Barrio CMS** por ejemplo, vamos a crear un Shortcode que cambie el color del texto con el color que queramos.
 
-{Code type='php'}
+{Code type='php'}<?php
 // se llama con { Texto color=green}Hola mundo{/Texto }
 // quitar espacios al principio y al final sino lo hago
 // se vería el shortcode :(
@@ -31,8 +31,7 @@ Barrio::shortcodeAdd('Texto',function($atributos,$contenido){
 Ahora si escribimos dentro de **corchetes**  `Texto color=green` y dentro de este el texto y cerramos  con **corchetes** `/Texto` obtenemos esto:
 
 El resultado es este:
-{Code type='php'}
-{ Texto color=green}
+{Code type='php'}{ Texto color=green}
     Este es un texto dentro de un Shortcode en el que puedo usar **Markdown**
 {/Texto }
 {/Code}
@@ -44,8 +43,7 @@ Este es un texto dentro de un Shortcode en el que puedo usar **Markdown**
 
 También puedes usar **código de color**
 
-{Code type='php'}
-{ Texto color='#f00'} // con comillas simples
+{Code type='php'}{ Texto color='#f00'} // con comillas simples
     Hola soy **Rojo**
 {/Texto }
 {/Code}
@@ -59,7 +57,7 @@ También puedes usar **código de color**
 Ahora vamos hacer un Shortcode para incrustar videos de Youtube.
 En este caso **no necesitamos escribir dentro** así que es mas facil aun.
 
-{Code type='php'}
+{Code type='php'}<?php
 // agregar Shortcode { Youtube id'=GxEc46k46gg' clase='si quieres usar otra'}
 Barrio::shortcodeAdd('Youtube', function ($atributos) {
     // extraemos los atributos (en este caso $src)
@@ -85,9 +83,7 @@ Barrio::shortcodeAdd('Youtube', function ($atributos) {
 
 El resultado es este:
 
-{Code type='php'}
-    { Youtube id='GxEc46k46gg'}
-{/Code}
+{Code type='php'}{ Youtube id='GxEc46k46gg'}{/Code}
 
 {Youtube id='GxEc46k46gg'}
 
@@ -101,7 +97,7 @@ El resultado es este:
 
 Ahora vamos hacer lo mismo pero con **Vimeo**:
 
-{Code type='php'}
+{Code type='php'}<?php
 // agregar Shortcode { Vimeo src=149129821 clase='si quieres usar otra'}
 Barrio::shortcodeAdd('Vimeo', function ($atributos) {
     // extraemos los atributos
@@ -149,7 +145,7 @@ Hay varios **actionRun** que son **meta** , **head** y **footer** que como su no
 **vamos a crear una función como el shortcode Youtube**
 
 
-{Code type='php'}
+{Code type='php'}<?php
 Barrio::actionAdd('Youtube',function($src = ''){
     // el código del enlace
     $src = (isset($src)) ? $src : '';
@@ -177,9 +173,7 @@ Si te fijas solo cambia en que ya no tenemos `extract($atributos)` y en vez de r
 
 Para llamarlo en la plantilla escribiremos esto:
 
-{Code type='php'}
-    <?php Barrio::actionRun('Youtube',['GxEc46k46gg']);?>
-{/Code}
+{Code type='php'}<?php Barrio::actionRun('Youtube',['GxEc46k46gg']);?>{/Code}
 
 Y podemos hacer lo mismo que con los Shortcodes desde **galerias**, **formularios** , **incrustar videos**, **Música**, **Cambiar el Css** y todo un largo etcétera.
 

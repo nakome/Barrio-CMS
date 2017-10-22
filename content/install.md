@@ -18,8 +18,7 @@ Template: index
 
 **Archivo config.php**
 
-{Code type='php'}
-<?php
+{Code type='php'}<?php
     return array(
         'lang' => 'es',
         // charset
@@ -52,8 +51,7 @@ Si esta dentro de una carpeta poner el nombre de ella
 
 **Por ejemplo:**
 
-{Code type='php'}
-# PHP 5, Apache 1 and 2.
+{Code type='php'}# PHP 5, Apache 1 and 2.
 <IfModule mod_php5.c>
   php_flag magic_quotes_gpc                 off
   php_flag magic_quotes_sybase              off
