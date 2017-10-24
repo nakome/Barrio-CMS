@@ -1,7 +1,5 @@
 <?php
 
-
-
 /**
  * Navegacion
  *
@@ -75,9 +73,6 @@ function urlCurrent()
 {
     return  Barrio::urlBase().'/'.Barrio::urlCurrent();
 }
-
-
-
 
 include 'funciones/shortcodes.php';
 include 'funciones/acciones.php';

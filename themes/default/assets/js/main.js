@@ -143,10 +143,6 @@ var tooggleAccordion = function(){
    });
 }
 
-
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
     loader(function() {
         toggleMenu();

@@ -1,6 +1,5 @@
 <?php
 
-
 /**
 *  Code
 * - clase = css class
@@ -26,6 +25,7 @@ Barrio::shortCodeAdd('Code',function($attrs,$contenido){
 */
 Barrio::shortCodeAdd('Bloques',function($attrs,$contenido){
     extract($attrs);
+    $clase = (isset($clase)) ? $clase : '';
     $resultado = Barrio::applyFilter('content','<div class="row '.$clase.'">'.$contenido.'</div>');
     $resultado = preg_replace('/\s+/', ' ', $resultado);
     return $resultado;
@@ -59,12 +59,10 @@ Barrio::shortcodeAdd('Imagen', function ($atributos) {
     if($link != '#') $isLink = 'isLink';
     // si no hay imagen el shortcode no funciona
     if($img){
-        $html = '<a href="'.$link.'" title="'.$texto.'">';
-        $html .= '<figure class="'.$isLink.'">';
+        $html = '<figure class="'.$isLink.'">';
         $html .= '<img src="'.$img.'" alt="'.$texto.'" />';
-        $html .= '<figcaption>'.$texto.'</figcaption>';
+        $html .= '<figcaption><a href="'.$link.'" title="'.$texto.'">'.$texto.'</a></figcaption>';
         $html .= '</figure>';
-        $html .= '</a>';
         $html = preg_replace('/\s+/', ' ', $html);
         return $html;
     }else{

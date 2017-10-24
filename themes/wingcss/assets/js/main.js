@@ -1,3 +1,43 @@
+var lightbox = function lightbox() {
+    // select all images
+    var images = document.querySelectorAll('#content img'),
+    modal = document.createElement('div'),
+    close = document.createElement('span'),
+    image = document.createElement('img'),
+    caption = document.createElement('div');
+    // loop
+    Array.from(images).forEach(function(img) {
+        // on click open modal with image
+        img.onclick = function(e) {
+            e.preventDefault();
+            // create modal
+            modal.id = 'lightbox';
+            modal.className = 'lightbox';
+            // create close
+            close.className = 'lightbox-close';
+            close.innerHTML = '&times';
+            // create image
+            image.className = 'lightbox-content';
+            // create caption
+            caption.className = 'lightbox-caption';
+            // append modal
+            document.body.appendChild(modal);
+            // append inside modal all
+            modal.appendChild(close);
+            modal.appendChild(image);
+            modal.appendChild(caption);
+            image.src = this.src;
+            caption.innerHTML = this.alt;
+        };
+        // close on click
+        close.onclick = function(e) {
+            e.preventDefault();
+            modal.remove();
+        };
+    });
+};
+lightbox();
+
 var tooggleAccordion = function() {
     var elements = document.querySelectorAll('.accordion-title');
     Array.from(elements).forEach(function(item) {
@@ -14,9 +54,7 @@ var tooggleAccordion = function() {
         });
     });
 }
-
 tooggleAccordion();
-
 
 var images = document.querySelectorAll('img');
 var imgLoad = imagesLoaded(images);
@@ -30,7 +68,6 @@ imgLoad.on('progress', function(instance, image) {
         image.img.src = assets + '/img/logo.svg';
     }
 });
-
 
 var navigation = function() {
     var nav = document.querySelector('#navigation');

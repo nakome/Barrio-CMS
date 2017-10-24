@@ -1,12 +1,11 @@
 <?php
 
-
 /**
-*  Bloques
+*  Code
 * - clase = css class
-*   {Bloques}
+*   {Code type='php'}
 *       bloques que sumen 12 en total
-*   {/Bloques}
+*   {/Code}
 */
 Barrio::shortCodeAdd('Code',function($attrs,$contenido){
     extract($attrs);
@@ -16,6 +15,21 @@ Barrio::shortCodeAdd('Code',function($attrs,$contenido){
     return $resultado;
 });
 
+
+/**
+*  Bloques
+* - clase = css class
+*   {Bloques}
+*       bloques que sumen 12 en total
+*   {/Bloques}
+*/
+Barrio::shortCodeAdd('Bloques',function($attrs,$contenido){
+    extract($attrs);
+    $clase = (isset($clase)) ? $clase : '';
+    $resultado = Barrio::applyFilter('content','<div class="row '.$clase.'">'.$contenido.'</div>');
+    $resultado = preg_replace('/\s+/', ' ', $resultado);
+    return $resultado;
+});
 
 /**
 *  Galeria
@@ -45,12 +59,10 @@ Barrio::shortcodeAdd('Imagen', function ($atributos) {
     if($link != '#') $isLink = 'isLink';
     // si no hay imagen el shortcode no funciona
     if($img){
-        $html = '<a href="'.$link.'" title="'.$texto.'">';
-        $html .= '<figure class="'.$isLink.'">';
+        $html = '<figure class="'.$isLink.'">';
         $html .= '<img src="'.$img.'" alt="'.$texto.'" />';
-        $html .= '<figcaption>'.$texto.'</figcaption>';
+        $html .= '<figcaption><a href="'.$link.'" title="'.$texto.'">'.$texto.'</a></figcaption>';
         $html .= '</figure>';
-        $html .= '</a>';
         $html = preg_replace('/\s+/', ' ', $html);
         return $html;
     }else{
@@ -70,6 +82,7 @@ Barrio::shortcodeAdd('Bloque', function ($atributos,$contenido) {
     extract($atributos);
     // atributos
     $col = (isset($col)) ? $col : '6';
+    $clase = (isset($clase)) ? $clase : '';
     // convertir markdown
     $contenido = Parsedown::instance()->text($contenido);
     // enseñar
