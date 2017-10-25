@@ -13,6 +13,8 @@
         'description' => 'Sistema de control de contenidos en formato Flat File',
         // palabras clave
         'keywords' => 'cms,barrio,flatfile',
+        // robots
+        'robots' -> 'index,follow',
         // autor
         'author' => 'Moncho Varela',
         // correo
