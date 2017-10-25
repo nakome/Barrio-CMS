@@ -14,7 +14,7 @@
         // palabras clave
         'keywords' => 'cms,barrio,flatfile',
         // robots
-        'robots' -> 'index,follow',
+        'robots' => 'index,follow',
         // autor
         'author' => 'Moncho Varela',
         // correo
