@@ -1,0 +1,15 @@
+<?php include 'inc/head.inc.html' ?>
+<?php include 'inc/header.inc.html' ?>
+<main class="container" id="home">
+    <section class="row">
+        <div class="col-md-12">
+
+            <?php Barrio::actionRun('Buscador',[]); ?>
+
+            <?php Barrio::actionRun('theme_before'); ?>
+            <?php echo $page['content']; ?>
+            <?php Barrio::actionRun('theme_after'); ?>
+        </div>
+    </section>
+</main>
+<?php include 'inc/footer.inc.html' ?>

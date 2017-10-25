@@ -1,0 +1,40 @@
+<header class="header <?php if(isHome()) echo 'h-100';?>  bg-transparent text-light mb-5">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+    <a class="navbar-brand" href="<?php echo url();?>">
+      <img src="<?php assets();?>/img/logo.svg" alt="<?php echo $page['title'];?>" width="150">
+      </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav navbar-nav ml-auto">
+          <?php echo nav();?>
+          <?php echo nav('install','instalacíon');?>
+          <?php echo nav('articulos','Como se hace');?>
+          <?php echo nav('docs','Documentación',true);?>
+          <!--
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Freebies
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <?php echo dropdown('temas','Temas');?>
+              <?php echo dropdown('extensiones','Estensiones');?>
+              <?php echo dropdown('otros','Otros');?>
+            </div>
+          </li>
+          -->
+          <?php echo nav('download','Descarga');?>
+      </ul>
+    </div>
+  </nav>
+  <section class="jumbotron <?php if(isHome()) echo 'center mt-5';?> bg-transparent text-center">
+    <h1 class="display-3"><?php echo $page['title']; ?></h1>
+    <p class="lead"><?php echo $page['description']; ?></p>
+  </section>
+
+  <?php if(isHome()) {;?>
+    <a href="#home" class="text-white text-center" id="goHome"><i class="icon-chevron-thin-down"></i></a>
+  <?php } ?>
+</header>

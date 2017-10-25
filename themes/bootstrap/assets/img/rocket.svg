@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Generator: Gravit.io -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 50 50" width="50" height="50">
+	<g id="null">
+		<path d=" M 22.177 39.99 C 21.913 40.604 21.65 41.218 21.65 41.92 C 21.65 44.114 25.16 47.01 25.16 47.01 C 25.16 47.01 28.67 44.114 28.67 41.92 C 28.67 41.218 28.495 40.515 28.144 39.99" fill="none" vector-effect="non-scaling-stroke" stroke-width="1.755" stroke="#009688" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10"/>
+
+		<path d=" M 25.75 3.19 L 25.05 2.99 L 24.25 3.19 C 24.25 3.19 24.25 3.29 24.15 3.29 C 20.15 6.19 17.65 10.79 17.45 15.69 C 17.65 21.59 18.25 27.49 19.15 33.29 L 19.45 36.29 C 19.45 36.29 19.45 36.29 19.45 36.29 C 19.65 37.39 20.55 38.19 21.65 38.19 C 21.65 38.19 21.65 38.19 21.65 38.19 L 28.35 38.19 C 28.35 38.19 28.35 38.19 28.35 38.19 C 29.45 38.19 30.45 37.29 30.55 36.19 C 31.65 29.39 32.35 22.59 32.55 15.69 C 32.35 10.79 29.85 6.19 25.85 3.29 C 25.75 3.29 25.75 3.19 25.75 3.19 Z " fill="none" vector-effect="non-scaling-stroke" stroke-width="1" stroke="rgb(0,0,0)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+
+		<path d=" M 25.05 18.89 C 24.15 18.89 23.35 18.59 22.75 17.99 C 22.25 17.39 21.85 16.59 21.85 15.79 C 21.85 14.09 23.25 12.69 25.05 12.69 C 25.85 12.69 26.65 12.99 27.25 13.59 C 27.85 14.19 28.15 14.99 28.15 15.79 C 28.15 16.59 27.85 17.39 27.25 17.99 C 26.65 18.59 25.85 18.89 25.05 18.89 Z " fill="none"/>
+
+		<path d=" M 25.05 17.89 C 24.45 17.89 23.85 17.69 23.45 17.29 C 23.05 16.89 22.85 16.39 22.85 15.79 C 22.85 14.59 23.85 13.69 25.05 13.69 C 25.55 13.69 26.15 13.89 26.55 14.29 C 26.95 14.69 27.15 15.19 27.15 15.79 C 27.15 16.39 26.95 16.89 26.55 17.29 C 26.15 17.69 25.55 17.89 25.05 17.89 Z " fill="none" vector-effect="non-scaling-stroke" stroke-width="1" stroke="#009688" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+
+		<path d=" M 15.85 33.39 L 15.85 33.49 L 15.85 33.29 L 15.85 33.29 L 15.85 33.39 Z " fill="rgb(0,0,0)"/>
+
+		<path d=" M 17.15 36.74 L 17.15 36.64 L 17.15 36.64 L 16.85 33.94 L 16.85 33.64 L 16.35 29.44 L 13.65 32.74 L 13.35 33.44 L 13.35 33.54 L 13.35 37.24 L 13.85 38.24 L 14.65 38.44 L 15.15 38.44 L 17.45 37.54 L 17.35 37.04 L 17.15 36.74 Z " fill="none" vector-effect="non-scaling-stroke" stroke-width="1" stroke="rgb(0,0,0)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+
+		<path d=" M 34.15 36.69 L 34.25 36.59 L 34.15 36.79 L 34.15 36.79 L 34.15 36.69 Z " fill="rgb(0,0,0)"/>
+
+		<path d=" M 36.35 32.64 L 33.65 29.44 L 32.85 36.44 L 32.85 36.54 L 32.85 36.54 L 32.55 37.44 L 34.85 38.34 L 35.35 38.34 L 36.15 38.14 L 36.65 37.14 L 36.65 36.94 L 36.65 33.34 L 36.35 32.64 Z " fill="none" vector-effect="non-scaling-stroke" stroke-width="1" stroke="rgb(0,0,0)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+	</g>
+</svg>
