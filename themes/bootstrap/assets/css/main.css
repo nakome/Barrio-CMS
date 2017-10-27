@@ -376,5 +376,9 @@ input, textarea, select {
 .pagination-sm .page-item:first-child .page-link {}
 .pagination-sm .page-item:last-child .page-link {}
 
-  
+@media(max-width:600px){
+    .hide-mobile {
+        display: none;
+    }
+}
 

@@ -1,5 +1,6 @@
 <?php
 
+
 /* - Barrio::actionRun('Pagination',['blog',6]);
 --------------------------------------------------------------------------------*/
 Barrio::actionAdd('Pagination', function($name,$num = 3) {
@@ -17,7 +18,7 @@ Barrio::actionAdd('Pagination', function($name,$num = 3) {
     // Divide an array into fragments
     $articulos = array_chunk($blogPosts, $limit);
     // Get page
-    $pgkey = isset($_GET['page']) ? $_GET['page'] : 0;
+    $pgkey = isset($_GET['page']) ? $_GET['page'] : 1;
 
     $items = $articulos[$pgkey];
 
@@ -38,48 +39,52 @@ Barrio::actionAdd('Pagination', function($name,$num = 3) {
     }
     echo $html;
 
-    // total
-    $total = count($articulos) - 1;
-
+    // total = post / limit - 1
+    $total = ceil(count($posts)/$limit);
     // If empty active first
     $p = 0;
-    if( empty($_GET['page']) ) $p = 1;
+    if(empty($_GET['page'])) $p = 0;
     else $p = isset($_GET['page']) ? $_GET['page'] : 0;
-
-    //$max is equal to number of links shown
-    $max = 7;
-    if($p < $max)
-        $sp = 1;
-    elseif($p >= ($total - floor($max / 2)) )
-        $sp = $total - $max + 1;
-    elseif($p >= $max)
-        $sp = $p  - floor($max/2);
-
-
+    // pagination
     $pagination = '<ul class="pagination">';
-    $class = ( $p == 1 ) ? "disabled" : "";
-    $pagination .= '<li class="page-item '.$class.'"><a class="page-link" href="?page='.($p -1).'">&laquo;</a></li>';
- 
-    if ($p > 1) {
-        $pagination .= '<li class="page-item"><a class="page-link" href="?page=1">1</a></li>';
+    // first
+    $class = ( $p == 0 ) ? "disabled" : "";
+    $pagination .= '<li class="page-item '.$class.'"><a class="page-link" href="?page='.( $p - 1 ).'">&laquo;</a></li>';
+    if ($p > 0) {
+        $pagination .= '<li class="page-item"><a class="page-link" href="?page=0">Primera</a></li>';
         $pagination .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
-    }
-    for ($i = $sp; $i <= ($sp + $max -1); $i++) {
-        $class = ($p == $i) ? "active" : "";
-        $pagination .= '<li class="page-item '.$class.'"><a class="page-link" href="?page='.$i.'">'.$i.'</a></li>';
-    }
- 
-    if ($p < $total) {
-        $pagination .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
-        $pagination .= '<li class="page-item"><a class="page-link" href="?page=' . $total . '">' . $total . '</a></li>';
     }
 
-    $class = ($p ==$total) ? "disabled" : "";
+    // loop numbers
+    $s = max(1, $p - 5);
+     for (; $s < min($p+ 6, ($total - 1)); $s++) {
+        if($s==$p){
+            $class = ($p == $s) ? "active" : "";
+            $pagination .= '<li class="hide-mobile page-item '.$class.'"><a class="page-link" href="?page='.$s.'">'.$s.'</a></li>';
+        }else{
+            $class = ($p == $s) ? "active" : "";
+            $pagination .= '<li class="hide-mobile page-item '.$class.'"><a class="page-link" href="?page='.$s.'">'.$s.'</a></li>';
+        }
+    }
+
+    // last
+    if ($p < ($total - 1)) {
+        $pagination .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
+        $pagination .= '<li class="page-item"><a class="page-link" href="?page='.($total - 1).'">Ultima</a></li>';
+    }
+    // arrow right
+    $class = ($p == ($total - 1)) ? "disabled" : "";
     $pagination .= '<li class="page-item '.$class.'"><a class="page-link" href="?page=' . ( $p + 1 ) . '">&raquo;</a></li>';
     $pagination .= '</ul>';
-
     echo $pagination;
 });
+
+
+
+
+
+
+
 
 Barrio::actionAdd('lastPosts',function($num = 4){
     $articulos = Barrio::pages('articulos','date','DESC',['index','404'],$num);
