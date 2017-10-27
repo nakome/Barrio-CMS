@@ -3,7 +3,7 @@
 /* - Barrio::actionRun('Pagination',['blog',6]);
 --------------------------------------------------------------------------------*/
 Barrio::actionAdd('Pagination', function($name,$num = 3) {
-  // All pages
+    // All pages
     $posts = Barrio::pages($name, 'date', 'DESC', ['index','404']);
     // Limit of pages
     $limit = $num;
@@ -23,33 +23,61 @@ Barrio::actionAdd('Pagination', function($name,$num = 3) {
 
     $html = '';
     foreach($items as $articulo){
-        //$date = date('d/m/Y',$articulo['date']);
+        $date =  date('d/m/Y',$articulo['date']);
         $html .= '<article class="post p-3 mb-4">';
         $html .= '<hgroup class="post-header">';
-        $html .= '  <h3 class="post-title text-success mb-2"> '.$articulo['title'].'</h3>';
-        $html .= '  <h4 class="post-date text-dark"> '.date('d-m-Y',$articulo['date']).'</h4>';
+        $html .= '  <h3 class="post-title mb-2"> '.$articulo['title'].'</h3>';
+        $html .= '  <p class="post-date text-dark"> '.$date.' - <small><a class="text-success" href="'.$articulo['url'].'#disqus_thread" data-disqus-identifier="'.sha1($articulo['url']).'">0 Comentarios</a></small></p>';
         $html .= '</hgroup>';
         $html .= '<section class="post-body">';
-        if($articulo['image']) $html .= '<img src="'.$articulo['image'].'" />';
-        $html .= '  <p class="text-secondary">'.$articulo['description'].'</p>';
-        $html .= ' <p class="text-right"><a class="btn btn-outline-success" href="'.$articulo['url'].'">Leer mas...</a></p>';
+        if($articulo['image']) $html .= '<div class="post-image mb-4 bg-light"><img src="'.$articulo['image'].'" /></div>';
+        $html .= '  <p class="p-2 text-secondary">'.$articulo['description'].'</p>';
+        $html .= ' <p class="text-right"><a class="btn btn-outline-success" href="'.$articulo['url'].'">Leer Articulo</a></p>';
         $html .= '</section>';
         $html .= '</article>';
     }
-
     echo $html;
 
+    // total
+    $total = count($articulos) - 1;
+
     // If empty active first
-    $page = 0;
-    if( empty($_GET['page']) ) $page = 1;
-    else $page = isset($_GET['page']) ? $_GET['page'] : 0;
+    $p = 0;
+    if( empty($_GET['page']) ) $p = 1;
+    else $p = isset($_GET['page']) ? $_GET['page'] : 0;
 
-    $total = count($articulos);
+    //$max is equal to number of links shown
+    $max = 7;
+    if($p < $max)
+        $sp = 1;
+    elseif($p >= ($total - floor($max / 2)) )
+        $sp = $total - $max + 1;
+    elseif($p >= $max)
+        $sp = $p  - floor($max/2);
 
-    // Get page
-    $p = isset($_GET['page']) ? $_GET['page'] : '';
-    $pagination  =  $p > 0 ? '<a class="btn btn-link pagination" href="?page='.($p -1).'">Mas nuevos --&gt;</a>':'';
-    $pagination .= ($p+1) < $total ? '<a class="btn btn-link pagination" href="?page='.($p+1).'">&lt-- Mas viejos</a>':'';
+
+    $pagination = '<ul class="pagination">';
+    $class = ( $p == 1 ) ? "disabled" : "";
+    $pagination .= '<li class="page-item '.$class.'"><a class="page-link" href="?page='.($p -1).'">&laquo;</a></li>';
+ 
+    if ($p > 1) {
+        $pagination .= '<li class="page-item"><a class="page-link" href="?page=1">1</a></li>';
+        $pagination .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
+    }
+    for ($i = $sp; $i <= ($sp + $max -1); $i++) {
+        $class = ($p == $i) ? "active" : "";
+        $pagination .= '<li class="page-item '.$class.'"><a class="page-link" href="?page='.$i.'">'.$i.'</a></li>';
+    }
+ 
+    if ($p < $total) {
+        $pagination .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
+        $pagination .= '<li class="page-item"><a class="page-link" href="?page=' . $total . '">' . $total . '</a></li>';
+    }
+
+    $class = ($p ==$total) ? "disabled" : "";
+    $pagination .= '<li class="page-item '.$class.'"><a class="page-link" href="?page=' . ( $p + 1 ) . '">&raquo;</a></li>';
+    $pagination .= '</ul>';
+
     echo $pagination;
 });
 

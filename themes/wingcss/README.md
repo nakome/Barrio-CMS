@@ -1,5 +1,5 @@
 
-![](screenshot-wingcss.png);
+![](screenshot-wingcss.png)
 
 ## Alerts
 

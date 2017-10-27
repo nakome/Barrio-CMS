@@ -1,5 +1,5 @@
 
-![](screenshot-default.png);
+![](screenshot-default.png)
 
 ## Alerts
 
