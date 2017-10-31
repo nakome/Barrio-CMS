@@ -812,7 +812,7 @@ class Barrio
         empty($page['author']) and $page['author'] = static::$config['author'];
         empty($page['image']) and $page['image'] = static::$config['image'];
         empty($page['date']) and $page['date'] = '';
-        empty($page['robots']) and $page['robots'] = '';
+        empty($page['robots']) and $page['robots'] = 'index,follow';
         empty($page['published']) and $page['published'] = true;
         empty($page['keywords']) and $page['keywords'] = static::$config['keywords'];
 

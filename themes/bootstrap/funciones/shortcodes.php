@@ -1,5 +1,37 @@
 <?php
 
+
+/*
+ * ================================
+ * Config
+ * Get config {Config name='title'}
+ * ================================
+ */
+Barrio::shortCodeAdd('Config', function ($attrs) {
+    extract($attrs);
+    if (isset($name)) {
+        $name = $name;
+    } else {
+        $name = '';
+    }
+
+    return Barrio::$config[$name];
+});
+
+/*
+ * ================================
+ * Php
+ * {php}echo 'holas';{/php}
+ * ================================
+ */
+Barrio::shortCodeAdd('php', function ($attr, $content) {
+    ob_start();
+    eval("$content");
+    return ob_get_clean();
+});
+
+
+
 /**
 *  Code
 * - clase = css class

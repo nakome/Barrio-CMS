@@ -8,7 +8,7 @@
  */
 function assets()
 {
-    echo Barrio::urlBase().'/themes/'.Barrio::$config['theme'].'/assets';
+    return Barrio::urlBase().'/themes/'.Barrio::$config['theme'].'/assets';
 }
 
 /**
@@ -18,7 +18,7 @@ function assets()
  */
 function url()
 {
-    echo Barrio::urlBase();
+    return Barrio::urlBase();
 }
 
 /**

@@ -1,17 +1,30 @@
-$.fn.goto = function(selector,time){
-    this.on('click',function(e){
-        console.log('Go to '+$(selector));
+$.fn.tooggleAccordion = function() {
+    $(this).on('click', function(e) {
+        if ($(this).find('a').hasClass('active')) {
+            $(this).find('a').removeClass('active');
+            $(this).next().removeClass('show').addClass('hide');
+        } else {
+            $(this).find('a').addClass('active');
+            $(this).next().removeClass('hide').addClass('show');
+        }
+    });
+}
+
+$.fn.goto = function(selector, time) {
+    $(this).on('click', function(e) {
         $('html,body').animate({
             scrollTop: (selector) ? $(selector).offset().top : 0
-        },time);
+        }, time);
     })
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
 
-    $('.toTop').goto(null,800);
+    $('.accordion-title').tooggleAccordion();
 
-    $('#goHome').goto('#home',800);
+    $('.toTop').goto(null, 800);
+
+    $('#goHome').goto('#home', 800);
 
     $(window).scroll(function() {
         if ($(this).scrollTop()) {

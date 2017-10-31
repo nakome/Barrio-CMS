@@ -64,7 +64,7 @@ Barrio::actionAdd('theme_before', function () {
                 echo $html;
                 // si no ponemos que no hay resultados
             } else {
-                $html .= '<div class="p-3 mb-2 bg-dark text-white">';
+                $html .= '<div class="card p-3 mb-2">';
                 $html .= '  <h3>No hay resultados de '.$query.'</h3>';
                 $html .= '</div>';
                 echo $html;
@@ -167,7 +167,7 @@ Barrio::actionAdd('Pagination', function($name,$num = 3) {
     // Divide an array into fragments
     $articulos = array_chunk($blogPosts, $limit);
     // Get page
-    $pgkey = isset($_GET['page']) ? $_GET['page'] : 1;
+    $pgkey = isset($_GET['page']) ? $_GET['page'] : 0;
 
     $items = $articulos[$pgkey];
 
