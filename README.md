@@ -69,13 +69,19 @@
                 )
             ),
             // navegacion
-            // root es el nombre de la pagina de inicio de ese lenguage
             'menu' => array(
                 'es' => array(
                     'es' => 'Inicio',
                     'es/acerca-de' => 'Acerca De',
                     'es/blog' => 'Blog',
                     'es/contacto' => 'Contacto'
+                    /**
+                     // en el tema por defecto puedes la multinavegacion
+                     'otros' => array(
+                        'es/portafolio' => 'Portafolio',
+                        'es/servicios' => 'Servicios',
+                    )
+                    */
                 ),
                 'en' => array(
                     'en' => 'Home',
