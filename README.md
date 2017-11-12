@@ -74,13 +74,13 @@
                     'es' => 'Inicio',
                     'es/acerca-de' => 'Acerca De',
                     'es/blog' => 'Blog',
-                    'es/contacto' => 'Contacto'
+                    'es/contacto' => 'Contacto',
                     /**
                      // en el tema por defecto puedes la multinavegacion
                      'otros' => array(
                         'es/portafolio' => 'Portafolio',
                         'es/servicios' => 'Servicios',
-                    )
+                    ),
                     */
                 ),
                 'en' => array(
