@@ -1,0 +1,42 @@
+<?php include 'inc/head.inc.html' ?>
+<?php include 'inc/header.inc.html' ?>
+
+<main class="container">
+    <section class="row">
+        <div class="col-md-8">
+            <?php Barrio::actionRun('Buscador',[]); ?>
+            <?php echo Barrio::actionRun('theme_before');?>
+            <section class="posts">
+                <?php echo $page['content']; ?>
+            </section>
+            <?php echo Barrio::actionRun('discus');?>
+            <?php echo Barrio::actionRun('theme_after');?>
+        </div>
+        <div class="col-md-4">
+            <div class=" mb-5">
+                <div class=" m-3">
+                    <h3 class=" m-1"><?php echo Blog('title');?></h3>
+                    <div><?php echo Blog('description');?></div>
+                </div>
+            </div>
+            <hr class="bg-light m-3" />
+            <div class="mb-5">
+              <div class="m-3">
+                <h3><?php echo Blog('search_title');?></h3>
+                <form id="buscar" method="post" class="card-text">
+                    <label class="sr-only" for="texto"><?php echo Blog('search_btn');?></label>
+                    <input type="search" name="buscar" id="texto" class="form-control" placeholder="<?php echo Blog('search_title');?>">
+                </form>
+              </div>
+            </div>
+            <hr class="bg-light m-3" />
+            <div class="mb-5">
+                <div class="m-3">
+                    <h3 class="m-1"><?php echo Blog('recent_posts');?></h3>
+                    <div class="m-3"><?php echo Barrio::actionRun('lastPosts',[3,'blog']); ?></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<?php include 'inc/footer.inc.html' ?>

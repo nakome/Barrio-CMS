@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="<?php echo Barrio::$config['lang'];?>">
+
+<head>
+      <title>  <?php echo $page['title']; ?> </title>
+      <!-- meta -->
+      <meta charset="<?php echo Barrio::$config['charset'];?>">
+      <meta name="author" content="<?php echo Barrio::$config['author'];?>">
+
+      <meta name="keywords" content="<?php echo $page['keywords'];?>" />
+      <meta name="description" content="<?php echo $page['description'];?>"/>
+      <meta name="robots" content="<?php echo $page['robots'];?>"/>
+      <!-- viewport -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+      <meta name="application-name" content="Barrio CMS" />
+
+      <!-- for Facebook -->
+      <meta property="og:title" content="<?php echo $page['title'];?>" />
+      <meta property="og:type" content="appliction" />
+      <meta property="og:image" content="<?php echo assets();?>/img/logo-144.png" />
+      <meta property="og:url" content="<?php echo Barrio::urlBase();?>" />
+      <meta property="og:description" content="<?php echo $page['description'];?>" />
+
+      <!-- for Twitter -->
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content="<?php echo $page['title'];?>" />
+      <meta name="twitter:description" content="<?php echo $page['description'];?>" />
+      <meta name="twitter:image" content="<?php echo assets();?>/img/logo-144.png" />
+
+      <!-- Favicon -->
+      <meta name="msapplication-TileColor" content="#333">
+      <meta name="theme-color" content="#ffffff">
+      <link rel="icon" href="<?php echo assets();?>/img/favicon.ico" type="image/x-icon" />
+      <link rel="manifest" href="<?php echo url();?>manifest.json">
+
+      <!-- meta Extensions -->
+      <?php Barrio::actionRun('meta'); ?>
+
+      <!-- stylesheet -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="<?php echo assets();?>/css/prism.css" />
+      <link rel="stylesheet" type="text/css" href="<?php echo assets();?>/css/icomoon.css" />
+      <link rel="stylesheet" type="text/css" href="<?php echo assets();?>/css/main.css" />
+      <link rel="stylesheet" type="text/css" href="<?php echo assets();?>/css/cms-utils.css" />
+
+      <!-- url base -->
+      <script>
+            var site_url = "<?php echo url();?>";
+            var site_url_current = "<?php echo urlCurrent();?>";
+            var assets = "<?php echo assets();?>";
+      </script>
+
+      <!-- extensiones -->
+      <?php Barrio::actionRun('head'); ?>
+
+</head>
+
+<body>

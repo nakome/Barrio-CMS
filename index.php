@@ -12,10 +12,9 @@ define('THEMES', ROOT.'/themes');
 define('EXTENSIONS', ROOT.'/extensions');
 
 
-
 // development mode is true
 // for production change to false
-define('DEV', false);
+define('DEV', true);
 if (DEV) {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);

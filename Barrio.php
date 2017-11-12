@@ -551,8 +551,18 @@ class Barrio
         if (file_exists($file)) {
             $content = file_get_contents($file);
         } else {
-            $content = file_get_contents(CONTENT.'/'.'404.md');
-            header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
+            $file = CONTENT.'/404.md';
+            if(file_exists($file)){
+                $content = file_get_contents($file);
+                header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
+            } elseif (file_exists(CONTENT.'/'.self::urlSegment(0).'/404.md')){
+                $content = file_get_contents(CONTENT.'/'.self::urlSegment(0).'/404.md');
+                header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
+            } else {
+                $content = file_get_contents(CONTENT.'/'.self::$config['lang'].'/404.md');
+                header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
+            }
+
         }
         $_headers = explode(self::SEPARATOR, $content);
         foreach ($headers as $campo => $regex) {
@@ -568,7 +578,6 @@ class Barrio
         $url = str_replace('.md', '', $url);
         $url = str_replace('\\', '/', $url);
         $url = rtrim($url, '/');
-
 
         $pages['url'] = $url;
         $_content = $this->parseContent($content);
@@ -692,12 +701,15 @@ class Barrio
      *
      * @return file
      */
-    protected function load_extensions()
+    protected function loadExtensions()
     {
         // http://stackoverflow.com/questions/14680121/include-just-files-in-scandir-array
-        $extensions = array_filter(scandir(EXTENSIONS), function ($item) {
-            return $item[0] !== '.';
-        });
+        $extensions = array_filter(
+            scandir(EXTENSIONS),
+            function ($item) {
+                return $item[0] !== '.';
+            }
+        );
         foreach ($extensions as $ext) {
             $file = EXTENSIONS.'/'.$ext.'/'.$ext.'.ext.php';
             if (file_exists($file) && is_file($file)) {
@@ -718,10 +730,10 @@ class Barrio
      *
      * @return config
      */
-    protected function load_config($route)
+    protected function loadConfig($route)
     {
         if (file_exists($route) && is_file($route)) {
-            static::$config = (require $route);
+            static::$config = (include $route);
         } else {
             die('Oops.. Donde esta el archivo de configuración ?!');
         }
@@ -766,7 +778,7 @@ class Barrio
     public function init($path)
     {
         // Load config
-        $this->load_config($path);
+        $this->loadConfig($path);
         // configure timezone
         @ini_set('date.timezone', static::$config['timezone']);
         if (function_exists('date_default_timezone_set')) {
@@ -784,6 +796,13 @@ class Barrio
 
         // no magic quotes
         if (get_magic_quotes_gpc()) {
+            /**
+             * Stripslashes
+             *
+             * @param string $value the value
+             *
+             * @return string
+             */
             function stripslashesGPC(&$value)
             {
                 $value = stripslashes($value);
@@ -796,14 +815,17 @@ class Barrio
         // load session
         !session_id() and @session_start();
         // load the extensions
-        $this->load_extensions();
+        $this->loadExtensions();
         // load current page
         $page = $this->page(Barrio::urlCurrent());
 
         // meta tag generator
-        self::actionAdd('meta', function () {
-            echo '<meta name="generator" content="Creado con Barrio CMS" />';
-        });
+        self::actionAdd(
+            'meta',
+            function () {
+                echo '<meta name="generator" content="Creado con Barrio CMS" />';
+            }
+        );
 
         // empty fields by default
         empty($page['title']) and $page['title'] = static::$config['title'];
@@ -813,13 +835,34 @@ class Barrio
         empty($page['image']) and $page['image'] = static::$config['image'];
         empty($page['date']) and $page['date'] = '';
         empty($page['robots']) and $page['robots'] = 'index,follow';
-        empty($page['published']) and $page['published'] = true;
+        empty($page['published']) and $page['published'] = '';
         empty($page['keywords']) and $page['keywords'] = static::$config['keywords'];
 
         $page = $page;
         $config = self::$config;
         $layout = !empty($page['template']) ? $page['template'] : 'index';
 
-        include THEMES.'/'.$config['theme'].'/'.$layout.'.html';
+        // published
+        $page['published'] = $page['published'] === 'false' ? false : true;
+        if($page['published']) {
+            include THEMES.'/'.$config['theme'].'/'.$layout.'.html';
+        } else {
+            $this->errorPage($page);
+        }
+    }
+
+    /**
+     * Gets Error on not published
+     *
+     * @param array $page  true false
+     *
+     * @return string
+     */
+    public function errorPage($page = array()){
+        $page['title'] = '404 not Found';
+        $page['description'] = 'The site configured at this address does not contain the requested file.';
+        $page['robots'] = 'noindex,nofollow';
+        $page['content'] = 'The page Exists but is not published yet.';
+        include THEMES.'/'.self::$config['theme'].'/404.html';
     }
 }

@@ -1,0 +1,28 @@
+<header class="header <?php if(isHome()) echo 'h-100';?>  bg-transparent text-light mb-5">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+    <a class="navbar-brand" href="<?php echo url();?>">
+      <img src="<?php echo assets();?>/img/logo.svg" alt="<?php echo $page['title'];?>" width="150">
+      </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav navbar-nav ml-auto mr-5">
+          <?php echo menu();?>
+      </ul>
+    </div>
+  </nav>
+  <section class="jumbotron <?php if(isHome()) echo 'center mt-5';?> bg-transparent text-center">
+    <h1 class="display-3"><?php echo $page['title']; ?></h1>
+    <p class="lead"><?php echo $page['description']; ?></p>
+    <?php if(isHome()) {?>
+    <p class="mt-4"><a href="http://github.com/nakome/Barrio-CMS/archive/master.zip" class="btn btn-outline-light">Descargalo ahora</a>
+    </p>
+    <?php } ?>
+  </section>
+
+  <?php if(isHome()) {?>
+    <a href="#home" class="text-white text-center" id="goHome"><i class="icon-chevron-thin-down"></i></a>
+  <?php } ?>
+</header>
