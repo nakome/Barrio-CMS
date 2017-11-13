@@ -140,6 +140,8 @@ Barrio::shortcodeAdd('Btn', function ($atributos) {
     $color = (isset($color)) ? $color : 'primary';
     $id = (isset($id)) ? $id : uniqid();
     $link = (isset($link)) ? $link : '';
+    $link = str_replace('http:', '',$link);
+    $link = str_replace('https:', '',$link);
     $size = (isset($size)) ? 'btn-'.$size : '';
     $type = (isset($type) == 'outline') ?  'btn-outline-'.$color : 'btn-'.$color;
     // si no hay texto no enseñar
@@ -187,7 +189,7 @@ Barrio::shortcodeAdd('Bloque', function ($atributos, $contenido) {
     // convertir markdown
     $contenido = Parsedown::instance()->text($contenido);
     // enseñar
-    $contenido = Barrio::applyFilter('content', '<div class="col-md-'.$col.' col-'.$col.' '.$clase.'">'.$contenido.'</div>');
+    $contenido = Barrio::applyFilter('content', '<div class="col-md-'.$col.' '.$clase.'">'.$contenido.'</div>');
     $contenido = preg_replace('/\s+/', ' ', $contenido);
     return $contenido;
 });
@@ -237,7 +239,7 @@ Barrio::shortCodeAdd('Servicio', function ($atributos, $contenido) {
     $contenido = Parsedown::instance()->text($contenido);
     $resultado = Barrio::applyFilter('content', '<div class="holder-section">'.$contenido.'</div>');
 
-    $html = '<div class="col-md-'.$col.' col-'.$col.'  '.$clase.'">';
+    $html = '<div class="col-md-'.$col.'  '.$clase.'">';
     $html .= '<div class="mt-3 mb-3 p-3">';
     $html .= '<i class="icon-big icon-'.$icon.' text-success"></i>';
     $html .=  $resultado;
@@ -274,12 +276,11 @@ Barrio::shortCodeAdd('Card', function ($atributos, $contenido) {
     $clase = (isset($clase)) ? $clase : '';
     $contenido = Parsedown::instance()->text($contenido);
     $resultado = Barrio::applyFilter('content', '<div class="card-text">'.$contenido.'</div>');
-
-    $html = '<div class="col-md-'.$col.' col-'.$col.'">';
+    $html = '<div class="col-md-'.$col.' mb-3">';
     $html .= '<div class="card '.$clase.'">';
     $html .= '  <img class="card-img-top" src="'.$img.'" alt="'.$title.'">';
-    $html .= '  <div class="card-body m-3">';
-    $html .= '    <h4 class="card-title m-1">'.$title.'</h4>';
+    $html .= '  <div class="card-body p-3">';
+    $html .= '    <h3 class="card-title">'.$title.'</h3>';
     $html .=      $resultado;
     $html .= '  </div>';
     $html .= '</div>';
