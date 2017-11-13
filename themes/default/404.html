@@ -2,12 +2,12 @@
 <?php include 'inc/header.inc.html' ?>
 <div class="container">
 	<div class="row">
-		<div class="col-md-6 mb-2">
+		<div class="col-md-6 mr-auto ml-auto mb-5">
 		    <form id="buscar" method="post">
-		      <label class="sr-only" for="texto"><?php echo Blog('search_title');?></label>
+		      <label class="sr-only" for="texto">Buscar Pagina</label>
 		      <div class="input-group mb-2 mb-sm-0">
 		        <div class="input-group-addon"><i class="icon-search"></i></div>
-		        <input type="search" name="buscar" id="texto" class="form-control" placeholder="<?php echo Blog('search_btn');?>">
+		        <input type="search" name="buscar" id="texto" class="form-control" placeholder="Buscar pagina">
 		      </div>
 		    </form>
 			<?php Barrio::actionRun('Buscador',[]); ?>

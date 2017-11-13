@@ -241,7 +241,7 @@ img{
 /**
 * Posts
 */
-.post{background:#fff;color:#000;border:1px solid #e9e9e9;margin-bototm:2em}.post-image{position:relative;max-height: 9em;overflow:hidden;border-bottom: 3px solid #479788;}.post-header{background:#fcfcfc;padding:.5em}.post-title{margin:0;padding:.5em 0}.post-title a{color: #479788;}.post-description{color:#565656}.post-body{padding:.5em}
+.post{background:#fff;color:#000;border-bottom: 1px solid #e9e9e9;margin-bottom: 2em;}.post-image{position:relative;max-height: 9em;overflow:hidden;border-bottom: 3px solid #479788;}.post-header{background:#fcfcfc;padding:.5em}.post-title{margin:0;padding:.5em 0}.post-title a{color: #479788;}.post-description{color: #000000;margin: 0;padding: 0;}.post-body{padding:.5em}
 
 /**
 * root

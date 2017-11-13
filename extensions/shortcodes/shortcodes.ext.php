@@ -1,4 +1,4 @@
-<?php
+<?php  defined('BARRIO') or die('Sin accesso a este script.');
 
 
 /**
@@ -187,7 +187,7 @@ Barrio::shortcodeAdd('Bloque', function ($atributos, $contenido) {
     // convertir markdown
     $contenido = Parsedown::instance()->text($contenido);
     // enseñar
-    $contenido = Barrio::applyFilter('content', '<div class="col-md-'.$col.' '.$clase.'">'.$contenido.'</div>');
+    $contenido = Barrio::applyFilter('content', '<div class="col-md-'.$col.' col-'.$col.' '.$clase.'">'.$contenido.'</div>');
     $contenido = preg_replace('/\s+/', ' ', $contenido);
     return $contenido;
 });
@@ -237,7 +237,7 @@ Barrio::shortCodeAdd('Servicio', function ($atributos, $contenido) {
     $contenido = Parsedown::instance()->text($contenido);
     $resultado = Barrio::applyFilter('content', '<div class="holder-section">'.$contenido.'</div>');
 
-    $html = '<div class="col-md-'.$col.'   '.$clase.'">';
+    $html = '<div class="col-md-'.$col.' col-'.$col.'  '.$clase.'">';
     $html .= '<div class="mt-3 mb-3 p-3">';
     $html .= '<i class="icon-big icon-'.$icon.' text-success"></i>';
     $html .=  $resultado;
@@ -275,7 +275,7 @@ Barrio::shortCodeAdd('Card', function ($atributos, $contenido) {
     $contenido = Parsedown::instance()->text($contenido);
     $resultado = Barrio::applyFilter('content', '<div class="card-text">'.$contenido.'</div>');
 
-    $html = '<div class="col-md-'.$col.'">';
+    $html = '<div class="col-md-'.$col.' col-'.$col.'">';
     $html .= '<div class="card '.$clase.'">';
     $html .= '  <img class="card-img-top" src="'.$img.'" alt="'.$title.'">';
     $html .= '  <div class="card-body m-3">';
@@ -426,61 +426,6 @@ Barrio::shortCodeAdd('php', function ($attr, $content) {
 });
 
 
-
-/**
-*  Galeria
-*   {Galeria}
-*       Imagen
-*   {/Galeria}
-*/
-Barrio::shortCodeAdd('Galeria', function ($attrs, $contenido) {
-    extract($attrs);
-    $content  = '<div id="mansory">';
-    $content .=      $contenido;
-    $content .= '</div>';
-    $resultado = Barrio::applyFilter('content',$content);
-    $resultado = preg_replace('/\s+/', ' ', $resultado);
-
-    if ($contenido) {
-        return $resultado;
-    } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el contenido</span>";
-    }
-});
-
-/**
-*  Imagen
-*  {Imagen title='project' texto='El texto' img='{url}/content/imagenes/pequenas/1.jpg'}
-*/
-Barrio::shortcodeAdd('Imagen', function ($atributos) {
-    extract($atributos);
-    // atributos
-    $link = (isset($link)) ? $link : '#';
-    $img = (isset($img)) ? $img : '';
-    $title = (isset($title)) ? $title : '';
-    $texto = (isset($texto)) ? $texto : '';
-
-    $discover = (Barrio::urlSegment(0) == 'es') ? 'Descubre' : 'Discover';
-
-    // si no hay imagen el shortcode no funciona
-    if ($img) {
-        $html = '<div class="grid-image">';
-        $html .= '<a href="'.$link.'" class="black-image-project-hover">';
-        $html .= '  <img src="'.$img.'" alt="Image" class="img-responsive">';
-        $html .= '</a>';
-        $html .= '<a href="'.$link.'"  class="card-container">';
-        $html .= '  <h3>'.$title.'</h3>';
-        $html .= '  <p>'.$texto.'</p>';
-        $html .= '</a>';
-        $html .= '</div>';
-        $html = preg_replace('/\s+/', ' ', $html);
-        return $html;
-    } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el imagen</span>";
-    }
-});
-
-
 /**
  * {Contacto} // usa el del config.php
  * {Contacto mail='nakome@demo.com'}
@@ -489,53 +434,73 @@ Barrio::shortCodeAdd('Contacto', function ($atributos) {
     extract($atributos);
     // atributos
     $mail = (isset($mail)) ? $mail : Barrio::$config['email'];
-    // error
+    $lang = (Barrio::urlSegment(0)) ? Barrio::urlSegment(0) : Barrio::$config['charset'];
+    $arrLang = array(
+        'es' => array(
+            'email'     => 'Email',
+            'subject'   => 'Asunto',
+            'message'   => 'Mensaje',
+            'send'      => 'Enviar Correo',
+            'error'     => 'Lo siento hubo un problema al enviarlo por favor intentelo otra vez',
+            'success'   => 'Gracias tu mensaje ha sido enviado'
+        ),
+        'en' => array(
+            'email'     => 'Email',
+            'subject'   => 'Subject',
+            'message'   => 'Message',
+            'send'      => 'Send email',
+            'error'     => 'Sorry, The email was not send please try again',
+            'success'   => 'Thanks, The email has been send'
+        )
+    );
+
+    $language = array();
+    if (array_key_exists($lang, $arrLang)){
+        $language = $arrLang[$lang];
+    } else {
+        $language = $arrLang['en'];
+    }
+
+
     $error = '';
     if (isset($_POST['Submit'])) {
-
-      // variables predifinidas
+        // vars
         $recepient = $mail;
-        $sitename = Barrio::$config['title'];
-
-        // atributos formulario
+        $sitename = Barrio::urlBase();
         $service = trim($_POST["subject"]);
-        $name = trim($_POST["name"]);
         $email = trim($_POST["email"]);
         $text = trim($_POST["message"]);
-        // mensaje
-        $message = "Asunto: $service \n\Nombre: $name \Mensaje: $text";
+
+        $message = "Service: $service \n\nMessage: $text";
+
         $pagetitle = "Nuevo mensaje desde \"$sitename\"";
         // send mail
-        if (mail($recepient, $pagetitle, $message, "Content-type: text/plain; charset=\"utf-8\" \nFrom: $name <$email>")) {
-            // exito
-            $error = '<p><strong>Gracias tu mensaje ha sido enviado ....</strong></p>';
+        if (mail($recepient, $pagetitle, $message, "Content-type: text/plain; charset=\"utf-8\" \nFrom: <$email>")) {
+            // success
+            $error = '<p><strong>'.$language['success'].' ....</strong></p>';
         } else {
             // error
-            $error = '<p style="color:red;"><strong>Lo siento hubo un problema al enviarlo por favor intentelo otra vez..</strong></p>';
+            $error = '<p style="color:red;"><strong>'.$language['error'].'..</strong></p>';
         };
     }
-    // formulario
-    $html = '  <form class="form" action="" method="post"  name="form1">';
+    // show error
+    $html  = $error;
+    $html .= '  <form class="form" action="" method="post"  name="form1">';
     $html .= '      <div class="form-group">';
-    $html .= '        <label>Nombre</label>';
-    $html .= '        <input type="text" name="name" class="form-control" required>';
-    $html .= '      </div>';
-    $html .= '      <div class="form-group">';
-    $html .= '        <label>Email</label>';
+    $html .= '        <label>'.$language['email'].'</label>';
     $html .= '        <input type="email" name="email" class="form-control" required>';
     $html .= '      </div>';
     $html .= '      <div class="form-group">';
-    $html .= '        <label>Asunto</label>';
+    $html .= '        <label>'.$language['subject'].'</label>';
     $html .= '        <input type="text" name="subject" class="form-control" required>';
     $html .= '      </div>';
     $html .= '      <div class="form-group">';
-    $html .= '        <label>Mensaje</label>';
+    $html .= '        <label>'.$language['message'].'</label>';
     $html .= '        <textarea  name="message" class="form-control" rows="5" required></textarea>';
     $html .= '      </div>';
-    $html .= '      <input type="submit" name="Submit" class="btn btn-default" value="Enviar Formulario">';
+    $html .= '      <input type="submit" name="Submit" class="btn btn-outline-dark btn-default" value="'.$language['send'].'">';
     $html .= '  </form>';
-    $html = preg_replace('/\s+/', ' ', $html);
-    return $error.$html;
+    return $html;
 });
 
 

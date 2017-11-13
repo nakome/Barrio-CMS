@@ -552,10 +552,10 @@ class Barrio
             $content = file_get_contents($file);
         } else {
             $file = CONTENT.'/404.md';
-            if(file_exists($file)){
+            if (file_exists($file)) {
                 $content = file_get_contents($file);
                 header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
-            } elseif (file_exists(CONTENT.'/'.self::urlSegment(0).'/404.md')){
+            } elseif (file_exists(CONTENT.'/'.self::urlSegment(0).'/404.md')) {
                 $content = file_get_contents(CONTENT.'/'.self::urlSegment(0).'/404.md');
                 header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
             } else {
@@ -832,7 +832,7 @@ class Barrio
         empty($page['tags']) and $page['tags'] = static::$config['keywords'];
         empty($page['description']) and $page['description'] = static::$config['description'];
         empty($page['author']) and $page['author'] = static::$config['author'];
-        empty($page['image']) and $page['image'] = static::$config['image'];
+        empty($page['image']) and $page['image'] = '';
         empty($page['date']) and $page['date'] = '';
         empty($page['robots']) and $page['robots'] = 'index,follow';
         empty($page['published']) and $page['published'] = '';
@@ -844,7 +844,7 @@ class Barrio
 
         // published
         $page['published'] = $page['published'] === 'false' ? false : true;
-        if($page['published']) {
+        if ($page['published']) {
             include THEMES.'/'.$config['theme'].'/'.$layout.'.html';
         } else {
             $this->errorPage($page);
@@ -854,11 +854,12 @@ class Barrio
     /**
      * Gets Error on not published
      *
-     * @param array $page  true false
+     * @param array $page true false
      *
      * @return string
      */
-    public function errorPage($page = array()){
+    public function errorPage($page = array())
+    {
         $page['title'] = '404 not Found';
         $page['description'] = 'The site configured at this address does not contain the requested file.';
         $page['robots'] = 'noindex,nofollow';

@@ -1,6 +1,5 @@
 Title: Contact
 Description: This is a demo of Contact us in English
-Published: false
 Template: index
 ----
 
@@ -13,7 +12,7 @@ Template: index
 {iframe clase='well' src='//monchovarela.es'}
 
 
-### Informacíon.
+### Informatíon.
 
 Dolor qui nulla labore consectetur consectetur deserunt. Esse consequat irure dolor dolor aliquip non duis pariatur minim deserunt amet voluptate nisi. Sit et nisi Lorem dolor Lorem. Cupidatat amet commodo eu ut. Anim cupidatat do et velit elit est occaecat sunt exercitation mollit. Voluptate velit et eiusmod aliquip id. Aliquip qui commodo anim laborum sunt consequat fugiat excepteur.
 

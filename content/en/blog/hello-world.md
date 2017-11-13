@@ -1,10 +1,6 @@
 Title: Hello World
 Description: This is a demo of blog  in English
-Keywords:
-Published: si
-Author:
 Date: 10/11/2017
-Image: http://localhost/cmsbarrio/content/imagenes/demos/post.jpg
 Robots: index,follow
 Template: blog-post
 ----
