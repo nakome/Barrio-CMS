@@ -4,12 +4,10 @@
 <main class="container">
     <section class="row">
         <div class="col-md-8">
-            <?php Barrio::actionRun('Buscador',[]); ?>
             <?php echo Barrio::actionRun('theme_before');?>
             <section class="posts">
                 <?php echo $page['content']; ?>
             </section>
-            <?php echo Barrio::actionRun('discus');?>
             <?php echo Barrio::actionRun('theme_after');?>
         </div>
         <div class="col-md-4">
