@@ -1,5 +1,5 @@
-Title: Shortcodes plantilla
-Description:  Shortcodes que se pueden usar en la plantilla
+Title: Shortcodes Theme
+Description:  Universal Shortocdes
 Template: index
 
 ----
@@ -10,7 +10,6 @@ Template: index
 {/Alert}
 
 
-
 ## Iframes
 
 {Alert type=info}
@@ -18,9 +17,8 @@ Template: index
 {/Alert}
 
 
-{Code type='php'}
-// src = enlace del iframe
-// clase = clase css
+{Code type='php'}// src = enlace del iframe
+// cls = clase css
 { Iframe src='monchovarela.es'}
 {/Code}
 
@@ -32,7 +30,7 @@ Template: index
 
 
 {Code type='php'}// id = id del video
-// clase = clase css
+// cls = clase css
  { Youtube id='GxEc46k46gg'}
 {/Code}
 
@@ -43,7 +41,7 @@ Template: index
 
 
 {Code type='php'}// id = id del video
-// clase = clase css
+// cls = clase css
  { Vimeo id='149129821'}
 {/Code}
 
@@ -118,112 +116,112 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo necessitatibus, pr
 
 ### Columnas
 
-{Code type='php'}// clase = se le puede añadir cualquer classe
-{ Bloques}
+{Code type='php'}// cls = se le puede añadir cualquer classe
+{ Blocks}
 
 // col = numero de columnas que al sumarse sean igual a 12
-{ Bloque col='4'}
+{ Block col='4'}
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Bloque}
+{/Block}
 
-{ Bloque col='4'}
+{ Block col='4'}
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Bloque}
+{/Block}
 
-{ Bloque col='4'}
+{ Block col='4'}
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Bloque}
+{/Block}
 
-{/Bloques}
+{/Blocks}
 {/Code}
 
 
-{Bloques}
+{Blocks}
 
-{Bloque col='4'}
+{Block col='4'}
 **col 4**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Bloque}
+{/Block}
 
-{Bloque col='4'}
+{Block col='4'}
 **col 4**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Bloque}
+{/Block}
 
-{Bloque col='4'}
+{Block col='4'}
 **col 4**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Bloque}
+{/Block}
 
-{/Bloques}
+{/Blocks}
 
 
-{Bloques}
+{Blocks}
 
-{Bloque col='3'}
+{Block col='3'}
 **col 3**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Bloque}
-{Bloque col='3'}
+{/Block}
+{Block col='3'}
 **col 3**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Bloque}
-{Bloque col='3'}
+{/Block}
+{Block col='3'}
 **col 3**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Bloque}
-{Bloque col='3'}
+{/Block}
+{Block col='3'}
 **col 3**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Bloque}
-{/Bloques}
+{/Block}
+{/Blocks}
 
 
-{Bloques}
-{Bloque col='6'}
+{Blocks}
+{Block col='6'}
 **col 6**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Bloque}
-{Bloque col='6'}
+{/Block}
+{Block col='6'}
 **col 6**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Bloque}
-{/Bloques}
+{/Block}
+{/Blocks}
 
-{Bloques}
-{Bloque col='8'}
+{Blocks}
+{Block col='8'}
 **col 8**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Bloque}
-{Bloque col='4'}
+{/Block}
+{Block col='4'}
 **col 4**
 
 Labore ipsum ea dolor labore deserunt magna magna.
-{/Bloque}
-{/Bloques}
+{/Block}
+{/Blocks}
 
-{Bloques}
-{Bloque col='4'}
+{Blocks}
+{Block col='4'}
 **col 4**
 
 Labore ipsum ea dolor labore deserunt magna magna.
-{/Bloque}
-{Bloque col='8'}
+{/Block}
+{Block col='8'}
 **col 8**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Bloque}
-{/Bloques}
+{/Block}
+{/Blocks}
 
 
 
@@ -233,14 +231,14 @@ Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod co
 
 {Code type='php'}// size = Tamaño de la barra
 // color = [success | info | warning | danger ]
-// clase = otra clase
-{ Barra  size='25' color='success'}
+// cls = otra clase
+{ ProgressBar  size='25' color='success'}
 {/Code}
 
-{Barra  size='25' color='success'}
-{Barra  size='30' color='info'}
-{Barra  size='40' color='warning'}
-{Barra  size='60' color='danger' clase='mb-5'}
+{ProgressBar  size='25' color='success'}
+{ProgressBar  size='30' color='info'}
+{ProgressBar  size='40' color='warning'}
+{ProgressBar  size='60' color='danger' cls='mb-5'}
 
 
 
@@ -248,52 +246,52 @@ Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod co
 
 
 
-## Servicios
+## Services
 
-{Code type='php'}{ Bloques clase='mt-4'}
+{Code type='php'}{ Blocks cls='mt-4'}
 
-{ Servicio
+{ Service
     icon='heart'
-    clase='mb-5'
+    cls='mb-5'
 }
 ### Crafted With Love
 Lorem ipsum dolor sit amet, consectetur adipisicing.
-{/Servicio}
+{/Service}
 
-{ Servicio
+{ Service
     icon='laptop'
-    clase='mb-5 text-center'
+    cls='mb-5 text-center'
 }
 ### Web Developement
 Lorem ipsum dolor sit amet, consectetur adipisicing.
-{/Servicio}
+{/Service}
 
-{ Servicio
+{ Service
     icon='video'
-    clase='mb-5 text-right'
+    cls='mb-5 text-right'
 }
 ### Video Editing
 Lorem ipsum dolor sit amet, consectetur adipisicing.
-{/Servicio}
+{/Service}
 
-{/Bloques}
+{/Blocks}
 {/Code}
 
 
-{Bloques clase='mt-4'}
-{Servicio icon='heart' clase='mb-5'}
+{Blocks cls='mt-4'}
+{Service icon='heart' cls='mb-5'}
 ### Crafted With Love
 Lorem ipsum dolor sit amet, consectetur adipisicing.
-{/Servicio}
-{Servicio icon='laptop' clase='mb-5 text-center'}
+{/Service}
+{Service icon='laptop' cls='mb-5 text-center'}
 ### Web Developement
 Lorem ipsum dolor sit amet, consectetur adipisicing.
-{/Servicio}
-{Servicio icon='video' clase='mb-5 text-right'}
+{/Service}
+{Service icon='video' cls='mb-5 text-right'}
 ### Video Editing
 Lorem ipsum dolor sit amet, consectetur adipisicing.
-{/Servicio}
-{/Bloques}
+{/Service}
+{/Blocks}
 
 
 
@@ -301,86 +299,90 @@ Lorem ipsum dolor sit amet, consectetur adipisicing.
 
 ## Cards
 
-{Code type='php'}// Bloques para agrupar
-// col = numero de columna que sume 12 en total en el bloque
+{Code type='php'}// Blocks para agrupar
+// col = numero de columna que sume 12 en total en el Bloque
 // title =  titulo
 // img = imagen
-// clase = css class
-{ Bloques}
+// cls = css class
+{ Blocks}
 { Card col='4' title='heart' img='{ url}/content/imagenes/sin-imagen.svg'}
-bloques que sumen 12 en total
+Blocks que sumen 12 en total
 
 { Btn color='primary' text='Primary' id='btn' link='//example.com'}
 {/Card}
 { Card col='4' title='heart' img='{ url}/content/imagenes/sin-imagen.svg'}
-bloques que sumen 12 en total
+Blocks que sumen 12 en total
 
 { Btn color='primary' text='Primary' id='btn' link='//example.com'}
 {/Card}
 { Card col='4' title='heart' img='{ url}/content/imagenes/sin-imagen.svg'}
-bloques que sumen 12 en total
+Blocks que sumen 12 en total
 
 { Btn color='primary' text='Primary' id='btn' link='//example.com'}
 {/Card}
-{/Bloques}
+{/Blocks}
 {/Code}
 
 
 
 
 
-{Bloques}
+{Blocks}
 {Card col='4' title='heart' img='{url}/content/imagenes/sin-imagen.svg'}
-bloques que sumen 12 en total
+Blocks que sumen 12 en total
 
 {Btn color='primary' text='Primary' id='btn' link='//example.com'}
 {/Card}
 {Card col='4' title='heart' img='{url}/content/imagenes/sin-imagen.svg'}
-bloques que sumen 12 en total
+Blocks que sumen 12 en total
 
 {Btn color='primary' text='Primary' id='btn' link='//example.com'}
 {/Card}
 {Card col='4' title='heart' img='{url}/content/imagenes/sin-imagen.svg'}
-bloques que sumen 12 en total
+Blocks que sumen 12 en total
 
 {Btn color='primary' text='Primary' id='btn' link='//example.com'}
 {/Card}
-{/Bloques}
+{/Blocks}
 
 
 
 
 
-## Acordeones
+## Accordions
 
 {Code type='php'}// id = id del acordeon
-{ Acordeones id='acordeon'}
+{ Accordions id='acordeon'}
 // title = el titulo
-// clase = la clase ( si es active el acordeon se expande)
-{ Acordeon clase='active' title='Acordeon uno'}
+// cls = la clase ( si es active el acordeon se expande)
+{ Accordion cls='active' title='Acordeon uno'}
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus sit similique quidem, sint veniam amet nostrum facilis eius consectetur. Doloremque fuga, libero veritatis itaque nisi numquam earum. Ipsum explicabo, quasi.
-{/Acordeon}
-{ Acordeon  title='Acordeon dos'}
+{/Accordion}
+{ Accordion  title='Acordeon dos'}
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic quam quasi, officia nulla est possimus fugit nesciunt, dolores dolore eaque. Consequatur, ipsa. Voluptas, laborum voluptatum aliquid doloribus quos praesentium quod.
-{/Acordeon}
+{/Accordion}
 { Acordeon  title='Acordeon tres'}
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adipisci cumque qui vitae nihil. Consequatur quo explicabo dolore quas, autem, temporibus repellendus nostrum qui in necessitatibus optio, non.
-{/Acordeon}
-{/Acordeones}
+{/Accordion}
+{/Accordions}
 {/Code}
 
 
-{Acordeones id='acordeon'}
-{Acordeon clase='active' title='Acordeon uno'}
+{Accordions id='acordeon'}
+
+{Accordion cls='active' title='Acordeon uno'}
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus sit similique quidem, sint veniam amet nostrum facilis eius consectetur. Doloremque fuga, libero veritatis itaque nisi numquam earum. Ipsum explicabo, quasi.
-{/Acordeon}
-{Acordeon  title='Acordeon dos'}
+{/Accordion}
+
+{Accordion  title='Acordeon dos'}
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic quam quasi, officia nulla est possimus fugit nesciunt, dolores dolore eaque. Consequatur, ipsa. Voluptas, laborum voluptatum aliquid doloribus quos praesentium quod.
-{/Acordeon}
-{Acordeon  title='Acordeon tres'}
+{/Accordion}
+
+{Accordion  title='Acordeon tres'}
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adipisci cumque qui vitae nihil. Consequatur quo explicabo dolore quas, autem, temporibus repellendus nostrum qui in necessitatibus optio, non.
-{/Acordeon}
-{/Acordeones}
+{/Accordion}
+
+{/Accordions}
 
 
 
@@ -391,11 +393,13 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adip
 ## Iconos
 
 {Code type='php'}// type = nombre
-// link = enlace
-{ Icono type='facebook' link='//facebbok.com'}
+// href = enlace
+// cls = clase css
+{ Icon type='facebook' href='//facebbok.com'}
 {/Code}
 
 ---
+
 
 {Icono_demo type='mobile' texto=''}
 {Icono_demo type='laptop' texto=''}
@@ -1420,3 +1424,4 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adip
 {Icono_demo type='codepen' texto=''}
 {Icono_demo type='svg' texto=''}
 {Icono_demo type='IcoMoon' texto=''}
+

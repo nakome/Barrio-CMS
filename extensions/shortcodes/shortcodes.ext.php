@@ -1,49 +1,48 @@
 <?php  defined('BARRIO') or die('Sin accesso a este script.');
 
-
 /**
 *   Iframe
 *   {iframe src='monchovarela.es'}
 */
-Barrio::shortcodeAdd('Iframe', function ($atributos) {
+Barrio::shortCodeAdd('Iframe', function ($attrs) {
     // extraemos los atributos (en este caso $src)
-    extract($atributos);
+    extract($attrs);
     // el codigo del enlace
     $src = (isset($src)) ? $src : '';
-    $clase = (isset($clase)) ? $clase : 'iframe mt-2 mb-4';
+    $cls = (isset($cls)) ? $cls : 'iframe mt-2 mb-4';
     // comprobamos que exista el $id
     if ($src) {
-        $html = '<section class="'.$clase.'">';
+        $html = '<section class="'.$cls.'">';
         $html .= '<iframe src="https://'.$src.'" frameborder="0" allowfullscreen></iframe>';
         $html .= '</section>';
         $html = preg_replace('/\s+/', ' ', $html);
         return $html;
         // si no se pone el atributo id que avise
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el id</span>";
+        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [ src ] not found</span>";
     }
 });
 
 /**
 *   Youtube
-*   {Youtube clase='well' id='GxEc46k46gg'}
+*   {Youtube cls='well' id='GxEc46k46gg'}
 */
-Barrio::shortcodeAdd('Youtube', function ($atributos) {
+Barrio::shortCodeAdd('Youtube', function ($atributos) {
     // extraemos los atributos (en este caso $src)
     extract($atributos);
     // el codigo del enlace
     $id = (isset($id)) ? $id : '';
-    $clase = (isset($clase)) ? $clase : 'iframe';
+    $cls = (isset($cls)) ? $cls : 'iframe';
     // comprobamos que exista el $id
     if ($id) {
-        $html = '<section class="'.$clase.' mt-2 mb-4">';
+        $html = '<section class="'.$cls.' mt-2 mb-4">';
         $html .= '<iframe src="//www.youtube.com/embed/'.$id.'" frameborder="0" allowfullscreen></iframe>';
         $html .= '</section>';
         $html = preg_replace('/\s+/', ' ', $html);
         return $html;
         // si no se pone el atributo id que avise
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el id</span>";
+        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [ id ] not found.</span>";
     }
 });
 
@@ -51,46 +50,51 @@ Barrio::shortcodeAdd('Youtube', function ($atributos) {
 *   Vimeo
 *    {Vimeo id='149129821'}
 */
-Barrio::shortcodeAdd('Vimeo', function ($atributos) {
+Barrio::shortCodeAdd('Vimeo', function ($attrs) {
     // extraemos los atributos
-    extract($atributos);
+    extract($attrs);
     // el codigo del enlace
     $id = (isset($id)) ? $id : '';
-    $clase = (isset($clase)) ? $clase : 'iframe';
+    $cls = (isset($cls)) ? $cls : 'iframe';
     // comprobamos que exista el $id
     if ($id) {
-        $html = '<section class="'.$clase.'">';
+        $html = '<section class="'.$cls.'">';
         $html .= '<iframe src="https://player.vimeo.com/video/'.$id.'" frameborder="0" allowfullscreen></iframe>';
         $html .= '</section>';
         $html = preg_replace('/\s+/', ' ', $html);
         return $html;
         // si no se pone el atributo id que avise
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el id</span>";
+        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error  [id] not found.</span>";
     }
 });
 
 
 /**
 *   Texto
-*   {Texto bg='blue' color='white'}Color texto{/Texto}
+*   {Text bg='blue' color='white'}Color texto{/Text}
 */
-Barrio::shortcodeAdd('Texto', function ($atributos, $contenido) {
+Barrio::shortCodeAdd('Text', function ($attrs, $content) {
     // extraemos los atributos (en este caso $color)
-    extract($atributos);
+    extract($attrs);
     // definimos el color, por defecto sera blue (tienen que ser en ingles)
     $color = (isset($color)) ? $color : '';
     $bg = (isset($bg)) ? $bg : '';
     // parseamos para poder usar markdown
-    $contenido = Parsedown::instance()->text($contenido);
+    $content = Parsedown::instance()->text($content);
     // aplicamos un filtro para escribir dentro del shortcode
-    $resultado = Barrio::applyFilter('content', '<div class="p-2" style="color:'.$color.';background-color:'.$bg.'">'.$contenido.'</div>');
+    $output = Barrio::applyFilter(
+        'content',
+        '<div class="p-2" style="color:'.$color.';background-color:'.$bg.'">
+        '.$content.'
+        </div>'
+    );
     // enseñamos la plantilla
-    $resultado = preg_replace('/\s+/', ' ', $resultado);
-    if ($contenido) {
-        return $resultado;
+    $output = preg_replace('/\s+/', ' ', $output);
+    if ($content) {
+        return $output;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el contenido</span>";
+        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [ content ] not found</span>";
     }
 
 });
@@ -101,23 +105,28 @@ Barrio::shortcodeAdd('Texto', function ($atributos, $contenido) {
 /**
  *
  * type = [primary|secondary|success|info|warning|danger|light|dark|link]
- * {Alert type='primary' clase=''} **Primary!** This is a primary alert-check it out! {/Alert}
+ * {Alert type='primary' cls=''} **Primary!** This is a primary alert-check it out! {/Alert}
  *
 */
-Barrio::shortcodeAdd('Alert', function ($atributos, $contenido) {
-    extract($atributos);
+Barrio::shortCodeAdd('Alert', function ($attrs, $content) {
+    extract($attrs);
     // atributos
     $type = (isset($type)) ? $type : '';
-    $clase = (isset($clase)) ? $clase : 'mt-3 mb-3';
+    $cls = (isset($cls)) ? $cls : 'mt-3 mb-3';
     // convertimos el markdown
-    $contenido = Parsedown::instance()->text($contenido);
-    $contenido = Barrio::applyFilter('content', '<div class="alert alert-'.$type.' '.$clase.'">'.$contenido.'</div>');
-    $contenido = preg_replace('/\s+/', ' ', $contenido);
+    $content = Parsedown::instance()->text($content);
+    $content = Barrio::applyFilter(
+        'content',
+        '<div class="alert alert-'.$type.' '.$cls.'">
+        '.$content.
+        '</div>'
+    );
+    $content = preg_replace('/\s+/', ' ', $content);
 
     if ($type) {
-        return $contenido;
+        return $content;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el atributo type</span>";
+        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [type] not found</span>";
     }
 });
 
@@ -126,72 +135,69 @@ Barrio::shortcodeAdd('Alert', function ($atributos, $contenido) {
 
 /**
  * type = Tipo de boton [ouline] ( opcinal )
- * color = [primary|secondary|success|info|warning|danger|light|dark|link]
+ * color = [primary|secondary|success|info|warning|danger|light|dark|href]
  * text = texto del boton
  * id =  id del boton (opcional)
- * link = direcciÃ³n  (opcional)
- * { Btn color='primary' text='Primary' id='btn' link='//example.com' }
+ * href = direcciÃ³n  (opcional)
+ * { Btn color='primary' text='Primary' id='btn' href='//example.com' }
 */
-Barrio::shortcodeAdd('Btn', function ($atributos) {
+Barrio::shortCodeAdd('Btn', function ($atributos) {
     extract($atributos);
     // atributos
     $text = (isset($text)) ? $text : '';
-    $link = (isset($link)) ? $link : '';
     $color = (isset($color)) ? $color : 'primary';
     $id = (isset($id)) ? $id : uniqid();
-    $link = (isset($link)) ? $link : '';
-    $link = str_replace('http:', '',$link);
-    $link = str_replace('https:', '',$link);
+    $href = (isset($href)) ? $href : '';
     $size = (isset($size)) ? 'btn-'.$size : '';
     $type = (isset($type) == 'outline') ?  'btn-outline-'.$color : 'btn-'.$color;
     // si no hay texto no enseñar
     if ($text) {
-        $html = '<a class="mt-3 mb-3 btn '.$size.' '.$type.'" href="'.$link.'" title="'.$text.'">'.$text.'</a>';
+        $html = '<a class="mt-3 mb-3 btn '.$size.' '.$type.'" href="'.$href.'" title="'.$text.'">'.$text.'</a>';
         $html = preg_replace('/\s+/', ' ', $html);
         return $html;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el atributo text</span>";
+        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [text] not found</span>";
     }
 });
 
 
 
 /**
-*  Bloques
-* - clase = css class
-*   {Bloques}
+*  Blocks
+* - cls = css class
+*   {Blocks}
 *       bloques que sumen 12 en total
-*   {/Bloques}
+*   {/Blocks}
 */
-Barrio::shortCodeAdd('Bloques', function ($attrs, $contenido) {
+Barrio::shortCodeAdd('Blocks', function ($attrs, $content) {
     extract($attrs);
-    $clase = (isset($clase)) ? $clase : '';
-    $resultado = Barrio::applyFilter('content', '<div class="row '.$clase.'">'.$contenido.'</div>');
-    $resultado = preg_replace('/\s+/', ' ', $resultado);
-    return $resultado;
+    $cls = (isset($cls)) ? $cls : '';
+    $output = Barrio::applyFilter('content', '<div class="row '.$cls.'">'.$content.'</div>');
+    $output = preg_replace('/\s+/', ' ', $output);
+    return $output;
 });
 
 
 
 /**
  * col = numero de columnas
- * clase = class
+ * cls = class
  *
- * {Bloque col='8'}
+ * {Block col='8'}
  *      texto en markdown
- * {/Bloque}
+ * {/Block}
  */
-Barrio::shortcodeAdd('Bloque', function ($atributos, $contenido) {
-    extract($atributos);
+Barrio::shortCodeAdd('Block', function ($attrs, $content) {
+    extract($attrs);
     // atributos
     $col = (isset($col)) ? $col : '6';
-    $clase = (isset($clase)) ? $clase : '';
+    $cls = (isset($cls)) ? $cls : '';
     // convertir markdown
-    $contenido = Parsedown::instance()->text($contenido);
+    $content = Parsedown::instance()->text($content);
     // enseñar
-    $contenido = Barrio::applyFilter('content', '<div class="col-md-'.$col.' '.$clase.'">'.$contenido.'</div>');
-    $contenido = preg_replace('/\s+/', ' ', $contenido);
-    return $contenido;
+    $content = Barrio::applyFilter('content', '<div class="col-md-'.$col.' '.$cls.'">'.$content.'</div>');
+    $content = preg_replace('/\s+/', ' ', $content);
+    return $content;
 });
 
 
@@ -200,17 +206,17 @@ Barrio::shortcodeAdd('Bloque', function ($atributos, $contenido) {
 /**
  * size = Tamaño de la barra
  * color = [success | info | warning | danger ]
- * clase = otra clase
- * {Barra  size='25' color='primary'}
+ * cls = otra clase
+ * {ProgressBar  size='25' color='primary'}
 */
-Barrio::shortcodeAdd('Barra', function ($atributos) {
-    extract($atributos);
+Barrio::shortCodeAdd('ProgressBar', function ($attrs) {
+    extract($attrs);
     // atributos
     $size = (isset($size)) ? $size : '25';
     $color = (isset($color)) ? $color : 'primary';
-    $clase = (isset($clase)) ? $clase : 'mt-2 mb-2';
+    $cls = (isset($cls)) ? $cls : 'mt-2 mb-2';
     // enseñamos
-    $html = '<div class="progress '.$clase.'">';
+    $html = '<div class="progress '.$cls.'">';
     $html .='   <div class="progress-bar bg-'.$color.'" role="progressbar" style="width:'.$size.'%" aria-valuenow="'.$size.'" aria-valuemin="0" aria-valuemax="100"></div>';
     $html .='</div>';
     $html = preg_replace('/\s+/', ' ', $html);
@@ -225,31 +231,31 @@ Barrio::shortcodeAdd('Barra', function ($atributos) {
 /**
 *  Bloques
 *  - icon = icono del servicio
-*  - clase = clase css
-*   {Servicio icon='heart'}
+*  - cls = cls css
+*   {Service icon='heart'}
 *       bloques que sumen 12 en total
-*   {/Servicio}
+*   {/Service}
 */
-Barrio::shortCodeAdd('Servicio', function ($atributos, $contenido) {
-    extract($atributos);
+Barrio::shortCodeAdd('Service', function ($attrs, $content) {
+    extract($attrs);
     // atributos
     $icon = (isset($icon)) ? $icon : '#';
     $col = (isset($col)) ? $col : '4';
-    $clase = (isset($clase)) ? $clase : 'text-center';
-    $contenido = Parsedown::instance()->text($contenido);
-    $resultado = Barrio::applyFilter('content', '<div class="holder-section">'.$contenido.'</div>');
+    $cls = (isset($cls)) ? $cls : 'text-center';
+    $content = Parsedown::instance()->text($content);
+    $output = Barrio::applyFilter('content', '<div class="holder-section">'.$content.'</div>');
 
-    $html = '<div class="col-md-'.$col.'  '.$clase.'">';
+    $html = '<div class="col-md-'.$col.'  '.$cls.'">';
     $html .= '<div class="mt-3 mb-3 p-3">';
     $html .= '<i class="icon-big icon-'.$icon.' text-success"></i>';
-    $html .=  $resultado;
+    $html .=  $output;
     $html .= '  </div>';
     $html .= '</div>';
     $html = preg_replace('/\s+/', ' ', $html);
-    if ($contenido) {
+    if ($content) {
         return $html;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el contenido</span>";
+        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] not found</span>";
     }
 });
 
@@ -261,35 +267,35 @@ Barrio::shortCodeAdd('Servicio', function ($atributos, $contenido) {
 *  Card
 *  - col = Numero bloques que sumen 12 en total
 *  - title = titulo
-*  - clase = clase css
+*  - cls = clase css
 *  - img = imagen
 *   {Card col='4? title='heart' img='{url}/content/imagenes/sin-imagen.svg'}
 *       bloques que sumen 12 en total
 *   {/Card}
 */
-Barrio::shortCodeAdd('Card', function ($atributos, $contenido) {
-    extract($atributos);
+Barrio::shortCodeAdd('Card', function ($attrs, $content) {
+    extract($attrs);
     // atributos
     $title = (isset($title)) ? $title : '';
     $img = (isset($img)) ? $img : '';
     $col = (isset($col)) ? $col : '4';
-    $clase = (isset($clase)) ? $clase : '';
-    $contenido = Parsedown::instance()->text($contenido);
-    $resultado = Barrio::applyFilter('content', '<div class="card-text">'.$contenido.'</div>');
+    $cls = (isset($cls)) ? $cls : '';
+    $content = Parsedown::instance()->text($content);
+    $output = Barrio::applyFilter('content', '<div class="card-text">'.$content.'</div>');
     $html = '<div class="col-md-'.$col.' mb-3">';
-    $html .= '<div class="card '.$clase.'">';
+    $html .= '<div class="card '.$cls.'">';
     $html .= '  <img class="card-img-top" src="'.$img.'" alt="'.$title.'">';
     $html .= '  <div class="card-body p-3">';
     $html .= '    <h3 class="card-title">'.$title.'</h3>';
-    $html .=      $resultado;
+    $html .=      $output;
     $html .= '  </div>';
     $html .= '</div>';
     $html .= '</div>';
     $html = preg_replace('/\s+/', ' ', $html);
-    if ($contenido) {
+    if ($content) {
         return $html;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el contenido</span>";
+        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] not found</span>";
     }
 });
 
@@ -299,99 +305,111 @@ Barrio::shortCodeAdd('Card', function ($atributos, $contenido) {
 
 /**
  * id = identificacion unica
- * {Acordeones id='acordeon'}Texto tarjeta{/Overlay}
+ * {Accordions id='acordeon'}Texto tarjeta{/Accordions}
 */
-Barrio::shortcodeAdd('Acordeones', function ($atributos, $contenido) {
-    extract($atributos);
+Barrio::shortCodeAdd('Accordions', function ($attrs, $content) {
+    extract($attrs);
     $id = (isset($id)) ? $id : 'acordeon';
-    $clase = (isset($clase)) ? $clase : 'mt-2 mb-2';
-    $contenido = Barrio::applyFilter('content', $contenido);
-    $contenido = Parsedown::instance()->text($contenido);
-    $html = '<div id="'.$id.'"  class="accordion '.$clase.' ">'.$contenido.'</div>';
+    $cls = (isset($cls)) ? $cls : 'mt-2 mb-2';
+    $content = Barrio::applyFilter('content', $content);
+    $content = Parsedown::instance()->text($content);
+    $html = '<div id="'.$id.'"  class="accordion '.$cls.' ">'.$content.'</div>';
     $html = preg_replace('/\s+/', ' ', $html);
 
-    if ($contenido) {
+    if ($content) {
         return $html;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el contenido</span>";
+        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] not found</span>";
     }
 });
 
 /**
  * title = el titulo
- * clase = extra classes
- * {Acordeon  cñase="active" title='Titulo'}Texto oculto{/Acordeon}
+ * cls = extra classes
+ * {Acordion  cñase="active" title='Titulo'}Texto oculto{/Acordion}
 */
-Barrio::shortcodeAdd('Acordeon', function ($atributos, $contenido) {
-    extract($atributos);
+Barrio::shortCodeAdd('Accordion', function ($attrs, $content) {
+    extract($attrs);
 
     $parent = (isset($parent)) ? $parent : 'acordeon';
     $title = (isset($title)) ? $title : 'Titulo vacio';
     $id = (isset($id)) ? $id : 'acordeon1';
-    $clase = (isset($clase)) ? $clase : '';
-    $show = ($clase == 'active') ? 'show' : 'hide';
-    $contenido = Parsedown::instance()->text($contenido);
-    $contenido = Barrio::applyFilter('content', '<div class="accordion-content '.$show.'">'.$contenido.'</div>');
+    $cls = (isset($cls)) ? $cls : '';
+    $show = ($cls == 'active') ? 'show' : 'hide';
+    $content = Parsedown::instance()->text($content);
+    $content = Barrio::applyFilter('content', '<div class="accordion-content '.$show.'">'.$content.'</div>');
 
     $html = '<div class="accordion-title text-success">';
-    $html .= '  <a class="'.$clase.'">'.$title.'</a>';
+    $html .= '  <a class="'.$cls.'">'.$title.'</a>';
     $html .= '</div>';
-    $html .= $contenido;
+    $html .= $content;
     $html = preg_replace('/\s+/', ' ', $html);
 
-    if ($contenido) {
+    if ($content) {
         return $html;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el contenido</span>";
+        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] not found</span>";
     }
 });
 
 
 /**
  * type = icon class
- * link = link to
- * clase = custom class
- * {Icono type='phone2' link='624584452'}
+ * href = href to
+ * cls = custom class
+ * {Icon type='phone2' href='624584452'}
  */
-Barrio::shortcodeAdd('Icono', function ($atributos) {
+Barrio::shortCodeAdd('Icon', function ($atributos) {
     extract($atributos);
     // atributos
     $type = (isset($type)) ? $type : '';
-    $link = (isset($link)) ? $link : '';
-    $clase = (isset($clase)) ? $clase : 'mr-2';
+    $href = (isset($href)) ? $href : '';
+    $cls = (isset($cls)) ? $cls : 'mr-2';
     // si no hay imagen enseñar
     if ($type) {
-        if($link){
-            $html = '<a class="hasIcon" href="'.$link.'"><i class="icon-'.$type.' '.$clase.'"></i> </a>';
+        if($href){
+            $html = '<a class="hasIcon" href="'.$href.'"><i class="icon-'.$type.' '.$cls.'"></i> </a>';
             $html = preg_replace('/\s+/', ' ', $html);
             return $html;
         }else{
-            $html = '<i class="icon-'.$type.' '.$clase.'"></i> ';
+            $html = '<i class="icon-'.$type.' '.$cls.'"></i> ';
             $html = preg_replace('/\s+/', ' ', $html);
             return $html;
         }
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el type</span>";
+        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [type] not found/span>";
     }
+});
+
+
+/*
+ * ================================
+ * Php
+ * {php}echo 'holas';{/php}
+ * ================================
+ */
+Barrio::shortCodeAdd('php', function ($attr, $content) {
+    ob_start();
+    eval("$content");
+    return ob_get_clean();
 });
 
 
 /**
 *  Code
-* - clase = css class
 *   {Code type='php'}
 *       bloques que sumen 12 en total
 *   {/Code}
 */
-Barrio::shortCodeAdd('Code', function ($attrs, $contenido) {
+Barrio::shortCodeAdd('Code', function ($attrs, $content) {
     extract($attrs);
     $code = (isset($code)) ? $code : 'php';
-    if ($contenido) {
-        $contenido = htmlentities($contenido);
-        $resultado = Barrio::applyFilter('content', '<pre class="line-numbers language-'.$code.'"><code class="language-'.$code.'">'.$contenido.'</code></pre>');
-        return $resultado;
+    if ($content) {
+        $content = htmlentities($content);
+        $output = Barrio::applyFilter('content', '<pre class="line-numbers language-'.$code.'"><code class="language-'.$code.'">'.$content.'</code></pre>');
+        return $output;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el contenido</span>";
+        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] not found</span>";
     }
 });
 
@@ -428,10 +446,10 @@ Barrio::shortCodeAdd('php', function ($attr, $content) {
 
 
 /**
- * {Contacto} // usa el del config.php
- * {Contacto mail='nakome@demo.com'}
+ * {Contact} // usa el del config.php
+ * {Contact mail='nakome@demo.com'}
  */
-Barrio::shortCodeAdd('Contacto', function ($atributos) {
+Barrio::shortCodeAdd('Contact', function ($atributos) {
     extract($atributos);
     // atributos
     $mail = (isset($mail)) ? $mail : Barrio::$config['email'];
@@ -508,8 +526,8 @@ Barrio::shortCodeAdd('Contacto', function ($atributos) {
 /**
  * {Icono type='phone2' texto='624584452'}
  */
-Barrio::shortcodeAdd('Icono_demo', function ($atributos) {
-    extract($atributos);
+Barrio::shortcodeAdd('Icono_demo', function ($attrs) {
+    extract($attrs);
     // atributos
     $type = (isset($type)) ? $type : '';
     // si no hay imagen enseñar
