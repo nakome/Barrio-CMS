@@ -274,7 +274,7 @@ Barrio::shortcodeAdd('Service', function ($attrs, $content) {
     $content = Parsedown::instance()->text($content);
     $output = Barrio::applyFilter('content', '<div class="holder-section">'.$content.'</div>');
 
-    $html = '<div class="col-md-'.$col.'  '.$clase.'">';
+    $html = '<div class="col-md-'.$col.'  '.$cls.'">';
     $html .= '<div class="mt-3 mb-3 p-3">';
     $html .= '<i class="icon-big icon-'.$icon.' text-success"></i>';
     $html .=  $output;
