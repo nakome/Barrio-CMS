@@ -1,10 +1,11 @@
 <?php  defined('BARRIO') or die('Sin accesso a este script.');
 
+
 /**
 *   Iframe
 *   {iframe src='monchovarela.es'}
 */
-Barrio::shortCodeAdd('Iframe', function ($attrs) {
+Barrio::shortcodeAdd('Iframe', function ($attrs) {
     // extraemos los atributos (en este caso $src)
     extract($attrs);
     // el codigo del enlace
@@ -25,9 +26,9 @@ Barrio::shortCodeAdd('Iframe', function ($attrs) {
 
 /**
 *   Youtube
-*   {Youtube cls='well' id='GxEc46k46gg'}
+*   {Youtube clase='well' id='GxEc46k46gg'}
 */
-Barrio::shortCodeAdd('Youtube', function ($atributos) {
+Barrio::shortcodeAdd('Youtube', function ($atributos) {
     // extraemos los atributos (en este caso $src)
     extract($atributos);
     // el codigo del enlace
@@ -50,7 +51,7 @@ Barrio::shortCodeAdd('Youtube', function ($atributos) {
 *   Vimeo
 *    {Vimeo id='149129821'}
 */
-Barrio::shortCodeAdd('Vimeo', function ($attrs) {
+Barrio::shortcodeAdd('Vimeo', function ($attrs) {
     // extraemos los atributos
     extract($attrs);
     // el codigo del enlace
@@ -74,10 +75,11 @@ Barrio::shortCodeAdd('Vimeo', function ($attrs) {
 *   Texto
 *   {Text bg='blue' color='white'}Color texto{/Text}
 */
-Barrio::shortCodeAdd('Text', function ($attrs, $content) {
+Barrio::shortcodeAdd('Text', function ($attrs, $content) {
     // extraemos los atributos (en este caso $color)
     extract($attrs);
     // definimos el color, por defecto sera blue (tienen que ser en ingles)
+    $cls = (isset($cls)) ? $cls : 'p-2';
     $color = (isset($color)) ? $color : '';
     $bg = (isset($bg)) ? $bg : '';
     // parseamos para poder usar markdown
@@ -85,7 +87,7 @@ Barrio::shortCodeAdd('Text', function ($attrs, $content) {
     // aplicamos un filtro para escribir dentro del shortcode
     $output = Barrio::applyFilter(
         'content',
-        '<div class="p-2" style="color:'.$color.';background-color:'.$bg.'">
+        '<div class="'.$cls.'" style="color:'.$color.';background-color:'.$bg.'">
         '.$content.'
         </div>'
     );
@@ -105,10 +107,10 @@ Barrio::shortCodeAdd('Text', function ($attrs, $content) {
 /**
  *
  * type = [primary|secondary|success|info|warning|danger|light|dark|link]
- * {Alert type='primary' cls=''} **Primary!** This is a primary alert-check it out! {/Alert}
+ * {Alert type='primary' clase=''} **Primary!** This is a primary alert-check it out! {/Alert}
  *
 */
-Barrio::shortCodeAdd('Alert', function ($attrs, $content) {
+Barrio::shortcodeAdd('Alert', function ($attrs, $content) {
     extract($attrs);
     // atributos
     $type = (isset($type)) ? $type : '';
@@ -141,7 +143,7 @@ Barrio::shortCodeAdd('Alert', function ($attrs, $content) {
  * href = direcciÃ³n  (opcional)
  * { Btn color='primary' text='Primary' id='btn' href='//example.com' }
 */
-Barrio::shortCodeAdd('Btn', function ($atributos) {
+Barrio::shortcodeAdd('Btn', function ($atributos) {
     extract($atributos);
     // atributos
     $text = (isset($text)) ? $text : '';
@@ -164,15 +166,30 @@ Barrio::shortCodeAdd('Btn', function ($atributos) {
 
 /**
 *  Blocks
-* - cls = css class
+* - clase = css class
 *   {Blocks}
 *       bloques que sumen 12 en total
 *   {/Blocks}
 */
-Barrio::shortCodeAdd('Blocks', function ($attrs, $content) {
+Barrio::shortcodeAdd('Blocks', function ($attrs, $content) {
     extract($attrs);
     $cls = (isset($cls)) ? $cls : '';
-    $output = Barrio::applyFilter('content', '<div class="row '.$cls.'">'.$content.'</div>');
+
+    $type = (isset($type)) ? $type : 'fixed';
+    $style = (isset($style)) ? $style : '';
+    $bg = (isset($bg)) ? $bg : '';
+    $imageStyle = '';
+    if($bg){
+        if(preg_match_all("/\/\//im", $bg)){
+            // imagen
+            $imageStyle = 'background:url('.$bg.') no-repeat center center '.$type.' transparent;background-size:cover;';
+        }else{
+            // color
+            $imageStyle = 'background:'.$bg.';';
+        }
+    }
+
+    $output = Barrio::applyFilter('content', '<div class="row '.$cls.'" style="'.$imageStyle.' '.$style.'">'.$content.'</div>');
     $output = preg_replace('/\s+/', ' ', $output);
     return $output;
 });
@@ -181,21 +198,33 @@ Barrio::shortCodeAdd('Blocks', function ($attrs, $content) {
 
 /**
  * col = numero de columnas
- * cls = class
+ * clase = class
  *
  * {Block col='8'}
  *      texto en markdown
  * {/Block}
  */
-Barrio::shortCodeAdd('Block', function ($attrs, $content) {
+Barrio::shortcodeAdd('Block', function ($attrs, $content) {
     extract($attrs);
     // atributos
     $col = (isset($col)) ? $col : '6';
     $cls = (isset($cls)) ? $cls : '';
+    $style = (isset($style)) ? $style : '';
+    $bg = (isset($bg)) ? $bg : '';
+    $imageStyle = '';
+    if($bg){
+        if(preg_match_all("/\/\//im", $bg)){
+            // imagen
+            $imageStyle = 'background:url('.$bg.') no-repeat center center '.$type.' transparent;background-size:cover;';
+        }else{
+            // color
+            $imageStyle = 'background:'.$bg.';';
+        }
+    }
     // convertir markdown
     $content = Parsedown::instance()->text($content);
     // enseñar
-    $content = Barrio::applyFilter('content', '<div class="col-md-'.$col.' '.$cls.'">'.$content.'</div>');
+    $content = Barrio::applyFilter('content', '<div class="col-md-'.$col.' '.$cls.'" style="'.$imageStyle.' '.$style.'">'.$content.'</div>');
     $content = preg_replace('/\s+/', ' ', $content);
     return $content;
 });
@@ -206,10 +235,10 @@ Barrio::shortCodeAdd('Block', function ($attrs, $content) {
 /**
  * size = Tamaño de la barra
  * color = [success | info | warning | danger ]
- * cls = otra clase
+ * clase = otra clase
  * {ProgressBar  size='25' color='primary'}
 */
-Barrio::shortCodeAdd('ProgressBar', function ($attrs) {
+Barrio::shortcodeAdd('ProgressBar', function ($attrs) {
     extract($attrs);
     // atributos
     $size = (isset($size)) ? $size : '25';
@@ -231,12 +260,12 @@ Barrio::shortCodeAdd('ProgressBar', function ($attrs) {
 /**
 *  Bloques
 *  - icon = icono del servicio
-*  - cls = cls css
+*  - cls = clase css
 *   {Service icon='heart'}
 *       bloques que sumen 12 en total
 *   {/Service}
 */
-Barrio::shortCodeAdd('Service', function ($attrs, $content) {
+Barrio::shortcodeAdd('Service', function ($attrs, $content) {
     extract($attrs);
     // atributos
     $icon = (isset($icon)) ? $icon : '#';
@@ -245,7 +274,7 @@ Barrio::shortCodeAdd('Service', function ($attrs, $content) {
     $content = Parsedown::instance()->text($content);
     $output = Barrio::applyFilter('content', '<div class="holder-section">'.$content.'</div>');
 
-    $html = '<div class="col-md-'.$col.'  '.$cls.'">';
+    $html = '<div class="col-md-'.$col.'  '.$clase.'">';
     $html .= '<div class="mt-3 mb-3 p-3">';
     $html .= '<i class="icon-big icon-'.$icon.' text-success"></i>';
     $html .=  $output;
@@ -273,7 +302,7 @@ Barrio::shortCodeAdd('Service', function ($attrs, $content) {
 *       bloques que sumen 12 en total
 *   {/Card}
 */
-Barrio::shortCodeAdd('Card', function ($attrs, $content) {
+Barrio::shortcodeAdd('Card', function ($attrs, $content) {
     extract($attrs);
     // atributos
     $title = (isset($title)) ? $title : '';
@@ -298,7 +327,6 @@ Barrio::shortCodeAdd('Card', function ($attrs, $content) {
         return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] not found</span>";
     }
 });
-
 
 
 
@@ -432,24 +460,11 @@ Barrio::shortCodeAdd('Config', function ($attrs) {
 
 
 
-/*
- * ================================
- * Php
- * {php}echo 'holas';{/php}
- * ================================
- */
-Barrio::shortCodeAdd('php', function ($attr, $content) {
-    ob_start();
-    eval("$content");
-    return ob_get_clean();
-});
-
-
 /**
- * {Contact} // usa el del config.php
- * {Contact mail='nakome@demo.com'}
+ * {Contacto} // usa el del config.php
+ * {Contacto mail='nakome@demo.com'}
  */
-Barrio::shortCodeAdd('Contact', function ($atributos) {
+Barrio::shortCodeAdd('Contacto', function ($atributos) {
     extract($atributos);
     // atributos
     $mail = (isset($mail)) ? $mail : Barrio::$config['email'];
