@@ -1,5 +1,5 @@
 
-![Barrio CMS](./content/imagenes/barrio.svg)
+![Barrio CMS](./themes/default/screenshot.jpg)
 
 
 ### Requisitos
@@ -19,83 +19,67 @@
 
     <?php
 
-        // en md {Config name='facebook'}
-        // en html echo Barrio::$config['facebook'];
-        return array(
-            'lang' => 'es',
-            // charset
-            'charset' => 'UTF-8',
-            // timezone
-            'timezone' => 'Europe/Brussels',
-            // plantilla por defecto
-            'theme' => 'default',
-            // titulo de la web
-            'title' => 'Barrio CMS',
-            // descripcion de la web
-            'description' => 'Sistema de control de contenidos en formato Flat File',
-            // palabras clave
-            'keywords' => 'cms,barrio,flatfile',
-            // autor
-            'author' => 'Moncho Varela',
-            // correo
-            'email' => 'demo@gmail.com',
-            // imagen por defecto
+    // en md {Config name='facebook'}
+    // en html echo Barrio::$config['facebook'];
+    return array(
+        'lang' => 'es',
+        // charset
+        'charset' => 'UTF-8',
+        // timezone
+        'timezone' => 'Europe/Brussels',
+        // plantilla por defecto
+        'theme' => 'default',
+        // titulo de la web
+        'title' => 'Barrio CMS',
+        // descripcion de la web
+        'description' => 'Sistema de control de contenidos en formato Flat File',
+        // palabras clave
+        'keywords' => 'cms,barrio,flatfile',
+        // autor
+        'author' => 'Moncho Varela',
+        // correo
+        'email' => 'demo@gmail.com',
+        // imagen por defecto
+        'image' => 'content/imagenes/sin-imagen.svg',
+        // blog
+        'blog' => array(
+            // blog image
             'image' => 'content/imagenes/sin-imagen.svg',
-            // blog
-            'blog' => array(
-                'es' => array(
-                    // titulo del blog
-                    'title' => 'Ideas & Pensamientos.',
-                     // descripcion del blog
-                    'description' => 'Articulos, ideas y todo lo que se me ocurra se ira poniendo aquí.Espero que lo disfruteis.',
-                    // titulo buscar
-                    'search_title' => 'Buscar pagina',
-                    // botton buscar
-                    'search_btn' => 'Buscar',
-                    // titulo articulos recientes
-                    'recent_posts' => 'Articulos recientes'
-                ),
-                'en' => array(
-                    // Blog title
-                    'title' => 'Ideas & Thoughts.',
-                     // Blog description
-                    'description' => 'Articles, ideas and everything that comes to mind will be put here. I hope you enjoy it.',
-                    // Search title
-                    'search_title' => 'Search Page',
-                    // Search botton
-                    'search_btn' => 'Search',
-                    // Recent posts
-                    'recent_posts' => 'Recent posts'
-                )
-            ),
-            // navegacion
-            'menu' => array(
-                'es' => array(
-                    'es' => 'Inicio',
-                    'es/acerca-de' => 'Acerca De',
-                    'es/blog' => 'Blog',
-                    'es/contacto' => 'Contacto',
-                    /**
-                     // en el tema por defecto puedes la multinavegacion
-                     'otros' => array(
-                        'es/portafolio' => 'Portafolio',
-                        'es/servicios' => 'Servicios',
-                    ),
-                    */
-                ),
-                'en' => array(
-                    'en' => 'Home',
-                    'en/about-us' => 'About Us',
-                    'en/blog' => 'Blog',
-                    'en/contact' => 'Contact'
-                )
-            ),
-            'facebook' => 'https://facebook.com',
-            'instagram' => 'https://instagram.com',
-            'twitter' => 'https://twitter.com',
-            'youtube' => 'https://youtube.com'
-            // añadir mas si se quiere
-        );
+            // Blog titulo
+            'title' => 'Chuck Gomez',
+             // Blog descripcción
+            'description' => 'Desarrollador y Diseñador Web. Aprendiendo y mejorando cada día.',
+            // Buscador titulo
+            'search_title' => 'Buscar Pagina',
+            // Buscador boton
+            'search_btn' => 'Buscar',
+            // Articulos recientes
+            'recent_posts' => 'Articulos recientes'
+        ),
+        // navegacion
+        'menu' => array(
+            '/' => 'Inicio',
+            '/acerca-de' => 'Acerca De',
+            '/blog' => 'Blog',
+            '/contacto' => 'Contacto'
+        ),
+        // buscador
+        'search' =>  array(
+            'results_of' => 'Resultados de la busqueda',
+            'no_results' => 'No hay resultados',
+            'read'       => 'Ir a enlace'
+        ),
+        // copyright
+        'copyright' => 'Creado con Barrio CMS',
+
+        // social
+        'facebook' => 'https://facebook.com',
+        'instagram' => 'https://instagram.com',
+        'twitter' => 'https://twitter.com',
+        'youtube' => 'https://youtube.com'
+
+        // añadir mas si se quiere aqui...
+    );
 
 
 

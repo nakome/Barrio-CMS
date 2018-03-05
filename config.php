@@ -1,7 +1,7 @@
 <?php
 
     // en md {Config name='facebook'}
-    // en html echo Barrio::$config['facebook'];
+    // en html echo Barrio::$config['facebook']; 
     return array(
         'lang' => 'es',
         // charset
@@ -24,50 +24,40 @@
         'image' => 'content/imagenes/sin-imagen.svg',
         // blog
         'blog' => array(
-            'es' => array(
-                // titulo del blog
-                'title' => 'Ideas & Pensamientos.',
-                 // descripcion del blog
-                'description' => 'Articulos, ideas y todo lo que se me ocurra se ira poniendo aquí.Espero que lo disfruteis.',
-                // titulo buscar
-                'search_title' => 'Buscar pagina',
-                // botton buscar
-                'search_btn' => 'Buscar',
-                // titulo articulos recientes
-                'recent_posts' => 'Articulos recientes'
-            ),
-            'en' => array(
-                // Blog title
-                'title' => 'Ideas & Thoughts.',
-                 // Blog description
-                'description' => 'Articles, ideas and everything that comes to mind will be put here. I hope you enjoy it.',
-                // Search title
-                'search_title' => 'Search Page',
-                // Search botton
-                'search_btn' => 'Search',
-                // Recent posts
-                'recent_posts' => 'Recent posts'
-            )
+            // blog image
+            'image' => 'content/imagenes/sin-imagen.svg',
+            // Blog titulo
+            'title' => 'Chuck Gomez',
+             // Blog descripcción
+            'description' => 'Desarrollador y Diseñador Web. Aprendiendo y mejorando cada día.',
+            // Buscador titulo
+            'search_title' => 'Buscar Pagina',
+            // Buscador boton
+            'search_btn' => 'Buscar',
+            // Articulos recientes
+            'recent_posts' => 'Articulos recientes'
         ),
         // navegacion
-        // root es el nombre de la pagina de inicio de ese lenguage
         'menu' => array(
-            'es' => array(
-                'es' => 'Inicio',
-                'es/acerca-de' => 'Acerca De',
-                'es/blog' => 'Blog',
-                'es/contacto' => 'Contacto'
-            ),
-            'en' => array(
-                'en' => 'Home',
-                'en/about-us' => 'About Us',
-                'en/blog' => 'Blog',
-                'en/contact' => 'Contact'
-            )
+            '/' => 'Inicio',
+            '/acerca-de' => 'Acerca De',
+            '/blog' => 'Blog',
+            '/contacto' => 'Contacto'
         ),
+        // buscador
+        'search' =>  array(
+            'results_of' => 'Resultados de la busqueda',
+            'no_results' => 'No hay resultados',
+            'read'       => 'Ir a enlace'
+        ),
+        // copyright
+        'copyright' => 'Creado con Barrio CMS',
+
+        // social
         'facebook' => 'https://facebook.com',
         'instagram' => 'https://instagram.com',
         'twitter' => 'https://twitter.com',
         'youtube' => 'https://youtube.com'
-        // añadir mas si se quiere
+
+        // añadir mas si se quiere aqui...
     );

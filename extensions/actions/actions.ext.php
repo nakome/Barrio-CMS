@@ -13,27 +13,7 @@
  */
 Barrio::actionAdd('theme_before', function () {
 
-    $lang = (Barrio::urlSegment(0)) ? Barrio::urlSegment(0) : Barrio::$config['charset'];
-    $arrLang = array(
-        'es' => array(
-            'results_of' => 'Resultados de la Búsqueda',
-            'no_results' => 'No hay resultados',
-            'read'       => 'Leer'
-        ),
-        'en' => array(
-            'results_of' => 'Results of search',
-            'no_results' => 'No results',
-            'read'       => 'Read'
-        )
-    );
-
-    $language = array();
-    if (array_key_exists($lang, $arrLang)) {
-        $language = $arrLang[$lang];
-    } else {
-        $language = $arrLang['en'];
-    }
-
+    $language = Barrio::$config['search'];
 
     // en la barra de busqueda seria algo asi
     // http://localhost/cmsbarrio/?buscar=
@@ -97,9 +77,9 @@ Barrio::actionAdd('theme_before', function () {
 });
 
 
-/**
- * Discus
- */
+
+/* - Barrio::actionRun('Discus',['name','url']);
+-------------------------------------------------*/
 Barrio::actionAdd('Discus', function ($name='', $url= '') {
 
     Barrio::actionAdd('head', function () {
@@ -125,11 +105,10 @@ Barrio::actionAdd('Discus', function ($name='', $url= '') {
 
 
 /* - Barrio::actionRun('Pagination',['blog',6]);
---------------------------------------------------------------------------------*/
+-------------------------------------------------*/
 Barrio::actionAdd('Pagination', function ($name, $num = 3) {
-    $lang = (Barrio::urlSegment(0)) ? Barrio::urlSegment(0) : Barrio::$config['lang'];
     // All pages
-    $posts = Barrio::pages($lang.'/'.$name, 'date', 'DESC', ['index','404']);
+    $posts = Barrio::pages($name, 'date', 'DESC', ['index','404']);
     // Limit of pages
     $limit = $num;
     //intialize a new array of files that we want to show
@@ -166,14 +145,13 @@ Barrio::actionAdd('Pagination', function ($name, $num = 3) {
             $html .= '</hgroup>';
 
             // body
-            $html .= '<section class="post-body">';
-            $html .= '  <div class="text-secondary">'.$articulo['content_short'].'</div>';
-            $html .= '</section>';
-
+            $html .= '<section class="post-body">'.$articulo['content_short'].'</section>';
             $html .= '</article>';
         }
         $html .= '</section>';
+
         echo $html;
+        
 
         // total = post / limit - 1
         $total = ceil(count($posts)/$limit);
@@ -224,10 +202,10 @@ Barrio::actionAdd('Pagination', function ($name, $num = 3) {
 
 });
 
+/* - Barrio::actionRun('lastPosts',['num','name']);
+-------------------------------------------------*/
 Barrio::actionAdd('lastPosts', function ($num = 4,$name = '') {
-    $lang = (Barrio::urlSegment(0)) ? Barrio::urlSegment(0) : Barrio::$config['lang'];
-    $name = ($name) ? $name : 'blog';
-    $articulos = Barrio::pages($lang.'/'.$name, 'date', 'DESC', ['index','404'], $num);
+    $articulos = Barrio::pages($name, 'date', 'DESC', ['index','404'], $num);
     $html = '<div class="lastPosts">';
     foreach ($articulos as $articulo) {
         $date =  date('d/m/Y', $articulo['date']);

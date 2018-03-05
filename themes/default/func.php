@@ -31,11 +31,11 @@ if (!function_exists('arrayOfMenu')) {
                             // active page
                             $active = Barrio::urlCurrent();
                             if ($active == $k) {
-                                $html .= '<li class="nav-item "><a  class="nav-link active"href="'.trim(Barrio::urlBase().'/'.$k).'">
+                                $html .= '<li class="nav-item "><a  class="nav-link active"href="'.trim(Barrio::urlBase().$k).'">
                                     '.ucfirst($v).'
                                 </a></li>';
                             } else {
-                                $html .= '<li class="nav-item"><a  class="nav-link"href="'.trim(Barrio::urlBase().'/'.$k).'">
+                                $html .= '<li class="nav-item"><a  class="nav-link"href="'.trim(Barrio::urlBase().$k).'">
                                     '.ucfirst($v).'
                                 </a></li>';
                             }
@@ -60,14 +60,9 @@ if (!function_exists('menu')) {
     function menu()
     {
         $arr = Barrio::$config[ 'menu' ];
-        $key = Barrio::urlSegment(0);
-        $nav = $arr[$key];
-        $html = '';
-        // key in array exits !
-        if (array_key_exists($key, $arr)) {
-            $html .= arrayOfMenu($nav);
-            return $html;
-        }
+        $nav = $arr;
+        $html = arrayOfMenu($nav);
+        return $html;
     }
 }
 
@@ -82,64 +77,23 @@ if (!function_exists('blog')) {
     function blog($name = '')
     {
         $blog = Barrio::$config['blog'];
-        $lang = (Barrio::urlSegment(0)) ?  Barrio::urlSegment(0) : Barrio::$config['lang'];
-        if (array_key_exists($lang, $blog)) {
-            return $blog[$lang][$name];
+        return $blog[$name];
+    }
+}
+
+if (!function_exists('config')) {
+    /**
+     * Get config data
+     *
+     * @param string $name the name of array
+     * 
+     * @return string
+     */
+    function config($name = '')
+    {
+        if($name){
+            return Barrio::$config[$name];
         }
     }
 }
 
-
-
-/**
-*  Galeria
-*   {Galeria}
-*       Imagen
-*   {/Galeria}
-*/
-Barrio::shortCodeAdd('Galeria', function ($attrs, $contenido) {
-    extract($attrs);
-    $content  = '<div id="mansory">';
-    $content .=      $contenido;
-    $content .= '</div>';
-    $resultado = Barrio::applyFilter('content',$content);
-    $resultado = preg_replace('/\s+/', ' ', $resultado);
-
-    if ($contenido) {
-        return $resultado;
-    } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el contenido</span>";
-    }
-});
-
-/**
-*  Imagen
-*  {Imagen title='project' texto='El texto' img='{url}/content/imagenes/pequenas/1.jpg'}
-*/
-Barrio::shortcodeAdd('Imagen', function ($atributos) {
-    extract($atributos);
-    // atributos
-    $link = (isset($link)) ? $link : '#';
-    $img = (isset($img)) ? $img : '';
-    $title = (isset($title)) ? $title : '';
-    $texto = (isset($texto)) ? $texto : '';
-
-    $discover = (Barrio::urlSegment(0) == 'es') ? 'Descubre' : 'Discover';
-
-    // si no hay imagen el shortcode no funciona
-    if ($img) {
-        $html = '<div class="grid-image">';
-        $html .= '<a href="'.$link.'" class="black-image-project-hover">';
-        $html .= '  <img src="'.$img.'" alt="Image" class="img-responsive">';
-        $html .= '</a>';
-        $html .= '<a href="'.$link.'"  class="card-container">';
-        $html .= '  <h3>'.$title.'</h3>';
-        $html .= '  <p>'.$texto.'</p>';
-        $html .= '</a>';
-        $html .= '</div>';
-        $html = preg_replace('/\s+/', ' ', $html);
-        return $html;
-    } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el imagen</span>";
-    }
-});

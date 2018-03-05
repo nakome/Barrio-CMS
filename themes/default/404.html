@@ -2,14 +2,16 @@
 <?php include 'inc/header.inc.html' ?>
 <div class="container">
 	<div class="row">
-		<div class="col-md-6 mr-auto ml-auto mb-5">
-		    <form id="buscar" method="post">
-		      <label class="sr-only" for="texto">Buscar Pagina</label>
-		      <div class="input-group mb-2 mb-sm-0">
-		        <div class="input-group-addon"><i class="icon-search"></i></div>
-		        <input type="search" name="buscar" id="texto" class="form-control" placeholder="Buscar pagina">
+		<div class="col-md-12 mb-5">
+
+		    <form id="buscar" method="post" class="form-inline">
+		      <label class="sr-only" for="texto" ><?php echo Blog('search_btn');?></label>
+		      <div class="form-group mx-sm-3 mb-2">
+		        <input type="search" name="buscar" id="texto" class="form-control" placeholder="<?php echo Blog('search_title');?>">
 		      </div>
+		      <input type="submit" class="btn btn-primary mb-2" value="<?php echo Blog('search_btn');?>"/>
 		    </form>
+		    
 		</div>
 	</div>
     <div class="row">
@@ -20,4 +22,5 @@
         </div>
     </div>
 </div>
+<?php include 'inc/prefooter.inc.html' ?>
 <?php include 'inc/footer.inc.html' ?>

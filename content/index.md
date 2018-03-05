@@ -1,4 +1,6 @@
 Title: Barrio CMS
-Description: Sistema de gestión de contenidos en formato Flat File
-Template: root
+Description: Sistema de Gestion de Contenidos en formato Flat File
+Robots: index,follow
+Template: home
 ----
+

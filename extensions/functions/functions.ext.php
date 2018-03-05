@@ -44,7 +44,7 @@ if (!function_exists('isHome')) {
      */
     function isHome()
     {
-        $url = Barrio::urlSegment(1);
+        $url = Barrio::urlSegment(0);
         if (empty($url)) {
             return true;
         }

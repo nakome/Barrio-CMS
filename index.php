@@ -14,7 +14,7 @@ define('EXTENSIONS', ROOT.'/extensions');
 
 // development mode is true
 // for production change to false
-define('DEV', true);
+define('DEV', false);
 if (DEV) {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);

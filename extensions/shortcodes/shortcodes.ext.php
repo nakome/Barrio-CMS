@@ -458,7 +458,15 @@ Barrio::shortCodeAdd('Config', function ($attrs) {
     }
 });
 
-
+/**
+*   {Divider}
+*   {Divider num='2'}
+*/
+Barrio::shortCodeAdd('divider', function ($attrs) {
+    extract($attrs);
+    $num = (isset($num)) ? $num : '5';
+    return '<hr class="mt-'.$num.' mb-'.$num.'" />';
+});
 
 /**
  * {Contacto} // usa el del config.php
@@ -468,33 +476,16 @@ Barrio::shortCodeAdd('Contacto', function ($atributos) {
     extract($atributos);
     // atributos
     $mail = (isset($mail)) ? $mail : Barrio::$config['email'];
-    $lang = (Barrio::urlSegment(0)) ? Barrio::urlSegment(0) : Barrio::$config['charset'];
     $arrLang = array(
-        'es' => array(
-            'email'     => 'Email',
-            'subject'   => 'Asunto',
-            'message'   => 'Mensaje',
-            'send'      => 'Enviar Correo',
-            'error'     => 'Lo siento hubo un problema al enviarlo por favor intentelo otra vez',
-            'success'   => 'Gracias tu mensaje ha sido enviado'
-        ),
-        'en' => array(
-            'email'     => 'Email',
-            'subject'   => 'Subject',
-            'message'   => 'Message',
-            'send'      => 'Send email',
-            'error'     => 'Sorry, The email was not send please try again',
-            'success'   => 'Thanks, The email has been send'
-        )
+        'email'     => 'Email',
+        'subject'   => 'Asunto',
+        'message'   => 'Mensaje',
+        'send'      => 'Enviar Correo',
+        'error'     => 'Lo siento hubo un problema al enviarlo por favor intentelo otra vez',
+        'success'   => 'Gracias tu mensaje ha sido enviado'
     );
 
-    $language = array();
-    if (array_key_exists($lang, $arrLang)){
-        $language = $arrLang[$lang];
-    } else {
-        $language = $arrLang['en'];
-    }
-
+    $language = $arrLang;
 
     $error = '';
     if (isset($_POST['Submit'])) {
