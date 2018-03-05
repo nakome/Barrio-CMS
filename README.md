@@ -1,5 +1,5 @@
 
-![Barrio CMS](./themes/default/screenshot.jpg)
+![Barrio CMS](./themes/default/screenshot.jpeg)
 
 
 ### Requisitos

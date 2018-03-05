@@ -1,6 +1,6 @@
 # Default theme
 
-![Default](screenshot.png);
+![Default](screenshot.jpeg);
 
 ## instalación
 
