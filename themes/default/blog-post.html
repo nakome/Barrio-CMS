@@ -1,40 +1,40 @@
-<?php include 'inc/head.inc.html' ?>
-<?php include 'inc/header.inc.html' ?>
+{Template: inc/head.inc.html}
+{Template: inc/header.inc.html}
 
 <main class="container">
     <section class="row">
         <div class="col-md-8">
-            <?php echo Barrio::actionRun('theme_before');?>
+            {Action: theme_before}
             <section class="posts">
-                <?php echo $page['content']; ?>
+                {$page.content}
             </section>
-            <?php echo Barrio::actionRun('theme_after');?>
+            {Action: theme_after}
         </div>
         <div class="col-md-4">
 
             <div class="card">
-              <img class="card-img-top" src="<?php echo Url();?>/<?php echo Blog('image');?>" alt="Card image cap">
+              <img class="card-img-top" src="{Site_url}/{$config.blog.image}" alt="Card image cap">
               <div class="card-body">
-                <h5 class="card-title"><?php echo Blog('title');?></h5>
-                <p class="card-text"><?php echo Blog('description');?></p>
+                <h5 class="card-title">{$config.blog.title}</h5>
+                <p class="card-text">{$config.blog.description}</p>
               </div>
             </div>
 
             <div class="card mt-2">
               <div class="card-body">
-                <h5 class="card-title"><?php echo Blog('search_title');?></h5>
+                <h5 class="card-title">{$config.blog.search_title}</h5>
                 <form id="buscar" method="post" class="card-text">
-                    <label class="sr-only" for="texto"><?php echo Blog('search_title');?></label>
-                    <input type="search" name="buscar" id="texto" class="form-control" placeholder="<?php echo Blog('search_btn');?>">
+                    <label class="sr-only" for="texto">{$config.blog.search_title}</label>
+                    <input type="search" name="buscar" id="texto" class="form-control" placeholder="{$config.blog.search_btn}">
                 </form>
               </div>
             </div>
 
             <div class="card mt-2">
               <div class="card-body">
-                <h5 class="card-title"><?php echo Blog('recent_posts');?></h5>
+                <h5 class="card-title">{$config.blog.recent_posts}</h5>
                 <div class="card-text">
-                    <?php echo Barrio::actionRun('lastPosts',[3,'blog']); ?>  
+                    {Last_posts} 
                 </div>
               </div>
             </div>
@@ -42,5 +42,5 @@
         </div>
     </section>
 </main>
-<?php include 'inc/prefooter.inc.html' ?>
-<?php include 'inc/footer.inc.html' ?>
+{Template: inc/prefooter.inc.html}
+{Template: inc/footer.inc.html}

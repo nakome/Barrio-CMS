@@ -22,6 +22,8 @@
         'email' => 'demo@gmail.com',
         // imagen por defecto
         'image' => 'content/imagenes/sin-imagen.svg',
+        // paginacion para el blog
+        'pagination' => 6,
         // blog
         'blog' => array(
             // blog image
@@ -35,19 +37,22 @@
             // Buscador boton
             'search_btn' => 'Buscar',
             // Articulos recientes
-            'recent_posts' => 'Articulos recientes'
+            'recent_posts' => 'Articulos recientes',
+            // ultimos articulos
+            'last_posts' => 3
         ),
         // navegacion
         'menu' => array(
             '/' => 'Inicio',
             '/acerca-de' => 'Acerca De',
             '/blog' => 'Blog',
-            '/contacto' => 'Contacto'
+            '/contacto' => 'Contacto',
+            '/admin' => 'Admin'
         ),
         // buscador
         'search' =>  array(
             'results_of' => 'Resultados de la busqueda',
-            'no_results' => 'No hay resultados',
+            'no_results' => 'No hay resultados de:',
             'read'       => 'Ir a enlace'
         ),
         // copyright

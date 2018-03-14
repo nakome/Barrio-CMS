@@ -3,14 +3,75 @@
 
 /**
  * ================================
- * Actions
+ * Functions
  * ================================
  */
 
+if (!function_exists('arrayOfMenu')) {
+    /**
+     * Transform array to menu
+     *
+     * @param array $nav the array of navigaiton
+     * 
+     * @return string
+     */
+    function arrayOfMenu($nav)
+    {
+        $html = '';
+        foreach ($nav as $k => $v) {
+            // key exists
+            if (array_key_exists($k, $nav)) {
+                // not empty
+                if ($k != '') {
+                    // external page
+                    if (preg_match("/http/i", $k)) {
+                        $html .= '<li class="nav-item"><a class="nav-link" href="'.$k.'">'.ucfirst($v).'</a></li>';
+                    } else {
+                        // is array
+                        if (is_array($v)) {
+                            // dropdown
+                            $html .= '<li class="nav-item dropdown">';
+                            $html .= '  <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">'.ucfirst($k).'</a>';
+                            $html .= '<ul class="dropdown-menu" aria-labelledby="navbarDropdown"> '.arrayOfMenu($v).'</ul>';
+                            $html .= '</li>';
+                        } else {
+                            // active page
+                            $active = Barrio::urlCurrent();
+                            if ($active == $k) {
+                                $html .= '<li class="nav-item "><a  class="nav-link active"href="'.trim(Barrio::urlBase().$k).'">
+                                    '.ucfirst($v).'
+                                </a></li>';
+                            } else {
+                                $html .= '<li class="nav-item"><a  class="nav-link"href="'.trim(Barrio::urlBase().$k).'">
+                                    '.ucfirst($v).'
+                                </a></li>';
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+        // show html
+        return $html;
+    }
+}
+
 
 /**
- * Buscador de archivos
+ * ================================
+ * Actions
+ * ================================
  */
+Barrio::actionAdd('navigation', function(){
+    $arr = Barrio::$config[ 'menu' ];
+    $nav = $arr;
+    $html = arrayOfMenu($nav);
+    echo $html;
+});
+
+/** Buscador de archivos
+ -------------------------------------------- */
 Barrio::actionAdd('theme_before', function () {
 
     $language = Barrio::$config['search'];
@@ -75,8 +136,6 @@ Barrio::actionAdd('theme_before', function () {
         }
     }
 });
-
-
 
 /* - Barrio::actionRun('Discus',['name','url']);
 -------------------------------------------------*/
@@ -216,4 +275,6 @@ Barrio::actionAdd('lastPosts', function ($num = 4,$name = '') {
     $html .= '</div>';
     echo $html;
 });
+
+
 

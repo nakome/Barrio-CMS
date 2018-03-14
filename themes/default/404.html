@@ -1,26 +1,21 @@
-<?php include 'inc/head.inc.html' ?>
-<?php include 'inc/header.inc.html' ?>
+{Template: inc/head.inc.html}
+{Template: inc/header.inc.html}
 <div class="container">
-	<div class="row">
-		<div class="col-md-12 mb-5">
-
-		    <form id="buscar" method="post" class="form-inline">
-		      <label class="sr-only" for="texto" ><?php echo Blog('search_btn');?></label>
-		      <div class="form-group mx-sm-3 mb-2">
-		        <input type="search" name="buscar" id="texto" class="form-control" placeholder="<?php echo Blog('search_title');?>">
-		      </div>
-		      <input type="submit" class="btn btn-primary mb-2" value="<?php echo Blog('search_btn');?>"/>
-		    </form>
-		    
-		</div>
-	</div>
     <div class="row">
-        <div class="col-md-12">
-            <?php echo Barrio::actionRun('theme_before');?>
-            <?php echo $page['content'];?>
-            <?php echo Barrio::actionRun('theme_after');?>
+        <div class="col-md-6 m-auto">
+            
+            <h5>{$config.blog.search_title}</h5>
+            <form id="buscar" method="post" class="mb-3">
+                <label class="sr-only" for="texto">{$config.blog.search_title}</label>
+                <input type="search" name="buscar" id="texto" class="form-control" placeholder="{$config.blog.search_btn}">
+            </form>
+
+
+            {Action: theme_before}
+            {$page.content}
+            {Action: theme_theme_after}
         </div>
     </div>
 </div>
-<?php include 'inc/prefooter.inc.html' ?>
-<?php include 'inc/footer.inc.html' ?>
+{Template: inc/prefooter.inc.html}
+{Template: inc/footer.inc.html}

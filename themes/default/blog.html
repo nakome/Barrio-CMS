@@ -1,15 +1,13 @@
-<?php include 'inc/head.inc.html' ?>
-<?php include 'inc/header.inc.html' ?>
-<main class="container">
-    <section class="row">
+{Template: inc/head.inc.html}
+{Template: inc/header.inc.html}
+<div class="container">
+    <div class="row">
         <div class="col-md-9 m-auto">
-            <?php echo Barrio::actionRun('theme_before');?>
-            <section class="posts">
-                <?php Barrio::actionRun('Pagination',['blog',6]); ?>
-            </section>
-            <?php echo Barrio::actionRun('theme_after');?>
+            {Action: theme_before}
+            {Blog_posts}
+            {Action: theme_theme_after}
         </div>
-     </section>
-</main>
-<?php include 'inc/prefooter.inc.html' ?>
-<?php include 'inc/footer.inc.html' ?>
+    </div>
+</div>
+{Template: inc/prefooter.inc.html}
+{Template: inc/footer.inc.html}

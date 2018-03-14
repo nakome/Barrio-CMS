@@ -1,6 +1,289 @@
 <?php
 
 
+
+/**
+ * Barrio CMS Tpl
+ *
+ * @author    Moncho Varela / Nakome <nakome@gmail.com>
+ * @copyright 2016 Moncho Varela / Nakome <nakome@gmail.com>
+ *
+ * @version 0.0.1
+ *
+ */
+
+class Tpl
+{
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+
+        // tags
+        $this->tags = array(
+
+            // date
+            '{date}' => '<?php echo date("d-m-Y");?>',
+            // year
+            '{Year}' => '<?php echo date("Y");?>',
+
+            // site url
+            '{Site_url}' => '<?php echo Barrio::urlBase();?>',
+            '{Site_current}' => '<?php echo Barrio::UrlCurrent();?>',
+
+
+            // last posts
+            '{Last_posts}' => '<?php echo Barrio::actionRun("lastPosts",[Barrio::$config["blog"]["last_posts"],"blog"]);?>',
+            '{Blog_posts}' => '<?php echo Barrio::actionRun("Pagination",["blog",Barrio::$config["pagination"]]);?>',
+            // pagination for other folder of content not blog
+            '{Pages: ([^}]*)}' => '<?php echo Barrio::actionRun("Pagination",["$1",Barrio::$config["pagination"]]);?>',
+
+
+            // comment
+            //{* comment *}
+            '{\*(.*?)\*}' => '<?php echo "\n";?>',
+
+            // confitional
+            '{If: ([^}]*)}' => '<?php if ($1): ?>',
+            '{Else}' => '<?php else: ?>',
+            '{Elseif: ([^}]*)}' => '<?php elseif ($1): ?>',
+            '{\/If}' => '<?php endif; ?>',
+
+            // segments
+            '{Segment: ([^}]*)}' => '<?php if (Barrio::urlSegments(0) == "$1"): ?>',
+            '{\/Segment}' => '<?php endif; ?>',
+
+            // loop
+            '{Loop: ([^}]*) as ([^}]*)=>([^}]*)}' => '<?php $counter = 0; foreach (%%$1 as $2=>$3): ?>',
+            '{Loop: ([^}]*) as ([^}]*)}' => '<?php $counter = 0; foreach (%%$1 as $key => $2): ?>',
+            '{Loop: ([^}]*)}' => '<?php $counter = 0; foreach (%%$1 as $key => $value): ?>',
+            '{\/Loop}' => '<?php $counter++; endforeach; ?>',
+
+            // vars
+            // {?= 'hello world' ?}
+            '{\?(\=){0,1}([^}]*)\?}' => '<?php if(strlen("$1")) echo $2; else $2; ?>',
+
+            // {? 'hello world' ?}
+            '{(\$[a-zA-Z\-\._\[\]\'"0-9]+)}' => '<?php echo %%$1; ?>',
+
+            // encode & decode
+            '{(\$[a-zA-Z\-\._\[\]\'"0-9]+)\|encode}' => '<?php echo base64_encode(%%$1); ?>',
+            '{(\$[a-zA-Z\-\._\[\]\'"0-9]+)\|decode}' => '<?php echo base64_decode(%%$1); ?>',
+
+            // capitalize
+            '{(\$[a-zA-Z\-\._\[\]\'"0-9]+)\|capitalize}' => '<?php echo ucfirst(%%$1); ?>',
+
+            // {$page.content|e}
+            '{(\$[a-zA-Z\-\._\[\]\'"0-9]+)\|e}' => '<?php echo htmlspecialchars(%%$1, ENT_QUOTES | ENT_HTML5, "UTF-8"); ?>',
+
+            // {$page.content|parse}
+            '{(\$[a-zA-Z\-\._\[\]\'"0-9]+)\|parse}' => '<?php echo html_entity_decode(%%$1, ENT_QUOTES); ?>',
+            // md5
+            '{(\$[a-zA-Z\-\._\[\]\'"0-9]+)\|md5}' => '<?php echo md5(%%$1); ?>',
+            // sha1
+            '{(\$[a-zA-Z\-\._\[\]\'"0-9]+)\|sha1}' => '<?php echo sha1(%%$1); ?>',
+
+            // actions
+            '{Action: ([a-zA-Z\-\._\[\]\'"0-9]+)}' => '<?php Barrio::actionRun(\'$1\'); ?>',
+            // include
+            '{Include: (.+?\.[a-z]{2,4})}' => '<?php include_once(ROOT."/$1"); ?>',
+            // template
+            '{Template: (.+?\.[a-z]{2,4})}' => '<?php include_once(ROOT."/themes/".$config["theme"]."/$1"); ?>',
+            // assets
+            '{Assets: (.+?\.[a-z]{2,4})}' => '<?php echo Barrio::urlBase()."/themes/".Barrio::$config["theme"]."/assets/$1" ?>'
+        );
+
+        $this->tmp =  ROOT.'/tmp/';
+        if (!file_exists($this->tmp)) {
+            mkdir($this->tmp);
+        }
+    }
+
+
+    /**
+     * Callback
+     *
+     * @param mixed $variable the var
+     *
+     * @return mixed
+     */
+    public function callback($variable)
+    {
+        if (!is_string($variable) && is_callable($variable)) {
+            return $variable();
+        }
+        return $variable;
+    }
+
+    /**
+     *  Set var
+     *
+     * @param string $name  the key
+     * @param string $value the value
+     *
+     * @return mixed
+     */
+    public function set($name, $value)
+    {
+        $this->data[$name] = $value;
+        return $this;
+    }
+
+    /**
+     * Append data in array
+     *
+     * @param string $name  the key
+     * @param string $value the value
+     *
+     * @return null
+     */
+    public function append($name, $value)
+    {
+        $this->data[$name][] = $value;
+    }
+
+    /**
+     * Parse content
+     *
+     * @param string $content the content
+     *
+     * @return string
+     */
+    private function _parse($content)
+    {
+        // replace tags with PHP
+        foreach ($this->tags as $regexp => $replace) {
+            if (strpos($replace, 'self') !== false) {
+                $content = preg_replace_callback('#'.$regexp.'#s', $replace, $content);
+            } else {
+                $content = preg_replace('#'.$regexp.'#', $replace, $content);
+            }
+        }
+
+        // replace variables
+        if (preg_match_all('/(\$(?:[a-zA-Z0-9_-]+)(?:\.(?:(?:[a-zA-Z0-9_-][^\s]+)))*)/', $content, $matches)) {
+            for ($i = 0; $i < count($matches[1]); $i++) {
+                // $a.b to $a["b"]
+                $rep = $this->_replaceVariable($matches[1][$i]);
+                $content = str_replace($matches[0][$i], $rep, $content);
+            }
+        }
+
+        // remove spaces betweend %% and $
+        $content = preg_replace('/\%\%\s+/', '%%', $content);
+
+        // call cv() for signed variables
+        if (preg_match_all('/\%\%(.)([a-zA-Z0-9_-]+)/', $content, $matches)) {
+            for ($i = 0; $i < count($matches[2]); $i++) {
+                if ($matches[1][$i] == '$') {
+                    $content = str_replace($matches[0][$i], 'self::callback($'.$matches[2][$i].')', $content);
+                } else {
+                    $content = str_replace($matches[0][$i], $matches[1][$i].$matches[2][$i], $content);
+                }
+            }
+        }
+
+        return $content;
+    }
+
+    /**
+     * Run file
+     *
+     * @param string $file    the file
+     * @param int    $counter the counter
+     *
+     * @return string
+     */
+    private function _run($file, $counter = 0)
+    {
+        $pathInfo = pathinfo($file);
+        $tmpFile = $this->tmp.$pathInfo['basename'];
+
+        if (!is_file($file)) {
+            echo "Template '$file' not found.";
+        } else {
+            $content = file_get_contents($file);
+
+            if ($this->_searchTags($content) && ($counter < 3)) {
+                file_put_contents($tmpFile, $content);
+                $content = $this->_run($tmpFile, ++$counter);
+            }
+            file_put_contents($tmpFile, $this->_parse($content));
+
+            extract($this->data, EXTR_SKIP);
+
+            ob_start();
+            include $tmpFile;
+            if(!DEV_MODE) unlink($tmpFile);
+            return ob_get_clean();
+        }
+    }
+
+    /**
+     * Draw file
+     *
+     * @param string $file the file
+     *
+     * @return string
+     */
+    public function draw($file)
+    {
+        if (preg_match('#inc(\/modules\/[^"]*\/)view\/([^"]*.'.pathinfo($file, PATHINFO_EXTENSION).')#', $file, $m)) {
+            $themeFile = THEMES.'/'.$this->core->settings->get('settings.theme').$m[1].$m[2];
+            if(is_file($themeFile)) $file = $themeFile;
+        }
+        $result = $this->_run($file);
+        return $result;
+    }
+
+    /**
+     *  Comment
+     *
+     * @param string $content the content
+     *
+     * @return null
+     */
+    public function comment($content)
+    {
+        return null;
+    }
+
+    /**
+     *  Search Tags
+     *
+     * @param string $content the content
+     *
+     * @return boolean
+     */
+    private function _searchTags($content)
+    {
+        foreach ($this->tags as $regexp  => $replace) {
+            if(preg_match('#'.$regexp.'#sU', $content, $matches))
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * Dot notation
+     *
+     * @param string $var the var
+     *
+     * @return string
+     */
+    private function _replaceVariable($var)
+    {
+        if (strpos($var, '.') === false) {
+            return $var;
+        }
+        return preg_replace('/\.([a-zA-Z\-_0-9]*(?![a-zA-Z\-_0-9]*(\'|\")))/', "['$1']", $var);
+    }
+}
+
+
 /**
  * Barrio CMS
  *
@@ -777,8 +1060,11 @@ class Barrio
      */
     public function init($path)
     {
+
         // Load config
         $this->loadConfig($path);
+
+
         // configure timezone
         @ini_set('date.timezone', static::$config['timezone']);
         if (function_exists('date_default_timezone_set')) {
@@ -786,13 +1072,20 @@ class Barrio
         } else {
             putenv('TZ='.static::$config['timezone']);
         }
+
+
+
         // Sanitize url
         self::runSanitize();
+
+
         // charset
         header('Content-Type: text/html; charset='.static::$config['charset']);
         function_exists('mb_language') and mb_language('uni');
         function_exists('mb_regex_encoding') and mb_regex_encoding(static::$config['charset']);
         function_exists('mb_internal_encoding') and mb_internal_encoding(static::$config['charset']);
+
+
 
         // no magic quotes
         if (get_magic_quotes_gpc()) {
@@ -812,10 +1105,20 @@ class Barrio
             array_walk_recursive($_COOKIE, 'stripslashesGPC');
             array_walk_recursive($_REQUEST, 'stripslashesGPC');
         }
+
+
         // load session
         !session_id() and @session_start();
+
+
+        // init templating
+        $Tpl = new Tpl();
+
+
         // load the extensions
         $this->loadExtensions();
+        
+
         // load current page
         $page = $this->page(Barrio::urlCurrent());
 
@@ -838,14 +1141,22 @@ class Barrio
         empty($page['published']) and $page['published'] = '';
         empty($page['keywords']) and $page['keywords'] = static::$config['keywords'];
 
+
         $page = $page;
         $config = self::$config;
         $layout = !empty($page['template']) ? $page['template'] : 'index';
 
+        // segment
+        $Tpl->set('Segment', Barrio::urlSegment(0));
+
         // published
         $page['published'] = $page['published'] === 'false' ? false : true;
         if ($page['published']) {
-            include THEMES.'/'.$config['theme'].'/'.$layout.'.html';
+            // use templating
+            $Tpl->set('page', $page);
+            $Tpl->set('config', $config);
+            echo $Tpl->draw(THEMES.'/'.$config['theme'].'/'.$layout.'.html');
+
         } else {
             $this->errorPage($page);
         }
@@ -860,10 +1171,12 @@ class Barrio
      */
     public function errorPage($page = array())
     {
-        $page['title'] = '404 not Found';
-        $page['description'] = 'The site configured at this address does not contain the requested file.';
-        $page['robots'] = 'noindex,nofollow';
-        $page['content'] = 'The page Exists but is not published yet.';
-        include THEMES.'/'.self::$config['theme'].'/404.html';
+        $Tpl->set('title','404 not Found');
+        $Tpl->set('description','The site configured at this address does not contain the requested file.');
+        $Tpl->set('robots','noindex,nofollow');
+        $Tpl->set('content','The page Exists but is not published yet.');
+        $Tpl->set('config', self::$config);
+        echo $Tpl->draw(THEMES.'/'.self::$config['theme'].'/404.html');
+
     }
 }

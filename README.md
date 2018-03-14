@@ -115,3 +115,81 @@ Si esta dentro de una carpeta poner el nombre de ella
 
 
 
+### Variables Plantilla
+
+
+    {date} = fecha d-m-Y
+
+    {Year} = Año
+ 
+    {Site_url} = Url base
+
+    {Site_current}  = hash
+    
+    {* comment *} = Comentario
+
+    {Last_posts}  = Ultimos articulos
+
+    {Blog_posts} = Articulos
+
+    {Pages: demo} = Paginación de otra carpeta
+
+    // If else
+    {If: $Segment == '/'}
+        Estas en el inicio
+    {Elseif: $Segment == '/blog'}
+        Estas en el blog
+    {Else}
+        Estas en otro lado
+    {/If}
+
+    // comprueba el hash de ese momento
+    {Segment:  '/'}
+        Estas en el inicio
+    {/Segment}
+    
+    // loop
+    {Loop: $confit.blog as $item}
+        {$item.title}
+    {/Loop}
+
+    // loop key => value
+    {Loop: $confit.blog as $k=>$v}
+        {$k} = {$v}
+    {/Loop}
+
+    // icual que echo 'hola'
+    {?= 'hola' ?}
+
+    // codifica en Base uri
+    {$page.slug|encode}
+
+    // decodifica en Base uri
+    {$page.slug|decode}
+
+    // capitaliza
+    {$page.slug|capitalize}
+
+    // codifica en md5
+    {$page.slug|md5}
+
+    / codifica en sha1
+    {$page.slug|sha1}
+
+    // htmlspecialchars
+    {$page.content|e}
+
+    // html_entity_decode
+    {$page.content|parse}
+
+    // llamar una acción
+    {Action: navigation}
+
+    // include once
+    {Include: themes/default/inc/header.inc.html}
+
+    // include once en la carpeta de la plantilla actual
+    {Template: inc/header.inc.html}
+    
+    // carpeta assets
+    {Assets: img/logo.svg}
