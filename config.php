@@ -46,8 +46,7 @@
             '/' => 'Inicio',
             '/acerca-de' => 'Acerca De',
             '/blog' => 'Blog',
-            '/contacto' => 'Contacto',
-            '/admin' => 'Admin'
+            '/contacto' => 'Contacto'
         ),
         // buscador
         'search' =>  array(

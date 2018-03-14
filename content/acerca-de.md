@@ -18,27 +18,35 @@ Template: index
 
 {Blocks}
 
-{Block col='4'}
-#### Instalación instantánea
+{Card col='4'}
+### Instalación instantánea
 Carga algunos archivos en su servidor y eso es todo. No hay lucha con la configuración de la base de datos.
-{/Block}
+{/Card}
 
-{Block col='4'}
-#### Cualquier contenido
+{Card col='4'}
+### Cualquier contenido
 Artículos, galerías, páginas sencillas o hojas complejas de productos, Tú tienes el control de su contenido
-{/Block}
+{/Card}
 
-{Block col='4'}
-#### Edición Facíl
+{Card col='4'}
+### Edición Facíl
 Gracias a Markdown y los Shortcodes podremos crear gran contenido, Ya no podras usar otro.
-{/Block}
+{/Card}
 {/Blocks}
 
 
 {divider}
 
+{Alert type='info'}
+**Barrio** es diferente, todo su contenido se almacena como "archivos planos", que es casi exactamente como suena. Al utilizar **Barrio**, todo el contenido de su sitio se almacena como archivos de texto simples. Se mantiene fácilmente disponible para modificar, editar, organizar y migrar como mejor le parezca.
+{/Alert}
 
-> **Barrio** es diferente, todo su contenido se almacena como "archivos planos", que es casi exactamente como suena. Al utilizar **Barrio**, todo el contenido de su sitio se almacena como archivos de texto simples. Se mantiene fácilmente disponible para modificar, editar, organizar y migrar como mejor le parezca.
 
+{divider}
 
+### Agracedimientos
 
+- [Unsplash](unsplash.com)
+- [Bootstrap](getbootstrap.com)
+- [Iconmoon](https://icomoon.io/)
+- [Parsedown](http://parsedown.org)

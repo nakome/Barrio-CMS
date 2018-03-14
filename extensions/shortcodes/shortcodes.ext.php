@@ -469,10 +469,10 @@ Barrio::shortCodeAdd('divider', function ($attrs) {
 });
 
 /**
- * {Contacto} // usa el del config.php
- * {Contacto mail='nakome@demo.com'}
+ * {Contact} // usa el del config.php
+ * {Contact mail='nakome@demo.com'}
  */
-Barrio::shortCodeAdd('Contacto', function ($atributos) {
+Barrio::shortCodeAdd('Contact', function ($atributos) {
     extract($atributos);
     // atributos
     $mail = (isset($mail)) ? $mail : Barrio::$config['email'];

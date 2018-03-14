@@ -8,8 +8,10 @@ hr {
 	margin-bottom: 3em
 }
 
-h1, h2, h3, h4, h5 {
-	color: #009688
+main h1, main h2, main h3, main h4, main h5, main h6 {
+	padding-bottom: 0.5em;
+	color: #333;
+	font-weight: normal;
 }
 
 pre {
@@ -17,9 +19,15 @@ pre {
 	margin-bottom: 3em !important
 }
 
+blockquote {
+    background: #f3f3f3;
+    border-left: 5px solid #2780e3;
+    padding: 0.5em;
+    padding-left: 1em;
+    font-style: italic;
+}
 
 .header {
-
 	position: relative;
 	background: url(../img/header.jpg) no-repeat center center fixed rgba(0, 0, 0, 0);
 	background-size: cover;
@@ -33,7 +41,7 @@ pre {
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background: rgba(121, 85, 72, 0.29);
+	background: rgba(0, 0, 0, 0.93);
 }
 
 .navbar {
@@ -65,10 +73,10 @@ pre {
 	color: #e9ecef;
 	text-align: left;
 	list-style: none;
-	background-color: #222;
+	background-color: #222 !important;
 	background-clip: padding-box;
-	border: 1px solid #232322;
-	border-radius: 0
+	border: 1px solid #232322 !important;
+	border-radius: 0;
 }
 
 .dropdown.show {

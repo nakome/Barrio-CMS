@@ -189,7 +189,40 @@ Si esta dentro de una carpeta poner el nombre de ella
     {Include: themes/default/inc/header.inc.html}
 
     // include once en la carpeta de la plantilla actual
-    {Template: inc/header.inc.html}
+    {Partial: inc/header.inc.html}
     
     // carpeta assets
     {Assets: img/logo.svg}
+
+### Crear una Plantilla
+
+
+    {* incluimos las partes *}
+    {Partial: inc/head.inc.html}
+    {Partial: inc/header.inc.html}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 m-auto">
+                {* Action puede ser necesario para algunos plugins *}
+                {Action: theme_before}
+                {* variables $page *}
+                <h3>{$page.title}</h3>
+                <p>{$page.description}</p>
+                {$page.content}
+                {Action: theme_theme_after}
+            </div>
+        </div>
+    </div>
+    {Partial: inc/prefooter.inc.html}
+    {Partial: inc/footer.inc.html}
+
+En el archivo config tambien podemos crear contenido estatico y llamarlo con la variable `{$config}`.
+Por ejemplo podemos crear un array con algunos links por ejemplo:
+
+    'links' => array(
+        'uno' = 'url',
+        'dos' = 'url',
+        'tres' = 'url',
+    )
+
+Ahora solo tenemos que usar `{$config.links.uno}` o `{$config.links.dos`

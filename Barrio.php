@@ -11,7 +11,6 @@
  * @version 0.0.1
  *
  */
-
 class Tpl
 {
 
@@ -90,8 +89,8 @@ class Tpl
             '{Action: ([a-zA-Z\-\._\[\]\'"0-9]+)}' => '<?php Barrio::actionRun(\'$1\'); ?>',
             // include
             '{Include: (.+?\.[a-z]{2,4})}' => '<?php include_once(ROOT."/$1"); ?>',
-            // template
-            '{Template: (.+?\.[a-z]{2,4})}' => '<?php include_once(ROOT."/themes/".$config["theme"]."/$1"); ?>',
+            // partial
+            '{Partial: (.+?\.[a-z]{2,4})}' => '<?php include_once(ROOT."/themes/".$config["theme"]."/$1"); ?>',
             // assets
             '{Assets: (.+?\.[a-z]{2,4})}' => '<?php echo Barrio::urlBase()."/themes/".Barrio::$config["theme"]."/assets/$1" ?>'
         );
