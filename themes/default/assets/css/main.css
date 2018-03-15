@@ -44,60 +44,6 @@ blockquote {
 	background: rgba(0, 0, 0, 0.93);
 }
 
-.navbar {
-	z-index: 1024;
-	position: relative
-}
-
-@media (max-width:768px) {
-	.navbar {
-		background: rgba(0, 0, 0, .5) !important;
-		z-index: 1024;
-		position: relative
-	}
-
-}
-
-.nav-link {
-	text-transform: uppercase;
-	font-size: 12px
-}
-
-.navbar-brand img {
-	padding: 0 .5em
-}
-
-.dropdown-menu {
-	padding: .8rem .3rem;
-	margin: 0;
-	color: #e9ecef;
-	text-align: left;
-	list-style: none;
-	background-color: #222 !important;
-	background-clip: padding-box;
-	border: 1px solid #232322 !important;
-	border-radius: 0;
-}
-
-.dropdown.show {
-	background-color: #222;
-	border-bottom: 0
-}
-
-.dropdown-item {
-	color: #ccc;
-	padding: 0 1em 0 .4em;
-	line-height: 2;
-	text-transform: uppercase;
-	font-size: 12px
-}
-
-.dropdown-item:focus, .dropdown-item:hover {
-	color: #f8f9fa;
-	text-decoration: none;
-	background-color: #009688
-}
-
 .jumbotron {
 	position: relative
 }
