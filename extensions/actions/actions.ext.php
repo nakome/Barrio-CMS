@@ -204,7 +204,7 @@ Barrio::actionAdd('Pagination', function ($name, $num = 3) {
             $html .= '</hgroup>';
 
             // body
-            $html .= '<section class="post-body">'.$articulo['content_short'].'</section>';
+            $html .= '<section class="post-body">'.$articulo['content_short'].' ... <a class="post-read-more" href="'.$articulo['url'].'">Leer mas &rarr;</a></section>';
             $html .= '</article>';
         }
         $html .= '</section>';
