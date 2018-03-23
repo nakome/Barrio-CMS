@@ -8,7 +8,7 @@
  * @author    Moncho Varela / Nakome <nakome@gmail.com>
  * @copyright 2016 Moncho Varela / Nakome <nakome@gmail.com>
  *
- * @version 0.0.1
+ * @version 1.0.0
  *
  */
 class Tpl
@@ -409,7 +409,7 @@ class Tpl
  * @author    Moncho Varela / Nakome <nakome@gmail.com>
  * @copyright 2016 Moncho Varela / Nakome <nakome@gmail.com>
  *
- * @version 0.0.1
+ * @version 1.0.0
  *
  */
 
