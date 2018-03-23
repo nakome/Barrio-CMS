@@ -395,7 +395,7 @@ Barrio::shortCodeAdd('Code', function ($attrs, $content) {
     extract($attrs);
     $code = (isset($code)) ? $code : 'php';
     if ($content) {
-        $content = htmlentities($content);
+        $content = htmlentities(html_entity_decode($content));
         $output = Barrio::applyFilter('content', '<pre class="line-numbers language-'.$code.'"><code class="language-'.$code.'">'.$content.'</code></pre>');
         return $output;
     } else {
