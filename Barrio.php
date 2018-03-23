@@ -51,7 +51,7 @@ class Tpl
             '{\/If}' => '<?php endif; ?>',
 
             // segments
-            '{Segment: ([^}]*)}' => '<?php if (Barrio::urlSegments(0) == "$1"): ?>',
+            '{Segment: ([^}]*)}' => '<?php if (Barrio::UrlCurrent() == "$1"): ?>',
             '{\/Segment}' => '<?php endif; ?>',
 
             // loop
