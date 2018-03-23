@@ -9,8 +9,7 @@ Una de las mejores formas a mi a parecer de junto a **Markdown** hacen que sea m
 
 
 
-{more}
-
+{More}
 
 
 
@@ -18,6 +17,16 @@ Una de las mejores formas a mi a parecer de junto a **Markdown** hacen que sea m
 **Nota!** Si te fijas en el shortcode hay un espacio en el primer corchete, esto lo hago para que no se convierta en html solamente.
 {/Alert}
 
+
+
+
+## Divider
+
+{Code type='php'}
+{ Divider}
+// num = paddind top y bottom en em
+{ Divider num=3}
+{/Code}
 
 
 ## Iframes
@@ -65,12 +74,12 @@ Una de las mejores formas a mi a parecer de junto a **Markdown** hacen que sea m
 
 ## Texto
 
-{Code type='html'}// bg = color del fondo
-// color = color del texto
- { Texto bg='blue' color='white'}Text aqui{/Texto}
+{Code type='html'}// bg = Color del fondo
+// Color = Color del texto
+ { Texto bg='blue' Color='white'}Text aqui{/Texto}
 {/Code}
 
-{Texto bg='blue' color='white'}
+{Texto bg='blue' Color='white'}
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo necessitatibus, provident maiores vero dolorum saepe architecto quam rerum possimus assumenda, incidunt sit quis, qui at dolor minima dicta aperiam fuga.
 {/Texto}
 
@@ -100,23 +109,23 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo necessitatibus, pr
 
 **Color**
 
-{Code type='php'}// color = [primary|secondary|success|info|warning|danger|light|dark|link]
+{Code type='php'}// Color = [primary|secondary|success|info|warning|danger|light|dark|link]
 // text = texto del boton
 // id =  id del boton (opcional)
 // link = direcciÃ³n  (opcional)
-{ Btn color='dark' text='Link' link='//example.com'}
+{ Btn Color='dark' text='Link' link='//example.com'}
 {/Code}
 
 
-{Btn color='primary' text='Primary' link='http://example.com'}
-{Btn color='secondary' text='Secondary' link='http://example.com'}
-{Btn color='success' text='Success' link='http://example.com'}
-{Btn color='info' text='Info' link='http://example.com'}
-{Btn color='warning' text='Warning' link='http://example.com'}
-{Btn color='danger' text='Danger' link='http://example.com'}
-{Btn color='light' text='Light' link='http://example.com'}
-{Btn color='dark' text='Dark' link='http://example.com'}
-{Btn color='link' text='Link' link='http://example.com'}
+{Btn Color='primary' text='Primary' link='http://example.com'}
+{Btn Color='secondary' text='Secondary' link='http://example.com'}
+{Btn Color='success' text='Success' link='http://example.com'}
+{Btn Color='info' text='Info' link='http://example.com'}
+{Btn Color='warning' text='Warning' link='http://example.com'}
+{Btn Color='danger' text='Danger' link='http://example.com'}
+{Btn Color='light' text='Light' link='http://example.com'}
+{Btn Color='dark' text='Dark' link='http://example.com'}
+{Btn Color='link' text='Link' link='http://example.com'}
 
 
 
@@ -127,111 +136,111 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo necessitatibus, pr
 ### Columnas
 
 {Code type='php'}// cls = se le puede añadir cualquer classe
-{ Blocks}
+{ Row}
 
-// col = numero de columnas que al sumarse sean igual a 12
-{ Block col='4'}
+// Col = numero de Columnas que al sumarse sean igual a 12
+{ Col num='4'}
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Block}
+{/Col}
 
-{ Block col='4'}
+{ Col num='4'}
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Block}
+{/Col}
 
-{ Block col='4'}
+{ Col num='4'}
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Block}
+{/Col}
 
-{/Blocks}
+{/Row}
 {/Code}
 
 
-{Blocks}
+{Row}
 
-{Block col='4'}
-**col 4**
-
-Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Block}
-
-{Block col='4'}
-**col 4**
+{Col num='4'}
+**Col 4**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Block}
+{/Col}
 
-{Block col='4'}
-**col 4**
-
-Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Block}
-
-{/Blocks}
-
-
-{Blocks}
-
-{Block col='3'}
-**col 3**
+{Col num='4'}
+**Col 4**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Block}
-{Block col='3'}
-**col 3**
+{/Col}
+
+{Col num='4'}
+**Col 4**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Block}
-{Block col='3'}
-**col 3**
+{/Col}
+
+{/Row}
+
+
+{Row}
+
+{Col num='3'}
+**Col 3**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Block}
-{Block col='3'}
-**col 3**
+{/Col}
+{Col num='3'}
+**Col 3**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Block}
-{/Blocks}
-
-
-{Blocks}
-{Block col='6'}
-**col 6**
+{/Col}
+{Col num='3'}
+**Col 3**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Block}
-{Block col='6'}
-**col 6**
+{/Col}
+{Col num='3'}
+**Col 3**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Block}
-{/Blocks}
+{/Col}
+{/Row}
 
-{Blocks}
-{Block col='8'}
-**col 8**
+
+{Row}
+{Col num='6'}
+**Col 6**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Block}
-{Block col='4'}
-**col 4**
+{/Col}
+{Col num='6'}
+**Col 6**
+
+Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
+{/Col}
+{/Row}
+
+{Row}
+{Col num='8'}
+**Col 8**
+
+Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
+{/Col}
+{Col num='4'}
+**Col 4**
 
 Labore ipsum ea dolor labore deserunt magna magna.
-{/Block}
-{/Blocks}
+{/Col}
+{/Row}
 
-{Blocks}
-{Block col='4'}
-**col 4**
+{Row}
+{Col num='4'}
+**Col 4**
 
 Labore ipsum ea dolor labore deserunt magna magna.
-{/Block}
-{Block col='8'}
-**col 8**
+{/Col}
+{Col num='8'}
+**Col 8**
 
 Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-{/Block}
-{/Blocks}
+{/Col}
+{/Row}
 
 
 
@@ -240,140 +249,89 @@ Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod co
 ### Barra de progreso
 
 {Code type='php'}// size = Tamaño de la barra
-// color = [success | info | warning | danger ]
+// Color = [success | info | warning | danger ]
 // cls = otra clase
-{ ProgressBar  size='25' color='success'}
+{ Progress  size='25' Color='success'}
 {/Code}
 
-{ProgressBar  size='25' color='success'}
-{ProgressBar  size='30' color='info'}
-{ProgressBar  size='40' color='warning'}
-{ProgressBar  size='60' color='danger' cls='mb-5'}
-
-
-
-
-
-
-
-## Services
-
-{Code type='php'}{ Blocks cls='mt-4'}
-
-{ Service
-    icon='heart'
-    cls='mb-5'
-}
-### Crafted With Love
-Lorem ipsum dolor sit amet, consectetur adipisicing.
-{/Service}
-
-{ Service
-    icon='laptop'
-    cls='mb-5 text-center'
-}
-### Web Developement
-Lorem ipsum dolor sit amet, consectetur adipisicing.
-{/Service}
-
-{ Service
-    icon='video'
-    cls='mb-5 text-right'
-}
-### Video Editing
-Lorem ipsum dolor sit amet, consectetur adipisicing.
-{/Service}
-
-{/Blocks}
-{/Code}
-
-
-{Blocks cls='mt-4'}
-{Service icon='heart' cls='mb-5'}
-### Crafted With Love
-Lorem ipsum dolor sit amet, consectetur adipisicing.
-{/Service}
-{Service icon='laptop' cls='mb-5 text-center'}
-### Web Developement
-Lorem ipsum dolor sit amet, consectetur adipisicing.
-{/Service}
-{Service icon='video' cls='mb-5 text-right'}
-### Video Editing
-Lorem ipsum dolor sit amet, consectetur adipisicing.
-{/Service}
-{/Blocks}
-
-
+{Progress  size='25' Color='success'}
+{Progress  size='30' Color='info'}
+{Progress  size='40' Color='warning'}
+{Progress  size='60' Color='danger' cls='mb-5'}
 
 
 
 ## Cards
 
-{Code type='php'}// Blocks para agrupar
-// col = numero de columna que sume 12 en total en el Bloque
+{Code type='php'}// Row para agrupar
+// Col = numero de Columna que sume 12 en total en el Bloque
 // title =  titulo
 // img = imagen
 // cls = css class
-{ Blocks}
-{ Card col='4' title='heart' img='{ url}/content/imagenes/sin-imagen.svg'}
-Blocks que sumen 12 en total
+{ Row}
+{ Card num='4' title='heart' img='{ Url}/content/imagenes/sin-imagen.svg'}
+Row que sumen 12 en total
 
-{ Btn color='primary' text='Primary' id='btn' link='//example.com'}
+{ Btn Color='primary' text='Primary' id='btn' link='//example.com'}
 {/Card}
-{ Card col='4' title='heart' img='{ url}/content/imagenes/sin-imagen.svg'}
-Blocks que sumen 12 en total
+{ Card num='4' title='heart' img='{ Url}/content/imagenes/sin-imagen.svg'}
+Row que sumen 12 en total
 
-{ Btn color='primary' text='Primary' id='btn' link='//example.com'}
+{ Btn Color='primary' text='Primary' id='btn' link='//example.com'}
 {/Card}
-{ Card col='4' title='heart' img='{ url}/content/imagenes/sin-imagen.svg'}
-Blocks que sumen 12 en total
+{ Card num='4' title='heart' img='{ Url}/content/imagenes/sin-imagen.svg'}
+Row que sumen 12 en total
 
-{ Btn color='primary' text='Primary' id='btn' link='//example.com'}
+{ Btn Color='primary' text='Primary' id='btn' link='//example.com'}
 {/Card}
-{/Blocks}
+{/Row}
 {/Code}
 
 
 
 
 
-{Blocks}
-{Card col='4' title='heart' img='{url}/content/imagenes/sin-imagen.svg'}
-Blocks que sumen 12 en total
+{Row}
+{Card num='4' title='heart' img='{Url}/content/imagenes/sin-imagen.svg'}
+Row que sumen 12 en total
 
-{Btn color='primary' text='Primary' id='btn' link='//example.com'}
+{Btn Color='primary' text='Primary' id='btn' link='//example.com'}
 {/Card}
-{Card col='4' title='heart' img='{url}/content/imagenes/sin-imagen.svg'}
-Blocks que sumen 12 en total
+{Card num='4' title='heart' img='{Url}/content/imagenes/sin-imagen.svg'}
+Row que sumen 12 en total
 
-{Btn color='primary' text='Primary' id='btn' link='//example.com'}
+{Btn Color='primary' text='Primary' id='btn' link='//example.com'}
 {/Card}
-{Card col='4' title='heart' img='{url}/content/imagenes/sin-imagen.svg'}
-Blocks que sumen 12 en total
+{Card num='4' title='heart' img='{Url}/content/imagenes/sin-imagen.svg'}
+Row que sumen 12 en total
 
-{Btn color='primary' text='Primary' id='btn' link='//example.com'}
+{Btn Color='primary' text='Primary' id='btn' link='//example.com'}
 {/Card}
-{/Blocks}
+{/Row}
 
 
 
 
 
-## Accordions
+## Accordeones ( se necesita jQuery )
 
 {Code type='php'}// id = id del acordeon
 { Accordions id='acordeon'}
+
 // title = el titulo
 // cls = la clase ( si es active el acordeon se expande)
 { Accordion cls='active' title='Acordeon uno'}
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus sit similique quidem, sint veniam amet nostrum facilis eius consectetur. Doloremque fuga, libero veritatis itaque nisi numquam earum. Ipsum explicabo, quasi.
 {/Accordion}
+
 { Accordion  title='Acordeon dos'}
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic quam quasi, officia nulla est possimus fugit nesciunt, dolores dolore eaque. Consequatur, ipsa. Voluptas, laborum voluptatum aliquid doloribus quos praesentium quod.
 {/Accordion}
+
 { Acordeon  title='Acordeon tres'}
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adipisci cumque qui vitae nihil. Consequatur quo explicabo dolore quas, autem, temporibus repellendus nostrum qui in necessitatibus optio, non.
 {/Accordion}
+
 {/Accordions}
 {/Code}
 
@@ -423,7 +381,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adip
 {Icono_demo type='newspaper' texto=''}
 {Icono_demo type='notebook' texto=''}
 {Icono_demo type='book-open' texto=''}
-{Icono_demo type='browser' texto=''}
+{Icono_demo type='bRowser' texto=''}
 {Icono_demo type='calendar' texto=''}
 {Icono_demo type='presentation' texto=''}
 {Icono_demo type='picture' texto=''}
@@ -561,7 +519,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adip
 {Icono_demo type='plus2' texto=''}
 {Icono_demo type='left' texto=''}
 {Icono_demo type='up' texto=''}
-{Icono_demo type='browser2' texto=''}
+{Icono_demo type='bRowser2' texto=''}
 {Icono_demo type='windows' texto=''}
 {Icono_demo type='switch2' texto=''}
 {Icono_demo type='dashboard' texto=''}
@@ -586,22 +544,22 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adip
 {Icono_demo type='document-landscape' texto=''}
 {Icono_demo type='remove-user' texto=''}
 {Icono_demo type='warning' texto=''}
-{Icono_demo type='arrow-bold-down' texto=''}
-{Icono_demo type='arrow-bold-left' texto=''}
-{Icono_demo type='arrow-bold-right' texto=''}
-{Icono_demo type='arrow-bold-up' texto=''}
-{Icono_demo type='arrow-down' texto=''}
-{Icono_demo type='arrow-left' texto=''}
-{Icono_demo type='arrow-long-down' texto=''}
-{Icono_demo type='arrow-long-left' texto=''}
-{Icono_demo type='arrow-long-right' texto=''}
-{Icono_demo type='arrow-long-up' texto=''}
-{Icono_demo type='arrow-right' texto=''}
-{Icono_demo type='arrow-up' texto=''}
-{Icono_demo type='arrow-with-circle-down' texto=''}
-{Icono_demo type='arrow-with-circle-left' texto=''}
-{Icono_demo type='arrow-with-circle-right' texto=''}
-{Icono_demo type='arrow-with-circle-up' texto=''}
+{Icono_demo type='arRow-bold-down' texto=''}
+{Icono_demo type='arRow-bold-left' texto=''}
+{Icono_demo type='arRow-bold-right' texto=''}
+{Icono_demo type='arRow-bold-up' texto=''}
+{Icono_demo type='arRow-down' texto=''}
+{Icono_demo type='arRow-left' texto=''}
+{Icono_demo type='arRow-long-down' texto=''}
+{Icono_demo type='arRow-long-left' texto=''}
+{Icono_demo type='arRow-long-right' texto=''}
+{Icono_demo type='arRow-long-up' texto=''}
+{Icono_demo type='arRow-right' texto=''}
+{Icono_demo type='arRow-up' texto=''}
+{Icono_demo type='arRow-with-circle-down' texto=''}
+{Icono_demo type='arRow-with-circle-left' texto=''}
+{Icono_demo type='arRow-with-circle-right' texto=''}
+{Icono_demo type='arRow-with-circle-up' texto=''}
 {Icono_demo type='bookmark' texto=''}
 {Icono_demo type='bookmarks' texto=''}
 {Icono_demo type='chevron-down' texto=''}
@@ -647,7 +605,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adip
 {Icono_demo type='resize-100' texto=''}
 {Icono_demo type='resize-full-screen' texto=''}
 {Icono_demo type='save' texto=''}
-{Icono_demo type='select-arrows' texto=''}
+{Icono_demo type='select-arRows' texto=''}
 {Icono_demo type='sound-mute' texto=''}
 {Icono_demo type='sound' texto=''}
 {Icono_demo type='trash' texto=''}
@@ -682,12 +640,12 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adip
 {Icono_demo type='beamed-note' texto=''}
 {Icono_demo type='bell' texto=''}
 {Icono_demo type='blackboard' texto=''}
-{Icono_demo type='block' texto=''}
+{Icono_demo type='Col' texto=''}
 {Icono_demo type='book' texto=''}
 {Icono_demo type='bowl' texto=''}
 {Icono_demo type='box' texto=''}
 {Icono_demo type='briefcase2' texto=''}
-{Icono_demo type='browser3' texto=''}
+{Icono_demo type='bRowser3' texto=''}
 {Icono_demo type='brush' texto=''}
 {Icono_demo type='bucket' texto=''}
 {Icono_demo type='cake' texto=''}
@@ -707,7 +665,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adip
 {Icono_demo type='clock3' texto=''}
 {Icono_demo type='code' texto=''}
 {Icono_demo type='cog' texto=''}
-{Icono_demo type='colours' texto=''}
+{Icono_demo type='Colours' texto=''}
 {Icono_demo type='compass2' texto=''}
 {Icono_demo type='copy' texto=''}
 {Icono_demo type='credit-card' texto=''}
@@ -1165,7 +1123,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adip
 {Icono_demo type='eye3' texto=''}
 {Icono_demo type='eye-plus' texto=''}
 {Icono_demo type='eye-minus' texto=''}
-{Icono_demo type='eye-blocked' texto=''}
+{Icono_demo type='eye-Coled' texto=''}
 {Icono_demo type='bookmark3' texto=''}
 {Icono_demo type='bookmarks2' texto=''}
 {Icono_demo type='sun2' texto=''}
@@ -1226,7 +1184,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adip
 {Icono_demo type='minus2' texto=''}
 {Icono_demo type='info2' texto=''}
 {Icono_demo type='cancel-circle' texto=''}
-{Icono_demo type='blocked' texto=''}
+{Icono_demo type='Coled' texto=''}
 {Icono_demo type='cross3' texto=''}
 {Icono_demo type='checkmark' texto=''}
 {Icono_demo type='checkmark2' texto=''}
@@ -1261,22 +1219,22 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adip
 {Icono_demo type='loop22' texto=''}
 {Icono_demo type='infinite' texto=''}
 {Icono_demo type='shuffle2' texto=''}
-{Icono_demo type='arrow-up-left' texto=''}
-{Icono_demo type='arrow-up2' texto=''}
-{Icono_demo type='arrow-up-right' texto=''}
-{Icono_demo type='arrow-right2' texto=''}
-{Icono_demo type='arrow-down-right' texto=''}
-{Icono_demo type='arrow-down2' texto=''}
-{Icono_demo type='arrow-down-left' texto=''}
-{Icono_demo type='arrow-left2' texto=''}
-{Icono_demo type='arrow-up-left2' texto=''}
-{Icono_demo type='arrow-up22' texto=''}
-{Icono_demo type='arrow-up-right2' texto=''}
-{Icono_demo type='arrow-right22' texto=''}
-{Icono_demo type='arrow-down-right2' texto=''}
-{Icono_demo type='arrow-down22' texto=''}
-{Icono_demo type='arrow-down-left2' texto=''}
-{Icono_demo type='arrow-left22' texto=''}
+{Icono_demo type='arRow-up-left' texto=''}
+{Icono_demo type='arRow-up2' texto=''}
+{Icono_demo type='arRow-up-right' texto=''}
+{Icono_demo type='arRow-right2' texto=''}
+{Icono_demo type='arRow-down-right' texto=''}
+{Icono_demo type='arRow-down2' texto=''}
+{Icono_demo type='arRow-down-left' texto=''}
+{Icono_demo type='arRow-left2' texto=''}
+{Icono_demo type='arRow-up-left2' texto=''}
+{Icono_demo type='arRow-up22' texto=''}
+{Icono_demo type='arRow-up-right2' texto=''}
+{Icono_demo type='arRow-right22' texto=''}
+{Icono_demo type='arRow-down-right2' texto=''}
+{Icono_demo type='arRow-down22' texto=''}
+{Icono_demo type='arRow-down-left2' texto=''}
+{Icono_demo type='arRow-left22' texto=''}
 {Icono_demo type='circle-up' texto=''}
 {Icono_demo type='circle-right' texto=''}
 {Icono_demo type='circle-down' texto=''}
@@ -1321,13 +1279,13 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adip
 {Icono_demo type='subscript' texto=''}
 {Icono_demo type='superscript2' texto=''}
 {Icono_demo type='subscript2' texto=''}
-{Icono_demo type='text-color' texto=''}
+{Icono_demo type='text-Color' texto=''}
 {Icono_demo type='pagebreak' texto=''}
 {Icono_demo type='clear-formatting' texto=''}
 {Icono_demo type='table' texto=''}
 {Icono_demo type='table2' texto=''}
 {Icono_demo type='insert-template' texto=''}
-{Icono_demo type='pilcrow' texto=''}
+{Icono_demo type='pilcRow' texto=''}
 {Icono_demo type='ltr' texto=''}
 {Icono_demo type='rtl' texto=''}
 {Icono_demo type='section' texto=''}

@@ -3,7 +3,7 @@
 
 /**
  * ================================
- * Functions
+ *          Funciones
  * ================================
  */
 
@@ -60,7 +60,7 @@ if (!function_exists('arrayOfMenu')) {
 
 /**
  * ================================
- * Actions
+ *          Acciones
  * ================================
  */
 Barrio::actionAdd('navigation', function(){
@@ -137,34 +137,8 @@ Barrio::actionAdd('theme_before', function () {
     }
 });
 
-/* - Barrio::actionRun('Discus',['name','url']);
--------------------------------------------------*/
-Barrio::actionAdd('Discus', function ($name='', $url= '') {
-
-    Barrio::actionAdd('head', function () {
-        echo '<script id="dsq-count-scr" src="//barrio-cms.disqus.com/count.js" async></script>';
-    });
-
-    $html = '<div id="disqus_thread"></div>';
-    $html .= '<script id="dsq-count-scr" src="//barrio-cms.disqus.com/count.js" async></script>';
-    $html .='<script>
-    var disqus_config = function () {
-        this.page.url = "'.$url.'";
-        this.page.identifier = "'.sha1($url).'";
-    };
-    (function() {
-    var d = document, s = d.createElement("script");
-    s.src = "https://'.$name.'.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-    })();</script>';
-
-    echo $html;
-});
-
-
-/* - Barrio::actionRun('Pagination',['blog',6]);
--------------------------------------------------*/
+/** Paginación
+ -------------------------------------------- */
 Barrio::actionAdd('Pagination', function ($name, $num = 3) {
     // All pages
     $posts = Barrio::pages($name, 'date', 'DESC', ['index','404']);
@@ -261,7 +235,7 @@ Barrio::actionAdd('Pagination', function ($name, $num = 3) {
 
 });
 
-/* - Barrio::actionRun('lastPosts',['num','name']);
+/** Ultimos Articulos
 -------------------------------------------------*/
 Barrio::actionAdd('lastPosts', function ($num = 4,$name = '') {
     $articulos = Barrio::pages($name, 'date', 'DESC', ['index','404'], $num);

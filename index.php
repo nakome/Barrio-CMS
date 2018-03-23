@@ -1,8 +1,16 @@
 <?php
 
-if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-    exit('Barrio necesita PHP 5.3.0 en adelante.');
-}
+/**
+ * Barrio CMS
+ *
+ * @author    Moncho Varela / Nakome <nakome@gmail.com>
+ * @copyright 2016 Moncho Varela / Nakome <nakome@gmail.com>
+ *
+ * @version 0.0.1
+ *
+ */
+
+if (version_compare(PHP_VERSION, '5.3.0', '<'))  exit('Barrio necesita PHP 5.3.0 en adelante.');
 
 
 define('BARRIO', true);
@@ -10,22 +18,12 @@ define('ROOT', rtrim(dirname(__FILE__), '\\/'));
 define('CONTENT', ROOT.'/content');
 define('THEMES', ROOT.'/themes');
 define('EXTENSIONS', ROOT.'/extensions');
-
-
-// development mode is true
-// for production change to false
 define('DEV_MODE', false);
+
 if (DEV_MODE) {
+    error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    ini_set('track_errors', 1);
-    ini_set('html_errors', 1);
-    error_reporting(E_ALL | E_STRICT | E_NOTICE);
 } else {
-    ini_set('display_errors', 0);
-    ini_set('display_startup_errors', 0);
-    ini_set('track_errors', 0);
-    ini_set('html_errors', 0);
     error_reporting(0);
 }
 

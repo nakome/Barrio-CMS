@@ -14,7 +14,6 @@
 class Tpl
 {
 
-
     /**
      * Constructor
      */
@@ -230,10 +229,6 @@ class Tpl
      */
     public function draw($file)
     {
-        if (preg_match('#inc(\/modules\/[^"]*\/)view\/([^"]*.'.pathinfo($file, PATHINFO_EXTENSION).')#', $file, $m)) {
-            $themeFile = THEMES.'/'.$this->core->settings->get('settings.theme').$m[1].$m[2];
-            if(is_file($themeFile)) $file = $themeFile;
-        }
         $result = $this->_run($file);
         return $result;
     }
@@ -962,13 +957,13 @@ class Barrio
         }
 
         $content = $_content;
-        $content = str_replace('{url}', self::urlBase(), $_content);
-        $content = str_replace('{email}', self::$config['email'], $content);
-        $pos = strpos($content, '{more}');
+        $content = str_replace('{Url}', self::urlBase(), $_content);
+        $content = str_replace('{Email}', self::$config['email'], $content);
+        $pos = strpos($content, '{More}');
         if ($pos === false) {
             $content = static::applyFilter('content', $content);
         } else {
-            $content = explode('{more}', $content);
+            $content = explode('{More}', $content);
             $content['content_short'] = self::applyFilter('content', $content[0]);
             $content['content_full'] = self::applyFilter('content', $content[0].$content[1]);
         }

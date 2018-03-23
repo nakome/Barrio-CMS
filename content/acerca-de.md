@@ -12,11 +12,11 @@ Template: index
 
 
 
-{divider}
+{Divider}
 
 
 
-{Blocks}
+{Row}
 
 {Card col='4'}
 ### Instalación instantánea
@@ -32,17 +32,17 @@ Artículos, galerías, páginas sencillas o hojas complejas de productos, Tú ti
 ### Edición Facíl
 Gracias a Markdown y los Shortcodes podremos crear gran contenido, Ya no podras usar otro.
 {/Card}
-{/Blocks}
+{/Row}
 
 
-{divider}
+{Divider}
 
 {Alert type='info'}
 **Barrio** es diferente, todo su contenido se almacena como "archivos planos", que es casi exactamente como suena. Al utilizar **Barrio**, todo el contenido de su sitio se almacena como archivos de texto simples. Se mantiene fácilmente disponible para modificar, editar, organizar y migrar como mejor le parezca.
 {/Alert}
 
 
-{divider}
+{Divider}
 
 ### Agracedimientos
 

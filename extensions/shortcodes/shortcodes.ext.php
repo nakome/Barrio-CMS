@@ -20,7 +20,7 @@ Barrio::shortcodeAdd('Iframe', function ($attrs) {
         return $html;
         // si no se pone el atributo id que avise
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [ src ] not found</span>";
+        return "<span style=\"display: inline-block; background: #f55; color: white; padding: 2px 8px; border-radius: 4px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [ src ] no encontrado</span>";
     }
 });
 
@@ -43,7 +43,7 @@ Barrio::shortcodeAdd('Youtube', function ($atributos) {
         return $html;
         // si no se pone el atributo id que avise
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [ id ] not found.</span>";
+        return "<span style=\"display: inline-block; background: #f55; color: white; padding: 2px 8px; border-radius: 4px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [ id ] no encontrado.</span>";
     }
 });
 
@@ -66,7 +66,7 @@ Barrio::shortcodeAdd('Vimeo', function ($attrs) {
         return $html;
         // si no se pone el atributo id que avise
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error  [id] not found.</span>";
+        return "<span style=\"display: inline-block; background: #f55; color: white; padding: 2px 8px; border-radius: 4px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error  [id] no encontrado.</span>";
     }
 });
 
@@ -96,7 +96,7 @@ Barrio::shortcodeAdd('Text', function ($attrs, $content) {
     if ($content) {
         return $output;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [ content ] not found</span>";
+        return "<span style=\"display: inline-block; background: #f55; color: white; padding: 2px 8px; border-radius: 4px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [ content ] no encontrado</span>";
     }
 
 });
@@ -128,7 +128,7 @@ Barrio::shortcodeAdd('Alert', function ($attrs, $content) {
     if ($type) {
         return $content;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [type] not found</span>";
+        return "<span style=\"display: inline-block; background: #f55; color: white; padding: 2px 8px; border-radius: 4px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [type] no encontrado</span>";
     }
 });
 
@@ -158,20 +158,20 @@ Barrio::shortcodeAdd('Btn', function ($atributos) {
         $html = preg_replace('/\s+/', ' ', $html);
         return $html;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [text] not found</span>";
+        return "<span style=\"display: inline-block; background: #f55; color: white; padding: 2px 8px; border-radius: 4px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [text] no encontrado</span>";
     }
 });
 
 
 
 /**
-*  Blocks
-* - clase = css class
-*   {Blocks}
+*  Row
+* - cls = css class
+*   {Row}
 *       bloques que sumen 12 en total
-*   {/Blocks}
+*   {/Row}
 */
-Barrio::shortcodeAdd('Blocks', function ($attrs, $content) {
+Barrio::shortcodeAdd('Row', function ($attrs, $content) {
     extract($attrs);
     $cls = (isset($cls)) ? $cls : '';
 
@@ -197,17 +197,17 @@ Barrio::shortcodeAdd('Blocks', function ($attrs, $content) {
 
 
 /**
- * col = numero de columnas
+ * num = numero de columnas
  * clase = class
  *
- * {Block col='8'}
+ * {Col col='8'}
  *      texto en markdown
- * {/Block}
+ * {/Col}
  */
-Barrio::shortcodeAdd('Block', function ($attrs, $content) {
+Barrio::shortcodeAdd('Col', function ($attrs, $content) {
     extract($attrs);
     // atributos
-    $col = (isset($col)) ? $col : '6';
+    $num = (isset($num)) ? $num : '6';
     $cls = (isset($cls)) ? $cls : '';
     $style = (isset($style)) ? $style : '';
     $bg = (isset($bg)) ? $bg : '';
@@ -224,7 +224,7 @@ Barrio::shortcodeAdd('Block', function ($attrs, $content) {
     // convertir markdown
     $content = Parsedown::instance()->text($content);
     // enseñar
-    $content = Barrio::applyFilter('content', '<div class="col-md-'.$col.' '.$cls.'" style="'.$imageStyle.' '.$style.'">'.$content.'</div>');
+    $content = Barrio::applyFilter('content', '<div class="col-md-'.$num.' '.$cls.'" style="'.$imageStyle.' '.$style.'">'.$content.'</div>');
     $content = preg_replace('/\s+/', ' ', $content);
     return $content;
 });
@@ -236,9 +236,9 @@ Barrio::shortcodeAdd('Block', function ($attrs, $content) {
  * size = Tamaño de la barra
  * color = [success | info | warning | danger ]
  * clase = otra clase
- * {ProgressBar  size='25' color='primary'}
+ * {Progress  size='25' color='primary'}
 */
-Barrio::shortcodeAdd('ProgressBar', function ($attrs) {
+Barrio::shortcodeAdd('Progress', function ($attrs) {
     extract($attrs);
     // atributos
     $size = (isset($size)) ? $size : '25';
@@ -251,44 +251,6 @@ Barrio::shortcodeAdd('ProgressBar', function ($attrs) {
     $html = preg_replace('/\s+/', ' ', $html);
     return $html;
 });
-
-
-
-
-
-
-/**
-*  Bloques
-*  - icon = icono del servicio
-*  - cls = clase css
-*   {Service icon='heart'}
-*       bloques que sumen 12 en total
-*   {/Service}
-*/
-Barrio::shortcodeAdd('Service', function ($attrs, $content) {
-    extract($attrs);
-    // atributos
-    $icon = (isset($icon)) ? $icon : '#';
-    $col = (isset($col)) ? $col : '4';
-    $cls = (isset($cls)) ? $cls : 'text-center';
-    $content = Parsedown::instance()->text($content);
-    $output = Barrio::applyFilter('content', '<div class="holder-section">'.$content.'</div>');
-
-    $html = '<div class="col-md-'.$col.'  '.$cls.'">';
-    $html .= '<div class="mt-3 mb-3 p-3">';
-    $html .= '<i class="icon-big icon-'.$icon.' text-success"></i>';
-    $html .=  $output;
-    $html .= '  </div>';
-    $html .= '</div>';
-    $html = preg_replace('/\s+/', ' ', $html);
-    if ($content) {
-        return $html;
-    } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] not found</span>";
-    }
-});
-
-
 
 
 
@@ -324,7 +286,7 @@ Barrio::shortcodeAdd('Card', function ($attrs, $content) {
     if ($content) {
         return $html;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] not found</span>";
+        return "<span style=\"display: inline-block; background: #f55; color: white; padding: 2px 8px; border-radius: 4px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] no encontrado</span>";
     }
 });
 
@@ -347,7 +309,7 @@ Barrio::shortCodeAdd('Accordions', function ($attrs, $content) {
     if ($content) {
         return $html;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] not found</span>";
+        return "<span style=\"display: inline-block; background: #f55; color: white; padding: 2px 8px; border-radius: 4px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] no encontrado</span>";
     }
 });
 
@@ -376,7 +338,7 @@ Barrio::shortCodeAdd('Accordion', function ($attrs, $content) {
     if ($content) {
         return $html;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] not found</span>";
+        return "<span style=\"display: inline-block; background: #f55; color: white; padding: 2px 8px; border-radius: 4px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] no encontrado</span>";
     }
 });
 
@@ -405,7 +367,7 @@ Barrio::shortCodeAdd('Icon', function ($atributos) {
             return $html;
         }
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [type] not found/span>";
+        return "<span style=\"display: inline-block; background: #f55; color: white; padding: 2px 8px; border-radius: 4px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [type] no encontrado/span>";
     }
 });
 
@@ -413,10 +375,10 @@ Barrio::shortCodeAdd('Icon', function ($atributos) {
 /*
  * ================================
  * Php
- * {php}echo 'holas';{/php}
+ * {Php}echo 'holas';{/Php}
  * ================================
  */
-Barrio::shortCodeAdd('php', function ($attr, $content) {
+Barrio::shortCodeAdd('Php', function ($attr, $content) {
     ob_start();
     eval("$content");
     return ob_get_clean();
@@ -437,7 +399,7 @@ Barrio::shortCodeAdd('Code', function ($attrs, $content) {
         $output = Barrio::applyFilter('content', '<pre class="line-numbers language-'.$code.'"><code class="language-'.$code.'">'.$content.'</code></pre>');
         return $output;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] not found</span>";
+        return "<span style=\"display: inline-block; background: #f55; color: white; padding: 2px 8px; border-radius: 4px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [content] no encontrado</span>";
     }
 });
 
@@ -454,7 +416,7 @@ Barrio::shortCodeAdd('Config', function ($attrs) {
     if ($name) {
         return Barrio::$config[$name];
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el atributo name</span>";
+        return "<span style=\"display: inline-block; background: #f55; color: white; padding: 2px 8px; border-radius: 4px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el atributo name</span>";
     }
 });
 
@@ -462,7 +424,7 @@ Barrio::shortCodeAdd('Config', function ($attrs) {
 *   {Divider}
 *   {Divider num='2'}
 */
-Barrio::shortCodeAdd('divider', function ($attrs) {
+Barrio::shortCodeAdd('Divider', function ($attrs) {
     extract($attrs);
     $num = (isset($num)) ? $num : '5';
     return '<hr class="mt-'.$num.' mb-'.$num.'" />';
@@ -545,7 +507,7 @@ Barrio::shortcodeAdd('Icono_demo', function ($attrs) {
         $html = preg_replace('/\s+/', ' ', $html);
         return $html;
     } else {
-        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el type</span>";
+        return "<span style=\"display: inline-block; background: #f55; color: white; padding: 2px 8px; border-radius: 4px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Este shortocode le falta el type</span>";
     }
 });
 

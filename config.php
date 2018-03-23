@@ -1,7 +1,5 @@
 <?php
 
-    // en md {Config name='facebook'}
-    // en html echo Barrio::$config['facebook']; 
     return array(
         'lang' => 'es',
         // charset
