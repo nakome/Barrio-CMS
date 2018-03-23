@@ -512,6 +512,35 @@ Barrio::shortcodeAdd('Icono_demo', function ($attrs) {
 });
 
 
+/**
+*  Var show template part
+*  {Var name='Action: theme_after'}
+*/
+Barrio::shortCodeAdd('Var', function ($attrs) {
+    extract($attrs);
+    // atributos
+    $name = (isset($name)) ? $name : '';
+    if ($name) {
+        return htmlentities(html_entity_decode('&#10100;'.$name.'&#10101;'));
+    } else {
+        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [name] not found</span>";
+    }
+});
+
+/**
+*  Fn show template part
+*  {Fn name='var_dump($page)'}
+*/
+Barrio::shortCodeAdd('Fn', function ($attrs) {
+    extract($attrs);
+    // atributos
+    $name = (isset($name)) ? $name : '';
+    if ($name) {
+        return htmlentities(html_entity_decode('&#10100;?= '.$name.' ?&#10101;'));
+    } else {
+        return "<span style=\"display: inline-block; background: red; color: white; padding: 2px 8px; border-radius: 10px; font-family: 'Lucida Console', Monaco, monospace, sans-serif; font-size: 80%\"><b>Barrio</b>: Error [name] not found</span>";
+    }
+});
 
 
 
