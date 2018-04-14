@@ -19,13 +19,13 @@
         // correo
         'email' => 'demo@gmail.com',
         // imagen por defecto
-        'image' => 'content/imagenes/sin-imagen.svg',
+        'image' => 'public/imagenes/placeholder_wide.jpg',
         // paginacion para el blog
         'pagination' => 6,
         // blog
         'blog' => array(
             // blog image
-            'image' => 'content/imagenes/sin-imagen.svg',
+            'image' => 'public/imagenes/placeholder.jpg',
             // Blog titulo
             'title' => 'Chuck Gomez',
              // Blog descripcción
@@ -44,6 +44,7 @@
             '/' => 'Inicio',
             '/acerca-de' => 'Acerca De',
             '/blog' => 'Blog',
+            '/portafolio' => 'Portafolio',
             '/contacto' => 'Contacto'
         ),
         // buscador

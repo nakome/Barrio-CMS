@@ -1,5 +1,6 @@
 Title: Shortcodes plantilla
 Description:  Shortcodes que se pueden usar en la plantilla
+Image: public/imagenes/placeholder_wide.jpg
 Template: blog-post
 
 ----

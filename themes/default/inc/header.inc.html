@@ -22,7 +22,7 @@
   </section>
 </header>
 {Else}
-<header class="header bg-dark mb-5 text-light">
+<header class="header mb-5 text-light" {If: $page.image} style="background-image:url({Site_url}/{$page.image})"  {/If}>
   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
     <a class="navbar-brand" href="{Site_url}">
       <img src="{Assets: img/logo.svg}" alt="{$page.title}" width="150">

@@ -155,3 +155,67 @@ blockquote {
 	margin: 0;
 	padding: 0
 }
+
+
+.portfolio {
+	clear:both;
+	overflow:hidden;
+}
+.portfolio-item{
+    float:left;
+    display:block;
+    width:calc(100%/3 - 1em);
+    margin:0.5em;
+    background:white;
+    border:1px solid #e6e6e6;
+}
+.portfolio-image{
+    padding:0;
+    max-height:15em;
+}
+.portfolio-title{
+	text-transform:capitalize;
+    font-size:1.3em;
+    margin:0em;
+    padding:0.4em;
+    background:white;
+    border-bottom:1px solid whitesmoke;
+}
+.portfolio-footer a,
+.portfolio-title a{
+    color:black;
+    transition:all 500ms ease;
+}
+.portfolio-footer a:hover,
+.portfolio-footer a:focus,
+.portfolio-title a:hover,
+.portfolio-title a:focus{
+	text-decoration:none;
+    color:#464646;
+    transition:all 500ms ease;
+}
+.portfolio-description {
+	margin:0;
+	padding:0.5em;
+	color:#666;
+}
+.portfolio-footer{
+	margin-top:0.4em;
+	padding:0.5em 1em;
+	background:#f9f9f9;
+	text-align:right;
+}
+
+@media (max-width:900px){
+	.portfolio-item{
+		width:calc(100%/2 - 1em);
+	}
+}
+
+@media (max-width:600px){
+	.portfolio-item{
+		margin:0;
+		float:none;
+		width:100%;
+	}
+}

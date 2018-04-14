@@ -16,9 +16,9 @@ Dolor qui nulla labore consectetur consectetur deserunt. Esse consequat irure do
 
 {Divider num=3}
 
-{Icon type='phone'} + 33 9 07 45 12 65
+{Icon type='mobile'} + 33 9 07 45 12 65
 
-{Icon type='email'} e-mail@mail.io
+{Icon type='envelope'} e-mail@mail.io
 
 {Icon type='map'} 42 rue Moulbert 75016 Paris
 

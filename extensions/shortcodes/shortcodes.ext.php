@@ -358,11 +358,11 @@ Barrio::shortCodeAdd('Icon', function ($atributos) {
     // si no hay imagen enseñar
     if ($type) {
         if($href){
-            $html = '<a class="hasIcon" href="'.$href.'"><i class="icon-'.$type.' '.$cls.'"></i> </a>';
+            $html = '<a class="hasIcon" href="'.$href.'"><i class="fab fa-'.$type.' '.$cls.'"></i> </a>';
             $html = preg_replace('/\s+/', ' ', $html);
             return $html;
         }else{
-            $html = '<i class="icon-'.$type.' '.$cls.'"></i> ';
+            $html = '<i class="fab fa-'.$type.' '.$cls.'"></i> ';
             $html = preg_replace('/\s+/', ' ', $html);
             return $html;
         }
@@ -501,7 +501,7 @@ Barrio::shortcodeAdd('Icono_demo', function ($attrs) {
     // si no hay imagen enseñar
     if ($type) {
         $html = '<div class="demo_icono">';
-        $html .= '<p class="text-center p-2"><i class="text-dark icon-'.$type.'"></i> <br>'.$type.'</p>';
+        $html .= '<p class="text-center p-2"><i class="text-dark fab fa-'.$type.'"></i> <br>'.$type.'</p>';
         $html .= '</div>';
 
         $html = preg_replace('/\s+/', ' ', $html);
@@ -542,7 +542,17 @@ Barrio::shortCodeAdd('Fn', function ($attrs) {
     }
 });
 
-
+/**
+*  Fn show template part
+*  {Space num=2'}
+*/
+Barrio::shortCodeAdd('Space', function ($attrs) {
+    extract($attrs);
+    // atributos
+    $num = (isset($num)) ? $num : '2';
+    $nbsp = '&nbsp;';
+    return str_repeat($nbsp, $num);
+});
 
 
 

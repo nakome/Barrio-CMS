@@ -38,7 +38,8 @@ if (!function_exists('arrayOfMenu')) {
                             // active page
                             $active = Barrio::urlCurrent();
                             $activeurl = str_replace('/', '', $k);
-                            if ($active == $activeurl) {
+
+                            if (preg_match("/$active/s",$k)) {
                                 $html .= '<li class="nav-item "><a  class="nav-link active"href="'.trim(Barrio::urlBase().$k).'">
                                     '.ucfirst($v).'
                                 </a></li>';
@@ -64,6 +65,20 @@ if (!function_exists('arrayOfMenu')) {
  *          Acciones
  * ================================
  */
+
+
+/** incluimos font awesome
+ -------------------------------------------- */
+Barrio::actionAdd('head',function(){
+    $urlOfCdn = 'https://use.fontawesome.com/releases/v5.0.10/css/all.css';
+    echo '<link rel="stylesheet" href="'.$urlOfCdn.'"/>';
+});
+
+
+
+
+/** Navegacion
+ -------------------------------------------- */
 Barrio::actionAdd('navigation', function(){
     $arr = Barrio::$config[ 'menu' ];
     $nav = $arr;
@@ -235,6 +250,104 @@ Barrio::actionAdd('Pagination', function ($name, $num = 3) {
     }
 
 });
+
+/** Paginación
+ -------------------------------------------- */
+Barrio::actionAdd('Paginas', function ($name, $num = 3) {
+    // All pages
+    $posts = Barrio::pages($name, 'date', 'DESC', ['index','404']);
+    // Limit of pages
+    $limit = $num;
+    //intialize a new array of files that we want to show
+    $blogPosts = array();
+    if ($posts) {
+        //add a file to the $goodfiles array if its name doesn't begin with a period
+        foreach ($posts as $f) {
+            // Insert one or more elements in array
+            array_push($blogPosts, $f);
+        }
+        // Divide an array into fragments
+        $articulos = array_chunk($blogPosts, $limit);
+        // Get page
+        $pgkey = isset($_GET['page']) ? $_GET['page'] : 0;
+
+        $items = $articulos[$pgkey];
+
+        $html = '<section class="portfolio">';
+        foreach ($items as $articulo) {
+
+            $html .= '<article class="portfolio-item">';
+
+            if ($articulo['image']) {
+                $html .= '<div class="portfolio-image"><img src="'.$articulo['image'].'" /></div>';
+            }
+            // header
+            $html .= '<hgroup class="portfolio-header">';
+            $html .= '  <h3 class="portfolio-title"> <a href="'.$articulo['url'].'">'.$articulo['title'].'</a></h3>';
+            $html .= '  <p class="portfolio-description">'.$articulo['description'].'</p>';
+            $html .= '</hgroup>';
+
+            // body
+            $html .= '<footer class="portfolio-footer">
+                        <a href="'.$articulo['url'].'">Ver &rarr;</a>
+                    </footer>';
+            $html .= '</article>';
+        }
+        $html .= '</section>';
+
+        echo $html;
+        
+
+        // total = post / limit - 1
+        $total = ceil(count($posts)/$limit);
+        // If empty active first
+        $p = 0;
+        if (empty($_GET['page'])) {
+            $p = 0;
+        } else {
+            $p = isset($_GET['page']) ? $_GET['page'] : 0;
+        }
+
+        if(count($posts) > $num){
+
+            // pagination
+            $pagination = '<ul class="pagination">';
+            // first
+            $class = ($p == 0) ? "disabled" : "";
+            $pagination .= '<li class="page-item '.$class.'"><a class="page-link" href="?page='.($p - 1).'">&laquo;</a></li>';
+            if ($p > 0) {
+                $pagination .= '<li class="page-item"><a class="page-link" href="?page=0">Primera</a></li>';
+                $pagination .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
+            }
+
+            // loop numbers
+            $s = max(1, $p - 5);
+            for (; $s < min($p+ 6, ($total - 1)); $s++) {
+                if ($s==$p) {
+                    $class = ($p == $s) ? "active" : "";
+                    $pagination .= '<li class="hide-mobile page-item '.$class.'"><a class="page-link" href="?page='.$s.'">'.$s.'</a></li>';
+                } else {
+                    $class = ($p == $s) ? "active" : "";
+                    $pagination .= '<li class="hide-mobile page-item '.$class.'"><a class="page-link" href="?page='.$s.'">'.$s.'</a></li>';
+                }
+            }
+
+            // last
+            if ($p < ($total - 1)) {
+                $pagination .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
+                $pagination .= '<li class="page-item"><a class="page-link" href="?page='.($total - 1).'">Ultima</a></li>';
+            }
+            // arrow right
+            $class = ($p == ($total - 1)) ? "disabled" : "";
+            $pagination .= '<li class="page-item '.$class.'"><a class="page-link" href="?page=' . ($p + 1) . '">&raquo;</a></li>';
+            $pagination .= '</ul>';
+            echo $pagination;
+        }
+    }
+
+});
+
+
 
 /** Ultimos Articulos
 -------------------------------------------------*/

@@ -37,7 +37,7 @@ class Tpl
             '{Last_posts}' => '<?php echo Barrio::actionRun("lastPosts",[Barrio::$config["blog"]["last_posts"],"blog"]);?>',
             '{Blog_posts}' => '<?php echo Barrio::actionRun("Pagination",["blog",Barrio::$config["pagination"]]);?>',
             // pagination for other folder of content not blog
-            '{Pages: ([^}]*)}' => '<?php echo Barrio::actionRun("Pagination",["$1",Barrio::$config["pagination"]]);?>',
+            '{Pages: ([^}]*)}' => '<?php echo Barrio::actionRun("Paginas",["$1",Barrio::$config["pagination"]]);?>',
 
 
             // comment
