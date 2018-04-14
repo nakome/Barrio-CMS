@@ -39,7 +39,7 @@ if (!function_exists('arrayOfMenu')) {
                             $active = Barrio::urlCurrent();
                             $activeurl = str_replace('/', '', $k);
 
-                            if (preg_match("/$active/s",$k)) {
+                            if ($active == $activeurl) {
                                 $html .= '<li class="nav-item "><a  class="nav-link active"href="'.trim(Barrio::urlBase().$k).'">
                                     '.ucfirst($v).'
                                 </a></li>';
