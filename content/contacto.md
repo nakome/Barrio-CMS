@@ -16,11 +16,11 @@ Dolor qui nulla labore consectetur consectetur deserunt. Esse consequat irure do
 
 {Divider num=3}
 
-{Icon type='mobile'} + 33 9 07 45 12 65
+{Icon cls='fas fa-mobile mr-2'} + 33 9 07 45 12 65
 
-{Icon type='envelope'} e-mail@mail.io
+{Icon cls='fas fa-envelope mr-2'} e-mail@mail.io
 
-{Icon type='map'} 42 rue Moulbert 75016 Paris
+{Icon cls='fas fa-map mr-2'} 42 rue Moulbert 75016 Paris
 
 {/Col}
 {Col num=6}

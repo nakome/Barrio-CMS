@@ -347,22 +347,21 @@ Barrio::shortCodeAdd('Accordion', function ($attrs, $content) {
  * type = icon class
  * href = href to
  * cls = custom class
- * {Icon type='phone2' href='624584452'}
+ * {Icon cls='fas fa-mobile' href='624584452'}
  */
 Barrio::shortCodeAdd('Icon', function ($atributos) {
     extract($atributos);
     // atributos
-    $type = (isset($type)) ? $type : '';
     $href = (isset($href)) ? $href : '';
     $cls = (isset($cls)) ? $cls : 'mr-2';
     // si no hay imagen enseñar
-    if ($type) {
+    if ($cls) {
         if($href){
-            $html = '<a class="hasIcon" href="'.$href.'"><i class="fab fa-'.$type.' '.$cls.'"></i> </a>';
+            $html = '<a class="hasIcon" href="'.$href.'"><i class="'.$cls.'"></i> </a>';
             $html = preg_replace('/\s+/', ' ', $html);
             return $html;
         }else{
-            $html = '<i class="fab fa-'.$type.' '.$cls.'"></i> ';
+            $html = '<i class="'.$cls.'"></i> ';
             $html = preg_replace('/\s+/', ' ', $html);
             return $html;
         }
@@ -501,7 +500,7 @@ Barrio::shortcodeAdd('Icono_demo', function ($attrs) {
     // si no hay imagen enseñar
     if ($type) {
         $html = '<div class="demo_icono">';
-        $html .= '<p class="text-center p-2"><i class="text-dark fab fa-'.$type.'"></i> <br>'.$type.'</p>';
+        $html .= '<p class="text-center p-2"><i class="text-dark fas fa-'.$type.'"></i> <br>'.$type.'</p>';
         $html .= '</div>';
 
         $html = preg_replace('/\s+/', ' ', $html);

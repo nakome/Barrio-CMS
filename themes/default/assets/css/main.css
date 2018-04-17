@@ -3,6 +3,9 @@ body, html {
 	height: 100%
 }
 
+img {
+	max-width: 100%;
+}
 hr {
 	margin-top: 3em;
 	margin-bottom: 3em
@@ -172,6 +175,7 @@ blockquote {
 .portfolio-image{
     padding:0;
     max-height:15em;
+    overflow: hidden;
 }
 .portfolio-title{
 	text-transform:capitalize;

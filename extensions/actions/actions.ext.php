@@ -67,16 +67,6 @@ if (!function_exists('arrayOfMenu')) {
  */
 
 
-/** incluimos font awesome
- -------------------------------------------- */
-Barrio::actionAdd('head',function(){
-    $urlOfCdn = 'https://use.fontawesome.com/releases/v5.0.10/css/all.css';
-    echo '<link rel="stylesheet" href="'.$urlOfCdn.'"/>';
-});
-
-
-
-
 /** Navegacion
  -------------------------------------------- */
 Barrio::actionAdd('navigation', function(){

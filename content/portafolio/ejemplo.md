@@ -38,10 +38,10 @@ maiores ipsam minus harum. Tenetur.
 
 **Compartelo Ahora:**
 
-{Icon type='facebook'} [Facebook]({$config.facebook}) {Space}
-{Icon type='instagram'} [Instagram]({$config.instagram}) {Space}
-{Icon type='twitter'} [Twitter]({$config.twitter}) {Space}
-{Icon type='youtube'} [Youtube]({$config.youtube})
+{Icon cls='fab fa-facebook mr-2'} [Facebook]({$config.facebook}) {Space}
+{Icon cls='fab fa-instagram mr-2'} [Instagram]({$config.instagram}) {Space}
+{Icon cls='fab fa-twitter mr-2'} [Twitter]({$config.twitter}) {Space}
+{Icon cls='fab fa-youtube mr-2'} [Youtube]({$config.youtube})
 
 
 {Text color='#f55'}
