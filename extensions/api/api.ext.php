@@ -1,6 +1,8 @@
 <?php  defined('BARRIO') or die('Sin accesso a este script.');
 
 
+
+
 // Enable corst
 if(!function_exists('enableCors'))
 {
@@ -71,8 +73,22 @@ if(!function_exists('gAll')){
 if(!function_exists('gContent')){
 	function gContent($page = array())
 	{
-		if($page)
+		include EXTENSIONS.'/markdown/Parsedown/Parsedown.php';
+		include EXTENSIONS.'/markdown/Parsedown/ParsedownExtra.php';
+		include EXTENSIONS.'/shortcodes/shortcodes.ext.php';
+
+		Barrio::addFilter('content', 'parse', 1);
+
+		function parse($content)
 		{
+		    return Parsedown::instance()->text(Barrio::shortcodeParse($content));
+		}
+
+		if($page)
+		{	
+
+			$content = parse($page['content']);
+
 			// init array
 			$arr = array(
 				'title' => $page['title'],
@@ -84,7 +100,7 @@ if(!function_exists('gContent')){
 				'author' => $page['author'],
 				'date' => $page['date'],
 				'image' => $page['image'],
-				'content' => $page['content'],
+				'content' => $content,
 				'slug' => $page['slug']
 			);
 			// return json encode
@@ -97,15 +113,15 @@ if(!function_exists('gContent')){
 // si existe api
 if(array_key_exists('api',$_GET))
 {
-	// enable Cors
-	enableCors();
-
 	// method
 	$method = ($_GET['api']) ? $_GET['api'] : null;
 
 	// if exists get 
 	if(array_key_exists('g',$_GET))
 	{
+		// enable Cors
+		enableCors();
+
 		// set json headers
 		@header('Content-Type: application/json; charset=utf-8');
 		// switch g
@@ -137,7 +153,7 @@ if(array_key_exists('api',$_GET))
 		$html = '<p>Esta es la api de Barrio CMS</p>';
 		$html .= '<p>Puedes usar los siguientes <b>Metodos: </b></p>';
 		$html .= '<p><b>Todas las paginas: </b> <a href="index.php?api&g=a"><code>index.php?api&g=a</code></a></p>';
-		$html .= '<p><b>Filtrar por titulo: </b> <a href="index.php?api&g=t&n=index"><code>index.php?api&g=t&n</code></a></p>';
+		$html .= '<p><b>Filtrar por carpeta: </b> <a href="index.php?api=blog&g=a"><code>index.php?api&g=t&n</code></a></p>';
 		$html .= '<p><b>Filtrar por titulo: </b> <a href="index.php?api&g=t&n=contacto"><code>index.php?api&g=t&n=contacto</code></a></p>';
 		die($html);
 	}
