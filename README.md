@@ -1,3 +1,5 @@
+# This repository is no longer maintained check [cmsbarrio](https://github.com/monchovarela/cmsbarrio)
+
 
 ![Barrio CMS](./themes/default/screenshot.jpeg)
 
