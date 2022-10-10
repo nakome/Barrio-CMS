@@ -1,0 +1,88 @@
+.fcf-form-wrap {
+    max-width: 500px;
+    padding: 30px;
+    border-radius: 4px;
+    background-color: #ffffff;
+}
+
+#fcf-form {
+    background-color: #ffffff;
+    color: #363636;
+}
+
+#fcf-thank-you {
+    color: #363636;
+}
+
+.label {
+    color: #363636;
+}
+
+strong {
+    color: #363636;
+}
+
+.input, .textarea, .select select {
+    background-color: #ffffff;
+    border-color: #dbdbdb;
+    color: #363636;
+}
+
+.input:focus, .textarea:focus, .select select:focus, .input:active, .textarea:active, .select select:active, .input:hover, .textarea:hover, .select select:hover {
+    border-color: #dbdbdb;
+    box-shadow: none;
+}
+
+.file-label:hover .file-cta {
+    background-color: #808080;
+    color: #ffffff;
+}
+
+.file-label:hover .file-name {
+    border-color: #dbdbdb;
+}
+
+.file-label:active .file-cta {
+    background-color: #808080;
+    color: #ffffff;
+}
+
+.file-label:active .file-name {
+    border-color: #cfcfcf;
+}
+
+.file-cta {
+    background-color: #363636;
+    border-color: #dbdbdb;
+    color: #ffffff;
+}
+
+.file-name {
+    background-color: #ffffff;
+    border-color: #dbdbdb;
+}
+
+.button.is-link {
+    background-color: #363636;
+    color: #ffffff;
+}
+
+.button.is-link:hover {
+    background-color: #808080;
+    color: #ffffff;
+}
+
+.button.is-link[disabled] {
+    background-color: #808080;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.fcf-attribution {
+    color: #363636;
+    text-align: right;
+}
+
+.fcf-attribution-link {
+    color: #363636;
+}

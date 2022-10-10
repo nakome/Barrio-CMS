@@ -1,31 +1,15 @@
-Title: Contacto
-Description: Esta es una demo de Contacto
+Title: ¿Necesitas ayuda?
+Description: Dudas, escribeme.
 Template: index
 ----
 
-## Información de Contacto.
+[Row]
+[Col num=6]
 
-{Divider num=3}
+Puedes contactar conmigo cubriendo el formulario o mandándome un [Whatsapp](https://api.whatsapp.com/send?phone=0034628333222&text=Hola). ¡Cuánta más información me puedas dar mejor! Puedes contar con que **tendrás una respuesta mía en menos de 24 horas** a no ser que me estés escribiendo en fin de semana o festivo, entonces quizás tarde un poco más.
 
-{Row}
-{Col num='6'}
+[Contact]
+[/Col]
+[/Row]
 
-Dolor qui nulla labore consectetur consectetur deserunt. Esse consequat irure dolor dolor aliquip non duis pariatur minim deserunt amet voluptate nisi. Sit et nisi Lorem dolor Lorem. Cupidatat amet commodo eu ut. Anim cupidatat do et velit elit est occaecat sunt exercitation mollit. 
-
-> Voluptate velit et eiusmod aliquip id. Aliquip qui commodo anim laborum sunt consequat fugiat excepteur.
-
-{Divider num=3}
-
-{Icon cls='fas fa-mobile mr-2'} + 33 9 07 45 12 65
-
-{Icon cls='fas fa-envelope mr-2'} e-mail@mail.io
-
-{Icon cls='fas fa-map mr-2'} 42 rue Moulbert 75016 Paris
-
-{/Col}
-{Col num=6}
-{Contact}
-{/Col}
-{/Row}
-{Divider}
 

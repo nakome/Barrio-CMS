@@ -1,5 +1,4 @@
-Title: Como se hace
-Description: Tutoriales de Barrio CMS
-Template: blog
-
+Title: Blog
+Description: Como funciona el blog.
+Template: group
 ----

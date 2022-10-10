@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="<?php echo config('lang');?>">
+
+<head>
+    <meta charset="<?php echo config('charset');?>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--
+      Las 2 meta etiquetas anteriores *deben* ser lo primero en el <head>
+      para garantizar de manera consistente la representación adecuada de documentos.
+      Cualquier otro elemento principal debe venir *después* de estas etiquetas.
+     -->
+    <title><?php echo $page['title'];?> :: <?php echo urlCurrent();?></title>
+
+    <!-- Establece la URL base para todas las URL relativas dentro del documento -->
+    <base href="<?php echo url();?>">
+
+    <!-- meta -->
+    
+    <meta name="author" content="<?php echo $page['author'];?>" />
+    <meta name="keywords" content="<?php echo $page['keywords'];?>" />
+
+    <!-- Breve descripción del documento (limitada a 150 caractéres) -->
+    <!-- Este contenido *podría* usarse como parte de los resultados del motor de búsqueda. -->
+    <meta name="description" content="<?php echo $page['description'];?>" />
+
+    <!-- Controla el comportamiento del rastreo e indexación del motor de búsqueda -->
+    <meta name="robots" content="<?php echo $page['robots'];?>"><!-- Todos los motores de búsqueda -->
+    <meta name="googlebot" content="<?php echo $page['robots'];?>"><!-- Específico de Google -->
+
+    <!-- Le dice a Google que no muestre el cuadro de búsqueda de enlaces de sitio -->
+    <meta name="google" content="nositelinkssearchbox">
+
+    <!-- Le dice a Google que no proporcione una traducción para este documento -->
+    <meta name="google" content="notranslate">
+
+    <!-- Enlaces a información sobre el autor (es) del documento-->
+    <link rel="author" href="humans.txt">
+
+    <!-- Prefetching, preloading, prebrowsing -->
+    <!-- Más info: https://css-tricks.com/prefetching-preloading-prebrowsing/ -->
+    <link rel="dns-prefetch" href="<?php echo url();?>">
+    <link rel="preconnect" href="<?php echo url();?>">
+    <link rel="prefetch" href="<?php echo url();?>">
+    <link rel="prerender" href="<?php echo url();?>">
+    <link rel="preload" href="<?php echo ($page['image']) ? $page['image'] : url().'/public/notfound.jpg'; ?>" as="image">
+
+    <!-- for Facebook -->
+    <?php include 'meta-facebook.html';?>
+    <!-- for Twitter -->
+    <?php include 'meta-twitter.html';?>
+    <!-- Favicon -->
+    <?php include 'meta-icons.html';?>
+    <!-- meta -->
+    <?php echo action('meta');?>
+
+    <!-- meta -->
+    <link rel="canonical" href="<?php echo url();?>" />
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="<?php echo Assets('css/bootstrap.min.css');?>">
+    <link rel="stylesheet" href="<?php echo Assets('css/main.css');?>">
+
+    <!-- url base -->
+    <script rel="javascript">
+        var site_url = "<?php echo url();?>";
+        var site_url_current = "<?php echo urlCurrent();?>";
+    </script>
+
+    <!--script>if(location.protocol!='https:'){location.href='https:'+window.location.href.substring(window.location.protocol.length)}</script-->
+    <!-- modulos -->
+
+    <?php echo action('head');?>
+</head>
+
+<body>
+
+<div id="progress"><div class="loader"></div></div>

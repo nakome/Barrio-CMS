@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="<?php echo config('lang');?>">
+
+<head>
+    <title>
+        <?php echo $page['title'];?>
+    </title>
+    <!-- meta -->
+    <meta charset="<?php echo config('charset');?>" />
+    <meta name="author" content="<?php echo $page['author'];?>" />
+    <meta name="keywords" content="<?php echo $page['keywords'];?>" />
+    <meta name="description" content="<?php echo $page['description'];?>" />
+    <meta name="robots" content="<?php echo $page['robots'];?>" />
+    <!-- viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <!-- app name -->
+    <meta name="application-name" content="Barrio CMS" />
+    <!-- for Facebook -->
+    <?php include 'meta-facebook.html';?>
+    <!-- for Twitter -->
+    <?php include 'meta-twitter.html';?>
+    <!-- Favicon -->
+    <?php include 'meta-icons.html';?>
+    <!-- meta -->
+    <?php echo action('meta');?>
+    <link rel="canonical" href="<?php echo url();?>" />
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="<?php echo assets('css/main.css');?>">
+    <!-- url base -->
+    <script rel="javascript">
+        var site_url = "<?php echo url();?>";
+        var site_url_current = "<?php echo urlCurrent();?>";
+    </script>
+    <!--script>if(location.protocol!='https:'){location.href='https:'+window.location.href.substring(window.location.protocol.length)}</script-->
+    <!-- modulos -->
+    <?php echo action('head');?>
+</head>
+
+<body>
+
+
+<div id="progress"><div class="loader"></div></div>

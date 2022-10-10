@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- the 2 lines below is needed -->
+    <link href="fcf-assets/css/fcf.default.css" rel="stylesheet">
+    <link href="fcf-assets/css/fcf.default-custom.css" rel="stylesheet">
+
+    <title>Contact Form</title>
+</head>
+<body>
+
+    <!-- the lines below are needed -->
+    <div class="fcf-form-wrap">
+        <div id="fcf-form">
+            <form class="fcf-form-class" method="post" action="fcf-assets/fcf.process.php">
+
+                <div class="field">
+                    <label for="Name" class="label has-text-weight-normal">Your name</label>
+                    <div class="control">
+                        <input type="text" name="Name" id="Name" class="input is-full-width" maxlength="100"
+                            data-validate-field="Name">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="Email" class="label has-text-weight-normal">Your email address</label>
+                    <div class="control">
+                        <input type="email" name="Email" id="Email" class="input is-full-width" maxlength="100"
+                            data-validate-field="Email">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="Phone" class="label has-text-weight-normal">Your phone number (optional)</label>
+                    <div class="control">
+                        <input type="tel" name="Phone" id="Phone" class="input is-full-width" maxlength="30"
+                            data-validate-field="Phone">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="Message" class="label has-text-weight-normal">Your message</label>
+                    <div class="control">
+                        <textarea name="Message" id="Message" class="textarea" maxlength="3000" rows="5"
+                            data-validate-field="Message"></textarea>
+                    </div>
+                </div>
+                <div id="fcf-status" class="fcf-status"></div>
+                <div class="field">
+                    <div class="buttons">
+                        <button id="fcf-button" type="submit" class="button is-link is-medium is-fullwidth">Send
+                            Message</button>
+                    </div>
+                </div>
+                <!-- You MUST retain the attribution below -->
+                <div class="fcf-attribution">Contact Form by <a href="https://www.freecontactform.com/" class="fcf-attribution-link">FreeContactForm</a></div>
+            </form>
+        </div>
+        <div id="fcf-thank-you" style="display:none">
+            <!-- Thank you message goes below -->
+            <strong>Thank you</strong>
+            <p>Thanks for contacting us, we will get back in touch with you soon.</p>
+            <!-- Thank you message goes above -->
+        </div>
+    </div>
+    <script src="fcf-assets/js/fcf.just-validate.min.js"></script>
+    <script src="fcf-assets/js/fcf.form.js"></script>
+    <!-- the lines above are needed -->
+
+</body>
+</html>

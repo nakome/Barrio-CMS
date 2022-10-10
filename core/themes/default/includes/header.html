@@ -1,0 +1,23 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info p-3">
+    <div class="container">
+      <a class="navbar-brand overflow-hidden logo" href="<?php echo url();?>">
+        <div class="float-start">
+          <img src="<?php echo assets('icons/512x512.png');?>" alt="<?php echo config('author');?>">
+        </div>
+        <div class="float-start">
+          <span class="d-block text-light fw-medium text-uppercase"><?php echo config('title');?></span>
+          <span class="d-block text-dark fw-bold"><?php echo config('description');?></span>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+          <?php echo menu();?>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

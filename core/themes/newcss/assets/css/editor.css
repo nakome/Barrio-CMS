@@ -1,0 +1,32 @@
+html,body{position:relative;height:100%;overflow:hidden!important}
+body{margin:0;padding:0;position:relative;overflow:hidden!important;height:100%}
+.editor-control{padding:0.5em;background:white;border-bottom:1px solid black;border-radius:0}
+.editor-control a{color:black;text-decoration:none;padding:2px 5px;border-radius:2px;margin:0;display:inline;font-size:12px;font-weight:400;font-family:monospace;text-transform:uppercase;-webkit-transition:all 0.5s ease;-o-transition:all 0.5s ease;transition:all 0.5s ease;text-decoration:none}
+.editor-control a:hover{color:var(--nc-tx-2);-webkit-transition:all 0.5s ease;-o-transition:all 0.5s ease;transition:all 0.5s ease}
+.editor{position:relative;display:block;width:100%;margin:0;background:black;height:100%;overflow:hidden}
+.editor .editor-area{display:block;width:100%;margin:0;padding:0.5em 1em;border:none;overflow:auto;resize:none;height:calc(100% - 58px);background:#000000;color:#ffffff}
+.editor .editor-area:focus{outline-color:#222;transition:background 500ms ease}
+.editor .editor-area::selection{background:#00fff8;color:#000}
+span.editor-divider{background:#eee;width:0.5px;height:0.5px;padding:1px;margin-left:0.5em;margin-right:0.5em}
+select#shortcodes{width:100px;padding:0;margin:0;display:inline-block;background:white;border-color:black;color:black;border-radius:0px;font-size:12px;font-family:"consolas",monospace}
+.gutter-horizontal{background:black!important;opacity:0.2}
+.gutter.gutter-horizontal:hover{cursor:pointer}
+.navigation{height:50px;line-height:45px;padding:0 1rem;border-bottom:1px solid black;background:black;margin:0}
+.app,.app #code,.app #preview{display:flex;height:calc(100vh - 45px);overflow:hidden!important}
+.loading{position:absolute;top:0;left:0;right:0;bottom:0;background:black;width:200px;height:200px;margin:auto}
+.editor-control,.navigation{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+#editor-area{font-family:monospace;font-size:16px;font-style:normal;font-variant:normal;font-weight:400;line-height:18px}
+.loading{position:absolute;top:0;right:0;left:0;bottom:0;width:200px;height:200px;margin:auto}
+#preview{position:relative}
+#output{position:relative;width:100%;height:calc(100% - 2em);overflow-y:scroll;margin:0;padding:1em}
+#render,.volver{border-radius:0px;border:1px solid #333;background:#333;color:#fff;transition:all 500ms ease;line-height:1.2;text-decoration:none;display:inline;min-height:36px;padding:0.4rem 1rem;vertical-align:middle;text-transform:capitalize;box-sizing:border-box;font-family:inherit}
+#render:hover,.volver:hover,#render:focus,.volver:focus{background:#111;transition:all 500ms ease}
+.navigation{background:#222}
+@media (max-width:768px){
+	.editor .editor-area{width:100%;margin:0;padding:0.5em;font-size:12px;line-height:1.5em;height:calc(100% - 53px)}
+	.result{top:38px;width:100%;margin:0;padding:0.5em;height:calc(100% - 53px);-webkit-transition:all 1s ease;-o-transition:all 1s ease;transition:all 1s ease;font-size:12px}
+	body:after{content:"Lo sentimos, solo funciona en pantallas de mas de 768px";position:absolute;top:0;left:0;width:100%;height:100%;text-align:center;margin:auto;padding:5em 0;background:rgb(0 0 0 / 85%);color:white;z-index:999999;text-transform:uppercase;word-break:break-all}
+}
+@media (max-width:480px){
+	.result{top:53px}
+}

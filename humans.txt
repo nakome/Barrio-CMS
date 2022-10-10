@@ -1,0 +1,13 @@
+/* TEAM */
+    Web designer: Moncho Varela
+    Twitter: @nakome
+    From:A Coruña, Spain
+
+/* THANKS */
+    Bootstrap: https://getbootstrap.com/
+
+/* SITE */
+    Last update:2021/06/04
+    Language: English / Castellano
+    Doctype:HTML5
+    IDE: Sublime Text,FileZilla
