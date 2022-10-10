@@ -1,0 +1,12 @@
+<?php include 'includes/head.html';?>
+<?php include 'includes/header.html';?>
+<main>
+    <h1 class="divider"><?php echo $page['title'];?></h1>
+    <h2 class="my-5"><?php echo $page['description'];?></h2>
+    <?php echo action('theme_before');?>
+    <?php echo $page['content'];?>
+    <?php echo action('theme_after');?>
+</main>
+<?php include 'includes/prefooter.html';?>
+<?php include 'includes/footer.html';?>
+

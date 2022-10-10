@@ -1,0 +1,31 @@
+<?php include 'includes/head.html';?>
+<?php include 'includes/header.html';?>
+<main class="mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 m-auto">
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <img class="zoom"
+                        src="<?php echo url();?>/<?php echo $page['image'];?>"
+                        alt="<?php echo $page['title'];?>"/>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <h4><?php echo $page['title'];?></h4>
+                        <p><?php echo $page['description'];?></p>
+                        <?php echo generateAttrs($page['attrs']);?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 m-auto">
+                <?php echo action('theme_before');?>
+                <?php echo $page['content'];?>
+                <?php echo action('theme_after');?>
+            </div>
+        </div>
+    </div>
+</main>
+<?php include 'includes/prefooter.html';?>
+<?php include 'includes/footer.html';?>

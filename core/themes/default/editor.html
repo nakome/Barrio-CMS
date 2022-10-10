@@ -1,0 +1,73 @@
+<?php include 'includes/head.html';?>
+
+<link rel="stylesheet" href="<?php echo url();?>/core/themes/newcss/assets/css/editor.css"/>
+
+<?php
+    // Este es un simple codigo lo unico que hace es guardar el codigo
+    // en el archivo editor.md y luego volver a refrescar para verlo.
+    $file = CONTENT.'/editor.md';
+    if(array_key_exists('render',$_POST)){
+        $txt = $_POST['content'];
+        $html = "Title: Editor\nDescription: prueba codigo.\nTemplate:editor\n----\n\n";
+        $html .= $txt;
+        if(is_file($file) && file_exists($file)) {
+            if(file_put_contents($file,$html)){
+                echo '<script rel="javascript">window.location.href= site_url+"/editor";</script>';
+                exit(1);
+            }
+        }
+    }
+?>
+
+<form method="post">
+    <div class="navigation">
+        <a href="<?php echo url();?>" class="volver">Home</a>
+        <a target="_blank" href="<?php echo url();?>/documentacion/test-shortcodes" class="volver">Shortcodes</a>
+        <button type="submit" name="render" id="render" class="btn">Ver resultado</button>
+    </div>
+    <div class="app">
+        <div id="code" class="split split-horizontal">
+            <div class="editor">
+                <div class="editor-control" id="editor-control">
+                    <a href="#h1" class="hint--right" title="Cabecera 1">H1</a>
+                    <a href="#h2" class="hint--bottom" title="Cabecera 2">H2</a>
+                    <a href="#h3" class="hint--bottom" title="Cabecera 3">H3</a>
+                    <span class="editor-divider"></span>
+                    <a href="#bold" class="hint--bottom" title="Negrita">B</a>
+                    <a href="#italic" class="hint--bottom" title="Italica">I</a>
+                    <a href="#quote" class="hint--bottom" title="Blockquote">BQ</a>
+                    <a href="#ul-list">
+                        <abbr class="hint--bottom" title="Lista">UL</abbr>
+                    </a>
+                    <a href="#ol-list">
+                        <abbr class="hint--bottom" title="Lista ordenada">OL</abbr>
+                    </a>
+                    <a href="#table"  class="hint--bottom" title="Tabla">Tb</a>
+                    <a href="#lorem"  class="hint--bottom" title="Lorem ipsum">L</a>
+                    <a href="#code" class="hint--bottom" title="Codigo">&lt;&gt;</a>
+                    <a href="#hr"  class="hint--bottom" title="linea">----</a>
+                    <span class="editor-divider"></span>
+                    <select name="shortcodes" id="shortcodes">
+                        <option value="">Shortcodes</option>
+                        <option value="iframe">[Iframe]</option>
+                        <option value="youtube">[Youtube]</option>
+                        <option value="vimeo">[Vimeo]</option>
+                        <option value="video">[Video]</option>
+                        <option value="text">[Text]</option>
+                        <option value="img">[Img]</option>
+                        <option value="row">[Row]</option>
+                        <option value="col">[Col]</option>
+                        <option value="html">[Html]</option>
+                        <option value="btn">[Btn]</option>
+                    </select>
+                </div>
+                <textarea name="content" class="editor-area" id="editorArea" rows="10"></textarea>
+            </div>
+        </div>
+    <div id="preview" class="split split-horizontal">
+        <div id="output"><?php echo $page['content'];?></div>
+    </div>
+</div>
+</form>
+<script rel="javascript" src="<?php echo url();?>/core/themes/newcss/assets/js/editor.js"></script>
+<?php include 'includes/footer.html';?>

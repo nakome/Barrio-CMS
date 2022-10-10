@@ -1,0 +1,7 @@
+Nuevo mensaje desde la web
+    
+    
+Tu nombre: {Name}
+Tu correo electrónico: {Email}
+Tu telefono: {Phone}
+Tu Mensaje: {Message}

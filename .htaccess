@@ -1,21 +1,111 @@
-# PHP 5, Apache 1 and 2.
-<IfModule mod_php5.c>
-  php_flag magic_quotes_gpc                 off
-  php_flag magic_quotes_sybase              off
-  php_flag register_globals                 off
-</IfModule>
+##
+# Barrio cms 
+# Creado por Moncho Varela
+#
 
+## Compresion
+# comprimir los archivos
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css text/javascript application/x-javascript application/javascript
+</IfModule>
+#
+## Fin - Compresion
+
+
+## Mod Security
+# Anular reglas del Mod Security
+<IfModule mod_security.c>
+  SecRuleEngine Off
+  SecFilterInheritance Off
+  SecFilterEngine Off
+  SecFilterScanPOST Off
+  SecFilterCheckURLEncoding Off
+</IfModule>
+#
+## Fin - Mod Security
+
+
+## Anulaciones comunes de PHP
+#
+# Algunas de las configuraciones más comunes que pueden (a veces) ser anuladas..
+# php_value memory_limit 256M
+# php_value post_max_size 16M
+# php_value max_execution_time 90
+# php_value max_input_time 120
+# php_value upload_max_filesize 16M
+# php_value realpath_cache_size 16M
+
+# mod rewrite options
 <IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /Barrio-CMS
-    Options +FollowSymlinks
-    RewriteRule ^content/(.*)\.(txt|md|yml|json)$ index.php [L]
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ index.php?$1 [L,QSA]
-</IfModule>
+
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+	RewriteEngine On
+	RewriteBase /cmsbarrio
+	ErrorDocument 404 /404.html
+	RewriteCond %{HTTP:Authorization} ^(.+)$
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    
+    # redireccionar 404
+    RedirectMatch 404 /\\.git(/|$)
+    RedirectMatch 404 /\\.env(/|$)
+
+	## Exploits
+	# Si tiene problemas en su sitio, bloquee las operaciones que se enumeran a continuación
+	# Esto intenta bloquear el tipo más común de "intentos" de explotación de Flextype
+	#
+	# Bloquea cualquier secuencia de comandos que intente codificar datos en la URL.
+	RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
+	# Bloquea cualquier guión que incluya una etiqueta <script> en la URL.
+	RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+	# Bloquea cualquier script que intente establecer una variable PHP GLOBALS a través de la URL.
+	RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+	# Bloquea cualquier guión que intente modificar una variable _REQUEST a través de la URL.
+	RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+	# Devolver 403 Cabecera prohibida y mostrar el contenido de la página principal de la raíz
+	RewriteRule .* index.php [F]
+	#
+	## Fin - Exploits
 
 
-<IfModule mod_autoindex.c>
-    Options -Indexes
+	## Comienzo - Index
+	# Si la ruta y el archivo solicitado no es /index.php y la solicitud
+	# no ha sido ya reescrito internamente en el script index.php
+	RewriteCond %{REQUEST_URI} !^/index\.php
+	# y la ruta y el archivo solicitado no coincide directamente con un archivo físico
+	RewriteCond %{REQUEST_FILENAME} !-f
+	# y la ruta y el archivo solicitado no coincide directamente con una carpeta física
+	RewriteCond %{REQUEST_FILENAME} !-d
+	# Reescribir internamente la petición al script index.php
+	RewriteRule .* index.php [L]
+	## Fin - Index
+
 </IfModule>
+#
+## Fin
+
+## Prohibido
+#  Prohibido obtener este archivo 
+<FilesMatch "prepros.config|\.(db|md|html|yml)|(package|package-lock)\.json$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order deny,allow
+    Deny from all
+  </IfModule>
+</FilesMatch>
+## Fin
+
+
+# Establecer 404 al acceder a estas carpetas
+RedirectMatch 404 /(content|tmp|node_modules)(/|$)
+
+## Prevenir la navegación y establecer los recursos por defecto
+Options -Indexes
+DirectoryIndex index.php index.html index.htm
+## Fin
+
+

@@ -1,0 +1,82 @@
+
+#creator input,
+#creator select,
+#creator button,
+#creator textarea {
+  background-position: right 8px center;
+  background-repeat: no-repeat;
+  box-shadow: rgba(225, 228, 232, 0.2) 0px 1px 0px 0px inset;
+  box-sizing: border-box;
+  font: inherit;
+  line-height: 20px;
+  margin: 0px;
+  margin-right: 5px;
+  max-width: 100%;
+  outline: none;
+  overflow: visible;
+  padding: 2px 5px;
+  vertical-align: middle;
+  word-wrap: break-word;
+  border: 1px solid var(--bs-light);
+  background: var(--bs-white);
+  color: var(--bs-dark);
+}
+
+#creator input:focus {
+  box-shadow: var(--bs-light) 0px 0px 5px 0px inset;
+  outline: none;
+}
+#creator input[type="color"] {
+  height: 1.9rem;
+}
+#creator input.input-checkbox,
+#creator input.input-radio {
+  margin-top: 0.5rem;
+}
+
+#creator input,
+#creator select {
+  width: calc(100% / 2 - 2rem);
+}
+#creator button {
+  border-radius: var(--radius);
+  background: var(--bs-danger);
+  border: 1px solid var(--bs-danger);
+  color: var(--bs-light);
+  padding: 0;
+  margin: 0;
+  min-width: 1.9rem;
+  min-height: 1.9rem;
+}
+#creator .key {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: hidden;
+  background: var(--bs-white);
+  border: 2px dashed var(--bs-light);
+  padding: 0.4rem;
+}
+#creator .key span {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  display: block;
+  text-align: center;
+  margin-right: 0.2rem;
+  cursor: pointer;
+  min-width: 1.9rem;
+  min-height: 1.9rem;
+  line-height: 1.9rem;
+  position: relative;
+  overflow: hidden;
+  background: var(--bs-light);
+  border: 1px solid var(--bs-light);
+  color: var(--bs-dark);
+}
+
+.sortable-chosen{
+  background: var(--bs-light) !important;
+  border-color: var(--bs-danger) !important;
+  transition: background 500ms ease;
+}

@@ -1,428 +1,248 @@
-# This repository is no longer maintained check [cmsbarrio](https://github.com/monchovarela/cmsbarrio)
+# Este repositorio ya no contara con mas actualizaciones.
+
+## Barrio CMS
+
+El CMS que se adapta a cualquier proyecto
+
+-----------
+
+- [Primeros pasos.](#paso1)
+- [Instalación.](#paso2)
+- [Estructura.](#paso3)
+- [Configuración.](#paso4)
+- [Plantillas.](#paso5)
+- [Aciones.](#paso6)
+- [Shortcodes.](#paso7)
+
+-----------
+
+<span id="paso1"></span>
+### Primeros pasos.
+
+#### Requisitos de Apache
+Aunque la mayoría de las distribuciones de Apache vienen con todo lo necesario, en aras de la exhaustividad, aquí hay una lista de los módulos de Apache necesarios:
+
+    mod_rewrite
+
+También debe asegurarse de tener **AllowOverride All** configurado en los bloques **<Directory>** y / o **<VirtualHost>** para que el archivo **.htaccess** se procese correctamente y las reglas de reescritura surtan efecto.
+
+#### Requerimientos PHP
+
+La mayoría de los proveedores de alojamiento e incluso las configuraciones locales de **LAMP** tienen **PHP** preconfigurado con todo lo que necesita para que Barrio CMS se ejecute.
+La version de **PHP** compatible ahora es minimo `7.4.0`.
+
+<span id="paso2"></span>
+### Instalación.
+
+Si descargó el archivo ZIP y luego planea moverlo a su raíz web, mueva **TODA LA CARPETA** porque contiene varios archivos ocultos (como .htaccess) que no se seleccionarán de manera predeterminada. La omisión de estos archivos ocultos puede causar problemas al ejecutar Barrio CMS.
 
 
-![Barrio CMS](./themes/default/screenshot.jpeg)
+<span id="paso3"></span>
+### Estructura.
 
 
-### Requisitos
-
-**PHP 5.3** minimo con **PHP's Multibyte String module**
-
-**Apache** con **Mod Rewrite**
-
-
-### Instalación
-
-**Muy facil** solo tienen que copiar la carpeta del **CMS** en su Hosting y cambiar algunos parametros en el archivo ```config.php``` y en el ```.htaccess```
-
-
-**Archivo config.php**
-
-
-    <?php
-
-    return array(
-        'lang' => 'es',
-        // charset
-        'charset' => 'UTF-8',
-        // timezone
-        'timezone' => 'Europe/Brussels',
-        // plantilla por defecto
-        'theme' => 'default',
-        // titulo de la web
-        'title' => 'Barrio CMS',
-        // descripcion de la web
-        'description' => 'Sistema de control de contenidos en formato Flat File',
-        // palabras clave
-        'keywords' => 'cms,barrio,flatfile',
-        // autor
-        'author' => 'Moncho Varela',
-        // correo
-        'email' => 'demo@gmail.com',
-        // imagen por defecto
-        'image' => 'content/imagenes/sin-imagen.svg',
-        // blog
-        'blog' => array(
-            // blog image
-            'image' => 'content/imagenes/sin-imagen.svg',
-            // Blog titulo
-            'title' => 'Chuck Gomez',
-             // Blog descripcción
-            'description' => 'Desarrollador y Diseñador Web. Aprendiendo y mejorando cada día.',
-            // Buscador titulo
-            'search_title' => 'Buscar Pagina',
-            // Buscador boton
-            'search_btn' => 'Buscar',
-            // Articulos recientes
-            'recent_posts' => 'Articulos recientes'
-        ),
-        // navegacion
-        'menu' => array(
-            '/' => 'Inicio',
-            '/acerca-de' => 'Acerca De',
-            '/blog' => 'Blog',
-            '/contacto' => 'Contacto'
-        ),
-        // buscador
-        'search' =>  array(
-            'results_of' => 'Resultados de la busqueda',
-            'no_results' => 'No hay resultados',
-            'read'       => 'Ir a enlace'
-        ),
-        // copyright
-        'copyright' => 'Creado con Barrio CMS',
-
-        // social
-        'facebook' => 'https://facebook.com',
-        'instagram' => 'https://instagram.com',
-        'twitter' => 'https://twitter.com',
-        'youtube' => 'https://youtube.com'
-
-        // añadir mas si se quiere aqui...
-    );
+    └── Raíz/
+        ├── content/
+        │   ├── blog/ Carpeta del blog
+        │   ├── documentacion/ Carpeta de la documentación
+        │   ├── index.md (Pagina inicio)
+        │   └── 404.md (Pagina error)
+        ├── core/
+        │   ├── modules/ (Carpeta Extensiones)
+        │   ├── storage/ (Carpeta datos)
+        |   ├── themes/
+        │   |   └── default/
+        │   |           ├── assets/ (Estilos de la plantilla)
+        │   |           ├── includes/ (Trozos de html)
+        │   |           ├── functions.php (Archivo funciones)
+        │   |           └── index.html (Plantilla html)
+        │   ├── vendor (clases)
+        │   └── init.php (Archivo de inicio con definiciones)
+        ├── public (Fotos, videos etc..)/
+        │   └── notfound.jpg
+        ├── .htaccess 
+        ├── 404.html (De uso solo para redirigir)
+        └── index.php
 
 
+<span id="paso4"></span>
+### Configuración.
 
+En el archivo <mark>config.php</mark> encontraras la configuración de la web, la url del sitio, el titulo, la descripción o la configuración del menu de navegación.
 
-**Archivo .htaccess**
+Puedes crear tu propia configuración pero <mark>no borres las variables que hay por defecto</mark>.
 
-Si esta dentro de una carpeta poner el nombre de ella
+Puedes llamar cualquier variable de `config.php`si estas en el archivo _.md_ con `{Config name=nombre}`. 
 
-**Por ejemplo:**
+<span id="paso5"></span>
 
-    # PHP 5, Apache 1 and 2.
-    <IfModule mod_php5.c>
-      php_flag magic_quotes_gpc                 off
-      php_flag magic_quotes_sybase              off
-      php_flag register_globals                 off
-    </IfModule>
+### Plantillas.
 
-    <IfModule mod_rewrite.c>
-        RewriteEngine On
-        # Si esta en un directorio añadirlo
-        RewriteBase /misitio
-        Options +FollowSymlinks
-        RewriteRule ^content/(.*)\.(txt|md|yml|json)$ index.php [L]
-        RewriteCond %{REQUEST_FILENAME} !-f
-        RewriteCond %{REQUEST_FILENAME} !-d
-        RewriteRule ^(.*)$ index.php?$1 [L,QSA]
-    </IfModule>
-
-
-    <IfModule mod_autoindex.c>
-        Options -Indexes
-    </IfModule>
-
-
-
-### Variables Plantilla
-
-
-    {date} = fecha d-m-Y
-
-    {Year} = Año
- 
-    {Site_url} = Url base
-
-    {Site_current}  = hash
-    
-    {* comment *} = Comentario
-
-    {Last_posts}  = Ultimos articulos
-
-    {Blog_posts} = Articulos
-
-    {Pages: demo} = Paginación de otra carpeta
-
-    // If else
-    {If: $Segment == '/'}
-        Estas en el inicio
-    {Elseif: $Segment == '/blog'}
-        Estas en el blog
-    {Else}
-        Estas en otro lado
-    {/If}
-
-    // comprueba el hash de ese momento
-    {Segment:  '/'}
-        Estas en el inicio
-    {/Segment}
-    
-    // loop
-    {Loop: $confit.blog as $item}
-        {$item.title}
-    {/Loop}
-
-    // loop key => value
-    {Loop: $confit.blog as $k=>$v}
-        {$k} = {$v}
-    {/Loop}
-
-    // icual que echo 'hola'
-    {?= 'hola' ?}
-
-    // codifica en Base uri
-    {$page.slug|encode}
-
-    // decodifica en Base uri
-    {$page.slug|decode}
-
-    // capitaliza
-    {$page.slug|capitalize}
-
-    // codifica en md5
-    {$page.slug|md5}
-
-    / codifica en sha1
-    {$page.slug|sha1}
-
-    // htmlspecialchars
-    {$page.content|e}
-
-    // html_entity_decode
-    {$page.content|parse}
-
-    // llamar una acción
-    {Action: navigation}
-
-    // include once
-    {Include: themes/default/inc/header.inc.html}
-
-    // include once en la carpeta de la plantilla actual
-    {Partial: inc/header.inc.html}
-    
-    // carpeta assets
-    {Assets: img/logo.svg}
-
-### Crear una Plantilla
-
-
-    {* incluimos las partes *}
-    {Partial: inc/head.inc.html}
-    {Partial: inc/header.inc.html}
-    <div class="container">
+    <?php include 'includes/head.html';?>
+    <?php include 'includes/header.html';?>
+    <main>
+      <div class="container">
         <div class="row">
-            <div class="col-md-6 m-auto">
-                {* Action puede ser necesario para algunos plugins *}
-                {Action: theme_before}
-                {* variables $page *}
-                <h3>{$page.title}</h3>
-                <p>{$page.description}</p>
-                {$page.content}
-                {Action: theme_theme_after}
+            <div class="col-md-10 m-auto">
+                <h1 class="divider"><?php echo $page['title'];?></h1>
+                <h2 class="mb-3 mt-5"><?php echo $page['description'];?></h2>
+                <?php echo action('theme_before');?>
+                <?php echo $page['content'];?>
+                <?php echo action('theme_after');?>
             </div>
         </div>
-    </div>
-    {Partial: inc/prefooter.inc.html}
-    {Partial: inc/footer.inc.html}
+       </div>
+    </main>
+    <?php include 'includes/prefooter.html';?>
+    <?php include 'includes/footer.html';?>
 
-En el archivo config tambien podemos crear contenido estatico y llamarlo con la variable `{$config}`.
-Por ejemplo podemos crear un array con algunos links por ejemplo:
 
-    'links' => array(
-        'uno' = 'url',
-        'dos' = 'url',
-        'tres' = 'url',
-    )
 
-Ahora solo tenemos que usar `{$config.links.uno}` o `{$config.links.dos`
 
+<span id="paso6"></span>
+### Acciones.
 
+Las Acciones son funciones que podemos integrar en la plantilla para hacerla mas dináminca. Tenemos unas cuantas por defecto que son:
 
+- **head:** usada para incluir los estilos.
+- **theme_before:** comentarios tipo discus
+- **theme_after:** resolución de formularios
+- **footer:** Analytics y javascript
 
-## Shortcodes plantilla md
+#### Creando Extensiones
 
+Vamos a crear una extensión que automáticamente genere un enlace al final de cada pagina usando una acción que ya esta en la plantilla que es  `<?php echo action('theme_after');?>`.
 
-Una de las mejores formas a mi a parecer de junto a **Markdown** hacen que sea mas facil editar una pagina.
+    <?php
+        // llamamos a la acción theme_after
+        Action::add('theme_after',function(){
+            // y ahora que enseñe esto
+            echo '<a href="'.Barrio::urlBase().'/articulos">Ver articulos.</a>';
+        });
 
 
-### Url (Url del sitio)
 
-    {Url}
+Y ahora en todas las páginas al final se verá ese enlace, asi de facil.
 
+Ahora vamos añadir algo más, le vamos a decir que si está en la sección artículos y  la página extensiones enseñe el texto y si no no enseñe nada.
 
-### Email (Email de config.php)
+    <?php
+        // llamamos a la acción theme_after
+        Action::add('theme_after',function(){
+            // urlSegment sirve para señalar un segmento del enlace
+            // si pones var_dump(Barrio::urlSegments()) veras todos los segmentos del enlace
+            if(Barrio::urlSegment(0) == 'articulos' && Barrio::urlSegment(1) == 'extensiones'){
+                 // y ahora que enseñe esto
+                echo '<a href="'.Barrio::urlBase().'/articulos">Ver articulos.</a>';
+            }
+        });
 
-    {Email} 
 
 
-### More ( el excerpt de Wordpress )
+Ahora haremos una acción que cambie el fondo solo en esta página, para ello usaremos  el  `Barrio::runAction('head')` que hay en el archivo _head.inc.html_.
 
-    {More} 
+    <?php
+        // llamamos a la accion head
+        Action::add('head',function(){
+             // urlSegment sirve para señalar un segmento del enlace
+            if(Barrio::urlSegment(0) == 'articulos' && Barrio::urlSegment(1) == 'extensiones'){
+                 // y ahora incrustamos esto
+                echo '<style rel="stylesheet">
+                        body{
+                            background:blue;
+                            color:white;
+                        }
+                        pre,code{
+                            background: #0000bb;
+                            border-color: #00008e;
+                            box-shadow: 0px 3px 6px -2px #02026f;
+                            color: white;
+                        }
+                </style>';
+            }
+        });
 
 
-### Iframes
+<span id="paso7"></span>
+### Shortcodes.
 
+Es muy fácil crear Shortcodes en **Barrio CMS** por ejemplo, vamos a crear un Shortcode que cambie el color del texto con el color que queramos.
 
-**Nota:** Solo acepta contenido seguro `https`
+    <?php
+        // llamamos la funcion mejor capitalizada (letra mayúscula)
+        Shortcode::add('Texto',function($atributos,$contenido){
 
+            // extraemos los atributos (en este caso $color)
+            extract($atributos);
 
-    // src = enlace del iframe
-    // cls = clase css
-    {Iframe  src='monchovarela.es'}
+            // definimos el color, por defecto sera blue (mejor en ingles)
+            $color = (isset($color)) ? $color : 'blue';
 
+            // parseamos para poder usar markdown
+            $contenido = Parsedown::instance()->text($contenido);
 
+            // aplicamos un filtro para escribir dentro del shortcode
+            $resultado = Barrio::applyFilter('content','<div style="color:'.$color.'">'.$contenido.'</div>');
 
-### Youtube & Vimeo
+            // quitamos espacios
+            $resultado = preg_replace('/\s+/', ' ', $resultado);
 
+            // enseñamos la plantilla
+            return $resultado;
+        });
 
 
-    // id = id del video
-    // cls = clase css
-    {Youtube id='GxEc46k46gg'}
+Ahora si escribimos `[Text color=green]` y dentro de este el texto y cerramos  con **corchetes** `[/Text]` obtenemos esto:
 
+    <p style="color:green">Este es un texto dentro de un Shortcode en el que puedo usar **Markdown**</p>
 
-    // id = id del video
-    // cls = clase css
-    {Vimeo id='149129821'}
+También puedes usar **código de color**
 
+    [Text color='#f00'] // con comillas simples con comillas dobles no funcionara
+        Hola soy **Rojo**
+    [/Text]
 
+    <p style="color:#f00">Este es un texto dentro de un Shortcode en el que puedo usar 
 
 
-###  Texto
+Ahora vamos hacer un Shortcode para incrustar videos de Youtube.
+En este caso **no necesitamos escribir dentro** así que es mas facil aun.
 
+    <?php
+        Shortcode::add('Youtube', function ($atributos) {
 
-    // bg = Color del fondo
-    // Color = Color del texto
-    {Texto bg='blue' Color='white'}
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo necessitatibus, provident maiores vero dolorum saepe architecto quam rerum possimus assumenda, incidunt sit quis, qui at dolor minima dicta aperiam fuga.
-    {/Texto}
+            // extraemos los atributos (en este caso $src)
+            extract($atributos);
 
+            // el codigo del enlace
+            $id = (isset($id)) ? $id : '';
 
+            $clase = (isset($clase)) ? $clase : 'video';
 
+            // comprobamos que exista el $id
+            if($id){
 
+                // el html
+                $html = '<section class="'.$clase.'">';
+                $html .= '<iframe src="//www.youtube.com/embed/'.$id.'" frameborder="0" allowfullscreen></iframe>';
+                $html .= '</section>';
+                $html = preg_replace('/\s+/', ' ', $html);
+                return $html;
 
-###  Alerts
+            // si no se pone el atributo id que avise
+            }else{
+                return Barrio::error('Error [ id ] no encontrado');
+            }
+        });
 
 
-    // type [primary|secondary|success|info|warning|danger|light|dark]
-    {Alert type='primary'}**Primary!** This is a primary alert-check it out!{/Alert}
-    {Alert type='secondary'}**Secondary!** This is a primary alert-check it out!{/Alert}
-    {Alert type='success'}**Success!** This is a primary alert-check it out!{/Alert}
-    {Alert type='info'}**Info!** This is a primary alert-check it out!{/Alert}
-    {Alert type='warning'}**Warning!** This is a primary alert-check it out!{/Alert}
-    {Alert type='danger'}**Danger!** This is a primary alert-check it out!{/Alert}
-    {Alert type='light'}**Light!** This is a primary alert-check it out!{/Alert}
-    {Alert type='dark'}**Dark!** This is a primary alert-check it out!{/Alert}
+El código seria este:
 
+    [Youtube id='GxEc46k46gg']
 
 
-###  Botones
+Con los Shortcodes podemos crear desde **galerías**, **formularios** , **incrustar videos**, **Musica**, **Cambiar el Css** y todo un largo etcétera.
 
 
-    // Color = [primary|secondary|success|info|warning|danger|light|dark|link]
-    // text = texto del boton
-    // id =  id del boton (opcional)
-    // link = direcciÃ³n  (opcional)
-
-    {Btn Color='primary' text='Primary' link='http://example.com'}
-    {Btn Color='secondary' text='Secondary' link='http://example.com'}
-    {Btn Color='success' text='Success' link='http://example.com'}
-    {Btn Color='info' text='Info' link='http://example.com'}
-    {Btn Color='warning' text='Warning' link='http://example.com'}
-    {Btn Color='danger' text='Danger' link='http://example.com'}
-    {Btn Color='light' text='Light' link='http://example.com'}
-    {Btn Color='dark' text='Dark' link='http://example.com'}
-    {Btn Color='link' text='Link' link='http://example.com'}
-
-
-
-
-
-
-
-###  Columnas
-
-    // cls = se le puede añadir cualquer clase
-    {Row}
-
-    // num = numero de Columnas que al sumarse sean igual a 12
-    {Col num='4'}
-    Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-    {/Col}
-
-    {Col num='4'}
-    Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-    {/Col}
-
-    {Col num='4'}
-    Labore ipsum ea dolor labore deserunt magna magna sit consequat magna eiusmod consequat.
-    {/Col}
-
-    {/Row}
-
-
-
-
-### Barra de progreso
-
-    // size = Tamaño de la barra
-    // Color = [success | info | warning | danger ]
-    // cls = otra clase
-    {Progress  size='25' Color='success'}
-    {Progress  size='30' Color='info'}
-    {Progress  size='40' Color='warning'}
-    {Progress  size='60' Color='danger' cls='mb-5'}
-
-
-
-
-###  Cards
-
-    // Row para agrupar
-    // Col = numero de Columna que sume 12 en total en el Bloque
-    // title =  titulo
-    // img = imagen
-    // cls = css class
-    {Row}
-    {Card num='4' title='heart' img='{url}/content/imagenes/sin-imagen.svg'}
-    Row que sumen 12 en total
-
-    {Btn Color='primary' text='Primary' id='btn' link='//example.com'}
-    {/Card}
-    { Card num='4' title='heart' img='{url}/content/imagenes/sin-imagen.svg'}
-    Row que sumen 12 en total
-
-    {Btn Color='primary' text='Primary' id='btn' link='//example.com'}
-    {/Card}
-    { Card num='4' title='heart' img='{url}/content/imagenes/sin-imagen.svg'}
-    Row que sumen 12 en total
-
-    {Btn Color='primary' text='Primary' id='btn' link='//example.com'}
-    {/Card}
-    {/Row}
-
-
-
-
-###  Accordions
-
-    // id = id del acordeon
-    {Accordions id='acordeon'}
-
-    // title = el titulo
-    // cls = la clase ( si es active el acordeon se expande)
-    {Accordion cls='active' title='Acordeon uno'}
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus sit similique quidem, sint veniam amet nostrum facilis eius consectetur. Doloremque fuga, libero veritatis itaque nisi numquam earum. Ipsum explicabo, quasi.
-    {/Accordion}
-
-    {Accordion  title='Acordeon dos'}
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic quam quasi, officia nulla est possimus fugit nesciunt, dolores dolore eaque. Consequatur, ipsa. Voluptas, laborum voluptatum aliquid doloribus quos praesentium quod.
-    {/Accordion}
-
-    { Acordeon  title='Acordeon tres'}
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero aperiam nemo adipisci cumque qui vitae nihil. Consequatur quo explicabo dolore quas, autem, temporibus repellendus nostrum qui in necessitatibus optio, non.
-    {/Accordion}
-
-    {/Accordions}
-
-
-
-###  Iconos
-
-    // type = nombre
-    // href = enlace
-    // cls = clase css
-    {Icon type='facebook' href='//facebbok.com'}
-
+**Nota:** Si tienes instalado Barrio CMS en local puedes probar el editor para ver como funcionan los Shortcodes sino mejor que lo borres por si acaso.
 

@@ -1,0 +1,17 @@
+<?php include 'includes/head.html';?>
+<?php include 'includes/header.html';?>
+<main class="mt-5">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-10 m-auto">
+            <h1 class="fw-bold display-1 divider"><?php echo $page['title'];?></h1>
+            <h2 class="mb-3"><?php echo $page['description'];?></h2>
+            <?php echo action('theme_before');?>
+            <?php echo $page['content'];?>
+            <?php echo action('theme_after');?>
+        </div>
+    </div>
+   </div>
+</main>
+<?php include 'includes/prefooter.html';?>
+<?php include 'includes/footer.html';?>

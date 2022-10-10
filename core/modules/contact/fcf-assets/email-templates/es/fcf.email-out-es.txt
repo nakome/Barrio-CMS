@@ -1,0 +1,7 @@
+Gracias por tu mensaje, pronto nos comunicaremos contigo.
+    
+    
+Tu nombre: {Name}
+Tu correo electrónico: {Email}
+Tu telefono: {Phone}
+Tu Mensaje: {Message}
